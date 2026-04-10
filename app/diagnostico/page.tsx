@@ -359,44 +359,20 @@ TONO: Directo, empático, como un amigo que sabe de finanzas. Sin jerga. Sin pro
   const callClaude = useCallback(
     async (systemPrompt: string, userMsg: string, prevMsgs: Message[]): Promise<string> => {
       const apiKey = config.apiKey || localStorage.getItem("yh_api_key") || "";
-      if (!apiKey) throw new Error("no-key");
-
       const allMsgs = [...prevMsgs, { role: "user" as const, content: userMsg }];
 
-      const isLocal =
-        typeof window !== "undefined" &&
-        (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
-
-      let res: Response;
-      if (isLocal) {
-        res = await fetch("/api/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            _apiKey: apiKey,
-            model: "claude-haiku-4-5",
-            max_tokens: 400,
-            system: systemPrompt,
-            messages: allMsgs,
-          }),
-        });
-      } else {
-        res = await fetch("https://api.anthropic.com/v1/messages", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-api-key": apiKey,
-            "anthropic-version": "2023-06-01",
-            "anthropic-dangerous-direct-browser-ipc": "true",
-          },
-          body: JSON.stringify({
-            model: "claude-haiku-4-5",
-            max_tokens: 400,
-            system: systemPrompt,
-            messages: allMsgs,
-          }),
-        });
-      }
+      // Always use the server-side proxy — the API key is in Vercel env vars
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          _apiKey: apiKey, // server will prefer ANTHROPIC_API_KEY env var
+          model: "claude-haiku-4-5",
+          max_tokens: 400,
+          system: systemPrompt,
+          messages: allMsgs,
+        }),
+      });
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
