@@ -374,7 +374,7 @@ TONO: Directo, empático, como un amigo que sabe de finanzas. Sin jerga. Sin pro
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             _apiKey: apiKey,
-            model: "claude-opus-4-5",
+            model: "claude-haiku-4-5",
             max_tokens: 400,
             system: systemPrompt,
             messages: allMsgs,
@@ -390,7 +390,7 @@ TONO: Directo, empático, como un amigo que sabe de finanzas. Sin jerga. Sin pro
             "anthropic-dangerous-direct-browser-ipc": "true",
           },
           body: JSON.stringify({
-            model: "claude-opus-4-5",
+            model: "claude-haiku-4-5",
             max_tokens: 400,
             system: systemPrompt,
             messages: allMsgs,
