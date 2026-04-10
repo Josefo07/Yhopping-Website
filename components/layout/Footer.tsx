@@ -20,11 +20,11 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Image
-              src="/images/yhopping_logo_header_180px.png"
+              src="/images/yhopping_logo_trimmed.png"
               alt="Yhopping"
-              width={180}
-              height={180}
-              className="h-16 w-auto mb-4"
+              width={489}
+              height={120}
+              className="h-10 w-auto mb-4"
             />
             <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
               Optimización financiera y operativa para PyMEs mexicanas. Expertise

@@ -30,25 +30,25 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 h-28 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center flex-shrink-0">
           {/* Desktop logo */}
           <Image
-            src="/images/yhopping_logo_hires.png"
+            src="/images/yhopping_logo_trimmed.png"
             alt="Yhopping"
-            width={1000}
-            height={1000}
-            className="hidden md:block h-24 w-auto"
+            width={489}
+            height={120}
+            className="hidden md:block h-12 w-auto"
             priority
           />
           {/* Mobile logo */}
           <Image
-            src="/images/yhopping_logo_hires.png"
+            src="/images/yhopping_logo_trimmed.png"
             alt="Yhopping"
-            width={1000}
-            height={1000}
-            className="md:hidden h-18 w-auto"
+            width={489}
+            height={120}
+            className="md:hidden h-9 w-auto"
             priority
           />
         </Link>
