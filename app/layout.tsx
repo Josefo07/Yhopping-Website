@@ -32,6 +32,23 @@ export const metadata: Metadata = {
     "consultoría empresarial",
     "Monterrey",
   ],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/images/yhopping_favicon_16px.png", sizes: "16x16", type: "image/png" },
+      { url: "/images/yhopping_favicon_32px.png", sizes: "32x32", type: "image/png" },
+      { url: "/images/yhopping_favicon_64px.png", sizes: "64x64", type: "image/png" },
+      { url: "/images/yhopping_favicon_128px.png", sizes: "128x128", type: "image/png" },
+      { url: "/images/yhopping_favicon_256px.png", sizes: "256x256", type: "image/png" },
+    ],
+    apple: [
+      { url: "/images/yhopping_favicon_128px.png", sizes: "128x128", type: "image/png" },
+      { url: "/images/yhopping_favicon_256px.png", sizes: "256x256", type: "image/png" },
+    ],
+    other: [
+      { rel: "icon", url: "/images/yhopping_favicon_512px.png", sizes: "512x512", type: "image/png" },
+    ],
+  },
   openGraph: {
     title: "Yhopping — Optimización Financiera y Operativa para PyMEs",
     description:
