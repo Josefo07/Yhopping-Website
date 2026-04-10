@@ -3,7 +3,12 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const apiKey = body._apiKey as string;
+
+    // Use server-side env var first, fall back to client-provided key (config panel)
+    const apiKey =
+      process.env.ANTHROPIC_API_KEY ||
+      (body._apiKey as string | undefined);
+
     delete body._apiKey;
 
     if (!apiKey) {
