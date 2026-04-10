@@ -39,7 +39,7 @@ export default function Header() {
             alt="Yhopping"
             width={180}
             height={180}
-            className="hidden md:block h-14 w-auto"
+            className="hidden md:block h-16 w-auto"
             priority
           />
           {/* Mobile logo */}
@@ -48,7 +48,7 @@ export default function Header() {
             alt="Yhopping"
             width={140}
             height={140}
-            className="md:hidden h-12 w-auto"
+            className="md:hidden h-14 w-auto"
             priority
           />
         </Link>
