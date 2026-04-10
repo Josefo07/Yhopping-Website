@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { ArrowLeft, X, Settings } from "lucide-react";
+import Image from "next/image";
 
 /* ─── TYPES ─── */
 type Screen = "landing" | "quiz" | "analyzing" | "chat" | "results" | "quote" | "config";
@@ -592,12 +593,14 @@ TONO: Directo, empático, como un amigo que sabe de finanzas. Sin jerga. Sin pro
         >
           {/* Logo */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <YLogo />
-              <span style={{ color: "#f1f5f9", fontSize: 18, fontWeight: 800, letterSpacing: ".02em" }}>
-                YHOPPING
-              </span>
-            </div>
+            <Image
+              src="/images/yhopping_logo_trimmed.png"
+              alt="Yhopping"
+              width={489}
+              height={120}
+              style={{ height: 36, width: "auto" }}
+              priority
+            />
             <button onClick={configTap} style={{ background: "transparent", border: "none", color: "#334155", fontSize: 18, cursor: "pointer", padding: 8 }}>
               ⚙️
             </button>
@@ -853,8 +856,13 @@ TONO: Directo, empático, como un amigo que sabe de finanzas. Sin jerga. Sin pro
           {/* Header */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 28 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <YLogo small />
-              <span style={{ color: "#e2e8f0", fontSize: 15, fontWeight: 700 }}>Tu Diagnóstico</span>
+              <Image
+                src="/images/yhopping_logo_trimmed.png"
+                alt="Yhopping"
+                width={489}
+                height={120}
+                style={{ height: 24, width: "auto" }}
+              />
             </div>
             <span style={{ color: "#334155", fontSize: 12 }}>
               {new Date().toLocaleDateString("es-MX", { day: "numeric", month: "long", year: "numeric" })}
