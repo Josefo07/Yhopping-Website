@@ -367,15 +367,19 @@ TONO: Directo, empático, como un amigo que sabe de finanzas. Sin jerga. Sin pro
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           _apiKey: apiKey, // server will prefer ANTHROPIC_API_KEY env var
-          model: "claude-haiku-4-5",
+          model: "claude-3-5-haiku-20241022",
           max_tokens: 400,
           system: systemPrompt,
           messages: allMsgs,
         }),
       });
 
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
+      if (!res.ok) {
+        const errMsg = data?.error?.message || data?.error || `HTTP ${res.status}`;
+        console.error("[callClaude] API error:", res.status, errMsg);
+        throw new Error(String(errMsg));
+      }
       return data.content[0].text as string;
     },
     [config.apiKey]
@@ -418,13 +422,13 @@ TONO: Directo, empático, como un amigo que sabe de finanzas. Sin jerga. Sin pro
       const systemPrompt = buildSystemPrompt(scores);
       const reply = await callClaude(systemPrompt, text, messages);
       setMessages([...newMsgs, { role: "assistant", content: reply }]);
-    } catch {
+    } catch (err) {
+      const errDetail = err instanceof Error ? err.message : String(err);
       setMessages([
         ...newMsgs,
         {
           role: "assistant",
-          content:
-            "Lo siento, tuve un problema de conexión. ¿Puedes intentarlo de nuevo? O bien, ve directamente a tu diagnóstico completo.",
+          content: `Error técnico: ${errDetail}. Por favor intenta de nuevo.`,
         },
       ]);
     } finally {
