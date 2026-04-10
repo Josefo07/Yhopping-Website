@@ -4,9 +4,11 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    // Use server-side env var first, fall back to client-provided key
+    // Accept any of these env var names, then fall back to client-provided key
     const apiKey =
       process.env.ANTHROPIC_API_KEY ||
+      process.env.NEXT_PUBLIC_CLAUDE_API_KEY ||
+      process.env.CLAUDE_API_KEY ||
       (body._apiKey as string | undefined);
 
     delete body._apiKey;
