@@ -576,34 +576,6 @@ TONO: Directo, empático, como un amigo que sabe de finanzas. Sin jerga. Sin pro
 
   /* ════ RENDER ════ */
 
-  /* ── Shell wrapper ── */
-  const Shell = ({ children }: { children: React.ReactNode }) => (
-    <div
-      style={{
-        background: "#0a1628",
-        minHeight: "100dvh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontFamily: "'Open Sans', system-ui, sans-serif",
-      }}
-    >
-      <div
-        style={{
-          width: "100%",
-          maxWidth: 430,
-          minHeight: "100dvh",
-          background: "#0a1628",
-          position: "relative",
-          overflowX: "hidden",
-          boxShadow: "0 0 100px rgba(6,182,212,.12)",
-        }}
-      >
-        {children}
-      </div>
-    </div>
-  );
-
   /* ── LANDING ── */
   if (screen === "landing")
     return (
@@ -1064,6 +1036,36 @@ TONO: Directo, empático, como un amigo que sabe de finanzas. Sin jerga. Sin pro
     );
 
   return null;
+}
+
+/* ─── Shell wrapper ─── */
+function Shell({ children }: { children: React.ReactNode }) {
+  return (
+    <div
+      style={{
+        background: "#0a1628",
+        minHeight: "100dvh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontFamily: "'Open Sans', system-ui, sans-serif",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: 430,
+          minHeight: "100dvh",
+          background: "#0a1628",
+          position: "relative",
+          overflowX: "hidden",
+          boxShadow: "0 0 100px rgba(6,182,212,.12)",
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
 }
 
 /* ─── Logo component ─── */
