@@ -367,7 +367,7 @@ TONO: Directo, empático, como un amigo que sabe de finanzas. Sin jerga. Sin pro
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           _apiKey: apiKey, // server will prefer ANTHROPIC_API_KEY env var
-          model: "claude-3-haiku-20240307",
+          model: "claude-haiku-4-5",
           max_tokens: 400,
           system: systemPrompt,
           messages: allMsgs,
