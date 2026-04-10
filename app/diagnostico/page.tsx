@@ -376,9 +376,9 @@ TONO: Directo, empático, como un amigo que sabe de finanzas. Sin jerga. Sin pro
 
       const data = await res.json();
       if (!res.ok) {
-        const errMsg = data?.error?.message || data?.error || `HTTP ${res.status}`;
-        console.error("[callClaude] API error:", res.status, errMsg);
-        throw new Error(String(errMsg));
+        const errMsg = `HTTP ${res.status} | type: ${data?.error?.type} | ${data?.error?.message || JSON.stringify(data)}`;
+        console.error("[callClaude] API error:", errMsg);
+        throw new Error(errMsg);
       }
       return data.content[0].text as string;
     },
