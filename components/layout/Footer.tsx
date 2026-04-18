@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 function LinkedinIcon({ size = 14 }: { size?: number }) {
   return (
@@ -13,6 +16,15 @@ function LinkedinIcon({ size = 14 }: { size?: number }) {
 }
 
 export default function Footer() {
+  const { t } = useLanguage();
+
+  const serviceLinks = [
+    [t.services.items[0].title, "/servicios#cfo"],
+    [t.services.items[1].title, "/servicios#flujo"],
+    [t.services.items[2].title, "/servicios#automatizacion"],
+    [t.services.items[3].title, "/servicios#diagnostico"],
+  ] as [string, string][];
+
   return (
     <footer className="bg-yhopping-dark text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -27,23 +39,17 @@ export default function Footer() {
               className="h-10 w-auto mb-4"
             />
             <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
-              Optimización financiera y operativa para PyMEs mexicanas. Expertise
-              C-level + tecnología + ROI medible.
+              {t.footer.tagline}
             </p>
           </div>
 
           {/* Services */}
           <div>
             <h3 className="font-heading font-700 text-sm tracking-widest text-yhopping-cyan uppercase mb-5">
-              Servicios
+              {t.footer.services}
             </h3>
             <ul className="space-y-3">
-              {[
-                ["CFO Fraccional", "/servicios#cfo"],
-                ["Optimización Flujo de Caja", "/servicios#flujo"],
-                ["Automatización Office 365", "/servicios#automatizacion"],
-                ["Diagnóstico Financiero", "/servicios#diagnostico"],
-              ].map(([label, href]) => (
+              {serviceLinks.map(([label, href]) => (
                 <li key={href}>
                   <Link
                     href={href}
@@ -59,7 +65,7 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h3 className="font-heading font-700 text-sm tracking-widest text-yhopping-cyan uppercase mb-5">
-              Contacto
+              {t.footer.contact}
             </h3>
             <ul className="space-y-3">
               <li>
@@ -83,7 +89,7 @@ export default function Footer() {
               <li>
                 <span className="flex items-center gap-2 text-sm text-gray-400">
                   <MapPin size={14} className="flex-shrink-0" />
-                  Monterrey, Nuevo León
+                  {t.contact.location}
                 </span>
               </li>
               <li>
@@ -102,14 +108,12 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-gray-500">
-            © 2026 Yhopping. Optimización Financiera para PyMEs.
-          </p>
+          <p className="text-xs text-gray-500">{t.footer.copyright}</p>
           <Link
             href="/insights"
             className="text-xs text-gray-500 hover:text-yhopping-cyan transition-colors duration-200"
           >
-            Insights
+            {t.nav.insights}
           </Link>
         </div>
       </div>

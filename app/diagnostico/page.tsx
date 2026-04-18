@@ -5,7 +5,8 @@ import { ArrowLeft, X, Settings } from "lucide-react";
 import Image from "next/image";
 
 /* ─── TYPES ─── */
-type Screen = "landing" | "quiz" | "analyzing" | "chat" | "results" | "quote" | "config";
+type Screen = "landing" | "lang" | "quiz" | "analyzing" | "chat" | "results" | "quote" | "config";
+type ChatLang = "es" | "en";
 
 interface Scores {
   vis: number;
@@ -238,6 +239,7 @@ export default function DiagnosticoPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [chatInput, setChatInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [chatLang, setChatLang] = useState<ChatLang>("es");
   const [config, setConfig] = useState<Config>({ apiKey: "", waNumber: "5215564535862", calendlyLink: "" });
   const [cfgForm, setCfgForm] = useState<Config>({ apiKey: "", waNumber: "", calendlyLink: "" });
   const [cfgTaps, setCfgTaps] = useState(0);
@@ -309,20 +311,85 @@ export default function DiagnosticoPage() {
   }
 
   /* ── CHAT ── */
-  function buildSystemPrompt(s: Scores): string {
-    const tamano = ["", "negocio unipersonal", "empresa de 2-10 empleados", "empresa de 11-50 empleados", "empresa de 50+ empleados"][answers.q1_size ?? 1];
-    const etapa = ["", "en etapa de arranque", "en etapa de estabilización", "en etapa de crecimiento", "en etapa de escala"][answers.q2_stage ?? 1];
-    const estadosFinancieros = (answers.q3_statements ?? 0) >= 3 ? "estados financieros al día" : (answers.q3_statements ?? 0) >= 2 ? "estados financieros parciales o atrasados" : "sin estados financieros formales";
-    const margen = (answers.q4_margin ?? 0) >= 3 ? "conoce su margen con claridad" : (answers.q4_margin ?? 0) >= 2 ? "conoce su margen aproximadamente" : "no conoce su margen real";
-    const flujo = answers.q5_cashflow === 0 ? "problemas de flujo SEVEROS (vende pero no tiene dinero)" : answers.q5_cashflow === 1 ? "problemas de flujo frecuentes" : answers.q5_cashflow === 2 ? "problemas de flujo ocasionales" : "flujo de caja estable";
-    const contador = (answers.q6_accountant ?? 0) >= 3 ? "contador/CFO con rol estratégico" : (answers.q6_accountant ?? 0) >= 1 ? "contador solo para temas fiscales" : "sin contador";
-    const crecimiento = answers.q7_growth === 0 ? "crece pero NO ve utilidades (señal de alerta crítica)" : answers.q7_growth === 1 ? "crecimiento con utilidades preocupantes" : answers.q7_growth === 2 ? "algo de crecimiento visible en utilidades" : "crecimiento con utilidades claras";
+  function buildSystemPrompt(s: Scores, lang: ChatLang = "es"): string {
+    const isEN = lang === "en";
+    const tamano = isEN
+      ? ["", "sole proprietorship", "2–10 employee company", "11–50 employee company", "50+ employee company"][answers.q1_size ?? 1]
+      : ["", "negocio unipersonal", "empresa de 2-10 empleados", "empresa de 11-50 empleados", "empresa de 50+ empleados"][answers.q1_size ?? 1];
+    const etapa = isEN
+      ? ["", "in startup stage", "in stabilization stage", "in active growth stage", "in scaling stage"][answers.q2_stage ?? 1]
+      : ["", "en etapa de arranque", "en etapa de estabilización", "en etapa de crecimiento", "en etapa de escala"][answers.q2_stage ?? 1];
+    const estadosFinancieros = isEN
+      ? ((answers.q3_statements ?? 0) >= 3 ? "up-to-date financial statements" : (answers.q3_statements ?? 0) >= 2 ? "partial or outdated statements" : "no formal financial statements")
+      : ((answers.q3_statements ?? 0) >= 3 ? "estados financieros al día" : (answers.q3_statements ?? 0) >= 2 ? "estados financieros parciales o atrasados" : "sin estados financieros formales");
+    const margen = isEN
+      ? ((answers.q4_margin ?? 0) >= 3 ? "knows margin clearly" : (answers.q4_margin ?? 0) >= 2 ? "knows approximate margin" : "does not know real margin")
+      : ((answers.q4_margin ?? 0) >= 3 ? "conoce su margen con claridad" : (answers.q4_margin ?? 0) >= 2 ? "conoce su margen aproximadamente" : "no conoce su margen real");
+    const flujo = isEN
+      ? (answers.q5_cashflow === 0 ? "SEVERE cash flow problems (sells but has no money)" : answers.q5_cashflow === 1 ? "frequent cash flow problems" : answers.q5_cashflow === 2 ? "occasional cash flow problems" : "stable cash flow")
+      : (answers.q5_cashflow === 0 ? "problemas de flujo SEVEROS (vende pero no tiene dinero)" : answers.q5_cashflow === 1 ? "problemas de flujo frecuentes" : answers.q5_cashflow === 2 ? "problemas de flujo ocasionales" : "flujo de caja estable");
+    const contador = isEN
+      ? ((answers.q6_accountant ?? 0) >= 3 ? "accountant/CFO with strategic role" : (answers.q6_accountant ?? 0) >= 1 ? "accountant for tax filing only" : "no accountant")
+      : ((answers.q6_accountant ?? 0) >= 3 ? "contador/CFO con rol estratégico" : (answers.q6_accountant ?? 0) >= 1 ? "contador solo para temas fiscales" : "sin contador");
+    const crecimiento = isEN
+      ? (answers.q7_growth === 0 ? "growing but NOT seeing profits (critical warning)" : answers.q7_growth === 1 ? "growth with concerning profits" : answers.q7_growth === 2 ? "some visible growth in profits" : "growth with clear profits")
+      : (answers.q7_growth === 0 ? "crece pero NO ve utilidades (señal de alerta crítica)" : answers.q7_growth === 1 ? "crecimiento con utilidades preocupantes" : answers.q7_growth === 2 ? "algo de crecimiento visible en utilidades" : "crecimiento con utilidades claras");
 
     const semaforoRentabilidad = s.crec < 4 ? "🔴" : s.crec < 7 ? "🟡" : "🟢";
     const semaforoLiquidez = s.flujo < 4 ? "🔴" : s.flujo < 7 ? "🟡" : "🟢";
     const semaforoVisibilidad = s.vis < 4 ? "🔴" : s.vis < 7 ? "🟡" : "🟢";
 
-    return `Eres Daniela Reyes, CFO Virtual Senior de Yhopping — firma de consultoría C-Level para PyMEs mexicanas. Tu expertise: diagnóstico financiero estructurado, flujo de caja, visibilidad financiera, y transformación operativa con metodología de firma de consultoría (no de contador).
+    return isEN ? `You are Daniela Reyes, Senior Virtual CFO at Yhopping — a C-Level consulting firm for Mexican SMBs. Your expertise: structured financial diagnostics, cash flow, financial visibility, and operational transformation using consulting firm methodology (not accounting firm).
+
+RESPOND ENTIRELY IN ENGLISH throughout this conversation.
+
+═══ BUSINESS PROFILE (from diagnostic) ═══
+Company: ${tamano} ${etapa}
+Financial statements: ${estadosFinancieros}
+Margin: ${margen}
+Cash flow: ${flujo}
+Financial support: ${contador}
+Profits: ${crecimiento}
+${isAltruistic ? "⭐ NOTE: Indicated social/altruistic purpose — evaluate special support." : ""}
+
+INITIAL FINANCIAL SCORECARD:
+${semaforoRentabilidad} Profitability/Growth: ${s.crec}/10
+${semaforoLiquidez} Liquidity/Cash Flow: ${s.flujo}/10
+${semaforoVisibilidad} Financial Visibility: ${s.vis}/10
+📊 Total score: ${s.total}/100
+
+═══ RESPONSE METHODOLOGY ═══
+Apply McKinsey structure (adapted, concise):
+1. DIRECT CONCLUSION — Lead with the answer, not the preamble
+2. ROOT CAUSE ANALYSIS — Not the symptom, but the real "why" (use 5 Whys mentally)
+3. CONCRETE ACTION — 1-2 specific actions, prioritized by impact
+4. COST OF INACTION — Quantify or estimate the cost of staying the same
+5. NEXT STEP with Yhopping — Natural, not salesy
+
+═══ CONVERSATION RULES ═══
+- Ask ONE question per message (never list 3 questions)
+- Dig into root cause: if they say "no cash", ask "when do you collect vs when do you pay?"
+- Use diagnostic data to personalize, never generic
+- If they mention "I already have an accountant": "An accountant manages the fiscal past. A CFO designs the financial future. Complementary roles, not the same."
+- If they ask about price: "A full diagnostic starts at $15,000 MXN. Before discussing investment, can you tell me [specific question]?"
+- If altruistic: "Yhopping evaluates special support for social impact projects. Tell me more."
+- Maximum 120 words per response
+- Close each response with ONE question that deepens or moves toward a session
+
+═══ YHOPPING COMMERCIAL PIPELINE ═══
+Business Diagnostic: $15,000–$35,000 MXN (5-10 business days)
+Fractional CFO: $20,000–$45,000 MXN/month
+Specific project: $50,000–$200,000 MXN
+→ Goal of this conversation: generate genuine interest in the free diagnostic session (30 min with JJ Torres, Yhopping Founder)
+
+═══ YHOPPING DIFFERENTIATORS (use naturally) ═══
+• 20+ years of real C-Level experience (CFO/COO at $500M+ MXN companies)
+• Not just diagnostic — accompaniment until results
+• O365 automation included where applicable
+• Consulting firm methodology, not accounting office
+
+TONE: Direct as a CFO. Empathetic as a partner. Never like a salesperson. No unnecessary jargon. Use line breaks for readability.`
+    : `Eres Daniela Reyes, CFO Virtual Senior de Yhopping — firma de consultoría C-Level para PyMEs mexicanas. Tu expertise: diagnóstico financiero estructurado, flujo de caja, visibilidad financiera, y transformación operativa con metodología de firma de consultoría (no de contador).
 
 ═══ PERFIL DEL EMPRESARIO (del diagnóstico) ═══
 Empresa: ${tamano} ${etapa}
@@ -372,7 +439,11 @@ Proyecto específico: $50,000–$200,000 MXN
 TONO: Directo como un CFO. Empático como un socio. Nunca como un vendedor. Sin tecnicismos innecesarios. Usa saltos de línea para legibilidad.`;
   }
 
-  function buildFirstMessage(s: Scores): string {
+  function buildFirstMessage(s: Scores, lang: ChatLang = chatLang): string {
+    if (lang === "en") {
+      const focus = s.flujo < s.vis ? "cash flow" : "financial visibility";
+      return `I just completed the diagnostic. My score was ${s.total}/100. My most critical area seems to be ${focus}. ${(answers.q5_cashflow ?? 4) <= 1 ? "I've had situations where I have sales but no available cash." : ""} What can you tell me?`;
+    }
     const focus = s.flujo < s.vis ? "flujo de efectivo" : "visibilidad financiera";
     return `Acabo de completar el diagnóstico. Mi score fue ${s.total}/100. Mi área más crítica parece ser el ${focus}. ${(answers.q5_cashflow ?? 4) <= 1 ? "Me ha pasado que tengo ventas pero no dinero disponible." : ""} ¿Qué me dices?`;
   }
@@ -414,13 +485,13 @@ TONO: Directo como un CFO. Empático como un socio. Nunca como un vendedor. Sin 
     [config.apiKey]
   );
 
-  async function startChat(s: Scores) {
+  async function startChat(s: Scores, lang: ChatLang = chatLang) {
     setMessages([]);
     setScreen("chat");
     setIsTyping(true);
 
-    const systemPrompt = buildSystemPrompt(s);
-    const firstMsg = buildFirstMessage(s);
+    const systemPrompt = buildSystemPrompt(s, lang);
+    const firstMsg = buildFirstMessage(s, lang);
 
     try {
       const reply = await callClaude(systemPrompt, firstMsg, []);
@@ -448,7 +519,7 @@ TONO: Directo como un CFO. Empático como un socio. Nunca como un vendedor. Sin 
     setIsTyping(true);
 
     try {
-      const systemPrompt = buildSystemPrompt(scores);
+      const systemPrompt = buildSystemPrompt(scores, chatLang);
       const reply = await callClaude(systemPrompt, text, messages);
       setMessages([...newMsgs, { role: "assistant", content: reply }]);
     } catch (err) {
@@ -663,7 +734,7 @@ TONO: Directo como un CFO. Empático como un socio. Nunca como un vendedor. Sin 
 
           {/* CTA */}
           <button
-            onClick={() => { setStep(0); setAnswers({}); setSelected(null); setScreen("quiz"); }}
+            onClick={() => setScreen("lang")}
             style={{ background: "linear-gradient(135deg,#1d4ed8,#06b6d4)", color: "#fff", border: "none", borderRadius: 14, padding: "18px 24px", fontSize: 17, fontWeight: 700, width: "100%", cursor: "pointer" }}
           >
             Iniciar diagnóstico gratis →
@@ -671,6 +742,81 @@ TONO: Directo como un CFO. Empático como un socio. Nunca como un vendedor. Sin 
           <p style={{ color: "#334155", fontSize: 12, textAlign: "center", marginTop: 12 }}>
             Más de 50 empresas ya conocen su salud financiera real
           </p>
+        </div>
+      </Shell>
+    );
+
+  /* ── LANG SELECTION ── */
+  if (screen === "lang")
+    return (
+      <Shell>
+        <div style={{ background: "#0a1628", minHeight: "100dvh", padding: "32px 24px 48px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ width: "100%", maxWidth: 360 }}>
+            {/* Badge */}
+            <div style={{ textAlign: "center", marginBottom: 32 }}>
+              <div style={{ fontSize: 48, marginBottom: 16 }}>🌎</div>
+              <h2 style={{ color: "#f1f5f9", fontSize: 22, fontWeight: 800, lineHeight: 1.3, margin: "0 0 12px" }}>
+                ¿En qué idioma prefieres continuar?
+              </h2>
+              <p style={{ color: "#94a3b8", fontSize: 15, margin: 0 }}>
+                What language would you prefer?
+              </p>
+            </div>
+
+            {/* Options */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              <button
+                onClick={() => {
+                  setChatLang("es");
+                  setStep(0); setAnswers({}); setSelected(null);
+                  setScreen("quiz");
+                }}
+                style={{
+                  display: "flex", alignItems: "center", gap: 16,
+                  background: "#111f3a", border: "1.5px solid rgba(255,255,255,.08)",
+                  borderRadius: 16, padding: "20px 24px", cursor: "pointer",
+                  textAlign: "left", transition: "all .18s ease",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = "#06b6d4")}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(255,255,255,.08)")}
+              >
+                <span style={{ fontSize: 32 }}>🇲🇽</span>
+                <div>
+                  <div style={{ color: "#f1f5f9", fontSize: 17, fontWeight: 700, marginBottom: 2 }}>Español</div>
+                  <div style={{ color: "#64748b", fontSize: 13 }}>Continuar en español</div>
+                </div>
+              </button>
+
+              <button
+                onClick={() => {
+                  setChatLang("en");
+                  setStep(0); setAnswers({}); setSelected(null);
+                  setScreen("quiz");
+                }}
+                style={{
+                  display: "flex", alignItems: "center", gap: 16,
+                  background: "#111f3a", border: "1.5px solid rgba(255,255,255,.08)",
+                  borderRadius: 16, padding: "20px 24px", cursor: "pointer",
+                  textAlign: "left", transition: "all .18s ease",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = "#06b6d4")}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(255,255,255,.08)")}
+              >
+                <span style={{ fontSize: 32 }}>🇺🇸</span>
+                <div>
+                  <div style={{ color: "#f1f5f9", fontSize: 17, fontWeight: 700, marginBottom: 2 }}>English</div>
+                  <div style={{ color: "#64748b", fontSize: 13 }}>Continue in English</div>
+                </div>
+              </button>
+            </div>
+
+            <button
+              onClick={() => setScreen("landing")}
+              style={{ marginTop: 24, width: "100%", background: "transparent", border: "none", color: "#334155", fontSize: 13, cursor: "pointer", padding: 8 }}
+            >
+              ← Volver / Go back
+            </button>
+          </div>
         </div>
       </Shell>
     );

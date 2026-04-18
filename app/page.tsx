@@ -4,8 +4,11 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { TrendingUp, Droplets, Zap, FileSearch, CheckCircle } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-/* ─── Intersection Observer hook ─── */
+const serviceIcons = [TrendingUp, Droplets, Zap, FileSearch];
+const serviceHrefs = ["/servicios#cfo", "/servicios#flujo", "/servicios#automatizacion", "/servicios#diagnostico-fin"];
+
 function useFadeIn(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -26,11 +29,10 @@ function useFadeIn(threshold = 0.15) {
   return ref;
 }
 
-/* ─── HERO ─── */
 function HeroSection() {
+  const { t } = useLanguage();
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background image + overlay */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero_ia.png"
@@ -41,53 +43,42 @@ function HeroSection() {
         />
         <div
           className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(0,70,255,0.95) 0%, rgba(28,197,220,0.85) 100%)",
-          }}
+          style={{ background: "linear-gradient(135deg, rgba(0,70,255,0.95) 0%, rgba(28,197,220,0.85) 100%)" }}
         />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-24 w-full">
         <div className="max-w-3xl">
-          {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/25 rounded-full px-4 py-2 mb-8">
             <span className="w-2 h-2 rounded-full bg-yhopping-cyan animate-pulse" />
             <span className="text-white text-xs font-semibold tracking-widest uppercase">
-              Consultoría C-Level · PyMEs México
+              {t.home.badge}
             </span>
           </div>
 
-          {/* H1 */}
           <h1
             className="text-white font-heading font-black leading-tight mb-6"
-            style={{
-              fontSize: "clamp(40px, 5vw, 56px)",
-              letterSpacing: "-0.02em",
-            }}
+            style={{ fontSize: "clamp(40px, 5vw, 56px)", letterSpacing: "-0.02em" }}
           >
-            Optimización Financiera y Operativa para PyMEs Mexicanas
+            {t.home.hero}
           </h1>
 
-          {/* Sub */}
           <p className="text-white/80 text-lg leading-relaxed mb-10 max-w-2xl">
-            Expertise CFO/COO 20+ años · Automatización · Enfoque práctico con ROI medible.
-            Primer diagnóstico gratis, sin compromiso.
+            {t.home.heroSub}
           </p>
 
-          {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               href="/diagnostico"
               className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-yhopping-dark bg-white text-base shadow-2xl transition-all duration-200 hover:scale-105 hover:shadow-white/20"
             >
-              Agenda tu Diagnóstico Gratuito
+              {t.home.ctaPrimary}
             </Link>
             <Link
               href="/servicios"
               className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-white border-2 border-white/60 text-base transition-all duration-200 hover:bg-white/10"
             >
-              Conoce Nuestros Servicios
+              {t.home.ctaSecondary}
             </Link>
           </div>
         </div>
@@ -96,62 +87,32 @@ function HeroSection() {
   );
 }
 
-/* ─── PROBLEMAS ─── */
-const problemas = [
-  {
-    icon: "💸",
-    title: "Flujo de caja irregular",
-    desc: "Vendes bien pero el dinero nunca alcanza",
-    context: "Ingresos sólidos, liquidez inconsistente",
-  },
-  {
-    icon: "📊",
-    title: "Decisiones sin datos",
-    desc: "Cierras mes sin saber si ganaste o perdiste",
-    context: "Estados financieros desactualizados o inexistentes",
-  },
-  {
-    icon: "⚙️",
-    title: "Procesos manuales",
-    desc: "Tu equipo pierde 10+ horas/semana en Excel",
-    context: "Conciliaciones, reportes y validaciones manuales",
-  },
-];
-
 function ProblemasSection() {
+  const { t } = useLanguage();
   const ref = useFadeIn();
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div
-          ref={ref}
-          className="opacity-0 translate-y-8 transition-all duration-700"
-        >
+        <div ref={ref} className="opacity-0 translate-y-8 transition-all duration-700">
           <h2
             className="font-heading font-bold text-center mb-4"
-            style={{
-              fontSize: "clamp(28px, 3vw, 32px)",
-              color: "#212529",
-              letterSpacing: "-0.01em",
-            }}
+            style={{ fontSize: "clamp(28px, 3vw, 32px)", color: "#212529", letterSpacing: "-0.01em" }}
           >
-            ¿Te identificas con alguno de estos desafíos?
+            {t.home.problemsTitle}
           </h2>
           <p className="text-center text-yhopping-gray-700 mb-14 max-w-xl mx-auto">
-            Son las tres fricciones más comunes en PyMEs con ventas sólidas pero sin claridad financiera.
+            {t.home.problemsSub}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {problemas.map((p, i) => (
+            {t.home.problems.map((p, i) => (
               <div
                 key={i}
                 className="rounded-2xl border border-yhopping-gray-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-default"
                 style={{ transitionDelay: `${i * 80}ms` }}
               >
                 <div className="text-5xl mb-5">{p.icon}</div>
-                <h3 className="font-heading font-bold text-xl text-yhopping-gray-900 mb-2">
-                  {p.title}
-                </h3>
+                <h3 className="font-heading font-bold text-xl text-yhopping-gray-900 mb-2">{p.title}</h3>
                 <p className="text-yhopping-gray-700 font-semibold mb-3">&ldquo;{p.desc}&rdquo;</p>
                 <p className="text-sm text-yhopping-gray-700">{p.context}</p>
               </div>
@@ -163,87 +124,46 @@ function ProblemasSection() {
   );
 }
 
-/* ─── SERVICIOS PREVIEW ─── */
-const servicios = [
-  {
-    icon: TrendingUp,
-    title: "CFO Fraccional",
-    desc: "Tu director financiero cuando lo necesitas",
-    bullet: "Sin el costo de tiempo completo",
-    href: "/servicios#cfo",
-  },
-  {
-    icon: Droplets,
-    title: "Optimización Flujo de Caja",
-    desc: "Claridad financiera en 10-16 horas",
-    bullet: "Identifica dónde se queda el dinero",
-    href: "/servicios#flujo",
-  },
-  {
-    icon: Zap,
-    title: "Automatización Office 365",
-    desc: "Libera a tu equipo de tareas repetitivas",
-    bullet: "Power Automate + Power BI + SharePoint",
-    href: "/servicios#automatizacion",
-  },
-  {
-    icon: FileSearch,
-    title: "Diagnóstico Financiero",
-    desc: "Radiografía completa en 8-14 horas",
-    bullet: "Identifica fugas de efectivo",
-    href: "/servicios#diagnostico-fin",
-  },
-];
-
 function ServiciosPreview() {
+  const { t } = useLanguage();
   const ref = useFadeIn();
   return (
     <section className="py-24 bg-yhopping-gray-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div
-          ref={ref}
-          className="opacity-0 translate-y-8 transition-all duration-700"
-        >
+        <div ref={ref} className="opacity-0 translate-y-8 transition-all duration-700">
           <h2
             className="font-heading font-bold text-center mb-3"
-            style={{
-              fontSize: "clamp(28px, 3vw, 32px)",
-              color: "#212529",
-              letterSpacing: "-0.01em",
-            }}
+            style={{ fontSize: "clamp(28px, 3vw, 32px)", color: "#212529", letterSpacing: "-0.01em" }}
           >
-            Soluciones Prácticas con ROI Medible
+            {t.home.servicesTitle}
           </h2>
           <p className="text-center text-yhopping-gray-700 mb-14 max-w-xl mx-auto">
-            Cada servicio está diseñado para generar resultados concretos en semanas, no meses.
+            {t.home.servicesSub}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            {servicios.map((s, i) => {
-              const Icon = s.icon;
+            {t.home.services.map((s, i) => {
+              const Icon = serviceIcons[i];
               return (
                 <div
                   key={i}
                   className="rounded-2xl bg-white border border-yhopping-gray-200 p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group"
                   style={{ transitionDelay: `${i * 100}ms` }}
                 >
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform duration-200 group-hover:scale-110"
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform duration-200 group-hover:scale-110"
                     style={{ background: "linear-gradient(135deg, #0046FF15, #1CC5DC20)" }}
                   >
                     <Icon size={22} className="text-yhopping-cyan" />
                   </div>
-                  <h3 className="font-heading font-bold text-lg text-yhopping-gray-900 mb-2">
-                    {s.title}
-                  </h3>
+                  <h3 className="font-heading font-bold text-lg text-yhopping-gray-900 mb-2">{s.title}</h3>
                   <p className="text-yhopping-gray-700 mb-3">{s.desc}</p>
-                  <p className="text-sm text-yhopping-cyan font-semibold mb-5">
-                    ✓ {s.bullet}
-                  </p>
+                  <p className="text-sm text-yhopping-cyan font-semibold mb-5">✓ {s.bullet}</p>
                   <Link
-                    href={s.href}
+                    href={serviceHrefs[i]}
                     className="link-underline text-sm font-semibold text-yhopping-blue hover:text-yhopping-cyan transition-colors duration-200"
                   >
-                    Ver más →
+                    {t.home.viewMore}
                   </Link>
                 </div>
               );
@@ -255,46 +175,28 @@ function ServiciosPreview() {
   );
 }
 
-/* ─── POR QUÉ YHOPPING ─── */
-const razones = [
-  "Experiencia comprobada: +20 años CFO/COO en Televisa, banca, manufactura",
-  "Enfoque práctico: No vendemos estrategia sin ejecución",
-  "ROI objetivo 3:1: Proyectos con retorno mínimo medible",
-  "Tecnología aplicada: Automatización real con Office 365",
-];
-
 function PorQueSection() {
+  const { t } = useLanguage();
   const ref = useFadeIn();
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div
-          ref={ref}
-          className="opacity-0 translate-y-8 transition-all duration-700"
-        >
+        <div ref={ref} className="opacity-0 translate-y-8 transition-all duration-700">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
-            {/* Texto 60% */}
             <div className="lg:col-span-3">
               <p className="text-yhopping-cyan font-semibold text-sm tracking-widest uppercase mb-3">
-                Por qué Yhopping
+                {t.home.whyLabel}
               </p>
               <h2
                 className="font-heading font-bold mb-8"
-                style={{
-                  fontSize: "clamp(28px, 3vw, 36px)",
-                  color: "#212529",
-                  letterSpacing: "-0.02em",
-                }}
+                style={{ fontSize: "clamp(28px, 3vw, 36px)", color: "#212529", letterSpacing: "-0.02em" }}
               >
-                Expertise C-Level + Tecnología + ROI Real
+                {t.home.whyTitle}
               </h2>
               <div className="space-y-5">
-                {razones.map((r, i) => (
+                {t.home.whyReasons.map((r, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <CheckCircle
-                      size={20}
-                      className="text-yhopping-green flex-shrink-0 mt-0.5"
-                    />
+                    <CheckCircle size={20} className="text-yhopping-green flex-shrink-0 mt-0.5" />
                     <p className="text-yhopping-gray-700">{r}</p>
                   </div>
                 ))}
@@ -304,11 +206,10 @@ function PorQueSection() {
                 className="inline-flex items-center justify-center mt-10 px-7 py-3.5 rounded-full font-bold text-white text-sm shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl"
                 style={{ background: "linear-gradient(135deg, #0046FF, #1CC5DC)" }}
               >
-                Agenda diagnóstico gratuito →
+                {t.home.whyCta}
               </Link>
             </div>
 
-            {/* Imagen 40% */}
             <div className="lg:col-span-2">
               <div className="relative rounded-2xl overflow-hidden shadow-xl">
                 <Image
@@ -327,15 +228,14 @@ function PorQueSection() {
   );
 }
 
-/* ─── CTA FINAL ─── */
 function CTAFinal() {
+  const { t } = useLanguage();
   return (
     <section className="py-24 bg-yhopping-green relative overflow-hidden">
       <div
         className="absolute inset-0 opacity-10"
         style={{
-          backgroundImage:
-            "radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 50%, white 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 50%, white 1px, transparent 1px)",
           backgroundSize: "40px 40px",
         }}
       />
@@ -344,23 +244,20 @@ function CTAFinal() {
           className="font-heading font-black text-white mb-4"
           style={{ fontSize: "clamp(28px, 3vw, 40px)", letterSpacing: "-0.02em" }}
         >
-          ¿Listo para tener claridad financiera real?
+          {t.home.ctaFinalTitle}
         </h2>
-        <p className="text-white/80 text-lg mb-10">
-          Diagnóstico gratuito de 30 minutos. Sin compromiso.
-        </p>
+        <p className="text-white/80 text-lg mb-10">{t.home.ctaFinalSub}</p>
         <Link
           href="/diagnostico"
           className="inline-flex items-center justify-center px-10 py-4 rounded-full font-bold text-yhopping-green bg-white text-base shadow-xl transition-all duration-200 hover:scale-105 hover:shadow-2xl"
         >
-          Agenda tu Diagnóstico
+          {t.home.ctaFinalBtn}
         </Link>
       </div>
     </section>
   );
 }
 
-/* ─── PAGE ─── */
 export default function HomePage() {
   return (
     <>

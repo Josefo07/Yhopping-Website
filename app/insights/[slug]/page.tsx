@@ -15,7 +15,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
-  if (!post) return { title: "Post no encontrado — Yhopping" };
+  if (!post) return { title: "Post not found — Yhopping" };
   return {
     title: `${post.title} — Yhopping Insights`,
     description: post.excerpt,
@@ -27,6 +27,10 @@ const categoryColors: Record<string, string> = {
   Tecnología: "#1CC5DC",
   Liderazgo: "#27AE60",
   Finanzas: "#E67E22",
+  Operations: "#0046FF",
+  Technology: "#1CC5DC",
+  Leadership: "#27AE60",
+  Finance: "#E67E22",
 };
 
 export default async function PostPage({ params }: Props) {
@@ -35,8 +39,8 @@ export default async function PostPage({ params }: Props) {
   if (!post) notFound();
 
   const color = categoryColors[post.category] ?? "#0046FF";
+  const isEN = post.lang === "en";
 
-  // Render content: convert double newlines to paragraphs, preserve emoji lines
   const paragraphs = post.content
     .split(/\n\n+/)
     .map((block) => block.trim())
@@ -47,9 +51,7 @@ export default async function PostPage({ params }: Props) {
       {/* Hero */}
       <section
         className="pt-36 pb-20"
-        style={{
-          background: "linear-gradient(160deg, rgba(0,70,255,0.92) 0%, rgba(28,197,220,0.85) 100%)",
-        }}
+        style={{ background: "linear-gradient(160deg, rgba(0,70,255,0.92) 0%, rgba(28,197,220,0.85) 100%)" }}
       >
         <div className="max-w-3xl mx-auto px-6 lg:px-12">
           <Link
@@ -57,7 +59,7 @@ export default async function PostPage({ params }: Props) {
             className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm mb-8 transition-colors"
           >
             <ArrowLeft size={16} />
-            Volver a Insights
+            {isEN ? "Back to Insights" : "Volver a Insights"}
           </Link>
 
           <div className="flex items-center gap-3 mb-5">
@@ -86,11 +88,15 @@ export default async function PostPage({ params }: Props) {
       <article className="max-w-3xl mx-auto px-6 lg:px-12 py-16">
         <div className="prose prose-lg max-w-none">
           {paragraphs.map((para, i) => {
-            // First paragraph = title (already shown in hero), skip it
             if (i === 0 && para === post.title) return null;
 
-            // Detect list items
-            if (para.startsWith("- ") || para.startsWith("✅") || para.startsWith("🔹") || para.startsWith("1️⃣") || para.startsWith("2️⃣")) {
+            if (
+              para.startsWith("- ") ||
+              para.startsWith("✅") ||
+              para.startsWith("🔹") ||
+              para.startsWith("1️⃣") ||
+              para.startsWith("2️⃣")
+            ) {
               const lines = para.split("\n").filter(Boolean);
               return (
                 <ul key={i} className="space-y-3 my-6 list-none pl-0">
@@ -104,7 +110,6 @@ export default async function PostPage({ params }: Props) {
               );
             }
 
-            // Detect sub-header (short bold lines)
             if (para.length < 80 && !para.includes(".")) {
               return (
                 <h2
@@ -125,28 +130,27 @@ export default async function PostPage({ params }: Props) {
           })}
         </div>
 
-        {/* Divider + CTA */}
+        {/* CTA */}
         <div className="mt-16 pt-10 border-t border-yhopping-gray-200">
           <p className="font-heading font-bold text-xl text-yhopping-gray-900 mb-6">
-            ¿Quieres aplicar esto en tu empresa?
+            {isEN ? "Want to apply this to your business?" : "¿Quieres aplicar esto en tu empresa?"}
           </p>
           <Link
             href="/diagnostico"
             className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-white text-sm shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl"
             style={{ background: "linear-gradient(135deg, #0046FF, #1CC5DC)" }}
           >
-            Agenda tu Diagnóstico Gratuito →
+            {isEN ? "Schedule Your Free Diagnostic →" : "Agenda tu Diagnóstico Gratuito →"}
           </Link>
         </div>
 
-        {/* Back */}
         <Link
           href="/insights"
           className="mt-8 inline-flex items-center gap-2 text-sm font-semibold transition-colors"
           style={{ color }}
         >
           <ArrowLeft size={15} />
-          Ver todos los insights
+          {isEN ? "View all insights" : "Ver todos los insights"}
         </Link>
       </article>
     </div>

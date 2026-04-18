@@ -4,23 +4,65 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+import type { Lang } from "@/lib/i18n/types";
 
-const navLinks = [
-  { href: "/servicios", label: "Servicios" },
-  { href: "/insights", label: "Insights" },
-  { href: "/diagnostico", label: "Diagnóstico" },
-  { href: "/contacto", label: "Contacto" },
-];
+function LangToggle({ mobile = false }: { mobile?: boolean }) {
+  const { lang, setLang } = useLanguage();
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        background: "rgba(0,70,255,0.08)",
+        border: "1px solid rgba(0,70,255,0.15)",
+        borderRadius: 99,
+        padding: "3px 4px",
+        gap: 2,
+      }}
+    >
+      {(["es", "en"] as Lang[]).map((l) => (
+        <button
+          key={l}
+          onClick={() => setLang(l)}
+          style={{
+            background: lang === l ? "linear-gradient(135deg,#0046FF,#1CC5DC)" : "transparent",
+            color: lang === l ? "#fff" : "#6B7280",
+            border: "none",
+            borderRadius: 99,
+            padding: mobile ? "5px 12px" : "4px 10px",
+            fontSize: mobile ? 14 : 12,
+            fontWeight: 700,
+            cursor: "pointer",
+            transition: "all .2s",
+            letterSpacing: ".03em",
+          }}
+        >
+          {l.toUpperCase()}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const navLinks = [
+    { href: "/servicios", label: t.nav.services },
+    { href: "/insights", label: t.nav.insights },
+    { href: "/diagnostico", label: t.nav.diagnostic },
+    { href: "/contacto", label: t.nav.contact },
+  ];
 
   return (
     <header
@@ -33,7 +75,6 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center flex-shrink-0">
-          {/* Desktop logo */}
           <Image
             src="/images/yhopping_logo_trimmed.png"
             alt="Yhopping"
@@ -42,7 +83,6 @@ export default function Header() {
             className="hidden md:block h-12 w-auto"
             priority
           />
-          {/* Mobile logo */}
           <Image
             src="/images/yhopping_logo_trimmed.png"
             alt="Yhopping"
@@ -54,7 +94,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -64,25 +104,27 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
+          <LangToggle />
           <Link
             href="/diagnostico"
             className="px-5 py-2.5 rounded-full text-sm font-bold text-white transition-all duration-200 hover:scale-105 hover:shadow-lg"
-            style={{
-              background: "linear-gradient(135deg, #0046FF, #1CC5DC)",
-            }}
+            style={{ background: "linear-gradient(135deg, #0046FF, #1CC5DC)" }}
           >
-            Diagnóstico Gratuito
+            {t.nav.freeDiagnostic}
           </Link>
         </nav>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden p-2 text-yhopping-gray-700"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Menú"
-        >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile: lang toggle + hamburger */}
+        <div className="md:hidden flex items-center gap-3">
+          <LangToggle />
+          <button
+            className="p-2 text-yhopping-gray-700"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Menú"
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -104,7 +146,7 @@ export default function Header() {
             style={{ background: "linear-gradient(135deg, #0046FF, #1CC5DC)" }}
             onClick={() => setMenuOpen(false)}
           >
-            Diagnóstico Gratuito
+            {t.nav.freeDiagnostic}
           </Link>
         </div>
       )}
