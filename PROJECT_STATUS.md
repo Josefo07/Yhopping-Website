@@ -3,76 +3,64 @@ _Última actualización: 2026-04-18_
 
 ---
 
-## Estado general: 🟡 Cambios listos, pendiente commit + QA visual
+## Estado general: 🟢 Deploy en curso — pendiente QA visual
 
-El build de producción **pasa limpio** (`npm run build` — 21 páginas estáticas, 0 errores TypeScript).  
-Los cambios están en el working tree pero **NO han sido commiteados ni pusheados** a GitHub.
+Commit `edd95e2` pusheado a `main`. Vercel está generando el deploy automáticamente.  
+Build local pasa limpio: 21 páginas estáticas, 0 errores TypeScript.
 
 ---
 
-## Qué se completó en esta sesión
+## Historial de commits recientes
 
-### ✅ Internacionalización ES/EN (i18n)
-Sistema completo de traducciones implementado con React Context:
+| Hash | Descripción |
+|---|---|
+| `edd95e2` | feat: add ES/EN bilingual support across all pages ← **ESTE** |
+| `12bb48f` | feat: upgrade diagnostic chat with McKinsey consulting methodology |
+| `a2edfc7` | fix: revert to claude-haiku-4-5 (Claude 3 deprecated in 2026) |
+
+---
+
+## Qué se completó ✅
+
+### Internacionalización ES/EN (i18n)
+Sistema completo de traducciones con React Context:
 
 - `lib/i18n/types.ts` — Interface `Translations` + tipo `Lang`
 - `lib/i18n/es.ts` — Todas las traducciones en español
 - `lib/i18n/en.ts` — Todas las traducciones en inglés
 - `lib/i18n/LanguageContext.tsx` — Provider + hook `useLanguage()`
+- `lib/i18n/es-academia.ts` / `en-academia.ts` — Traducciones sección Academia
 - `app/layout.tsx` — Envuelto en `<LanguageProvider>`
 
-### ✅ Header con toggle ES/EN
-- Componente `<LangToggle />` en desktop (entre nav y CTA) y mobile (junto al hamburger)
-- Estilo: pill con gradiente azul para activo, gris para inactivo
+### Páginas traducidas
+- ✅ **Home** — Hero, Problemas, Servicios, Por Qué, CTA Final
+- ✅ **Servicios** — 4 servicios completos con sidebar info + fix mobile sticky
+- ✅ **Contacto** — Formulario, validaciones, sidebar + fix mobile sticky
+- ✅ **Insights** — Listing con filtros adaptativos por idioma
+- ✅ **Post individual** — Textos de navegación y CTA adaptativos
+- ✅ **Diagnóstico** — Pantalla de selección de idioma antes del quiz, chatbot bilingüe
 
-### ✅ Footer bilingüe
-- Convertido a client component
-- Todos los textos desde `t.footer.*`
+### Header / Footer
+- ✅ Toggle ES/EN en Header (desktop + mobile)
+- ✅ Footer convertido a client component, textos desde traducciones
 
-### ✅ Home traducido
-- Todas las secciones: Hero, Problemas, Servicios, Por Qué, CTA Final
-- Textos desde `t.home.*`
+### Blog bilingüe
+- ✅ 6 posts en español
+- ✅ 6 posts nuevos en inglés (slugs: `coo-without-finance-skills`, `ai-in-finance-hype-to-real-cash`, `grow-without-burning-your-team`, `the-company-you-treat-as-your-own`, `decisions-no-one-sees`, `vision-vs-validation`)
+- ✅ `getPostsByLang(lang)` para filtrar por idioma
 
-### ✅ Servicios traducido
-- Iteración sobre `t.services.items` array
-- Fix mobile: sidebar `lg:sticky lg:top-24`
-
-### ✅ Contacto traducido
-- Todos los labels, validaciones y placeholders desde `t.contact.*`
-- Fix mobile: sidebar `lg:sticky lg:top-24`
-
-### ✅ Blog / Insights bilingüe
-- Campo `lang: "es" | "en"` en interface `Post`
-- 6 posts en español + 6 posts nuevos en inglés
-- `getPostsByLang(lang)` para filtrar por idioma
-- Página listing adapta filtros de categoría por idioma
-- Página de post individual adapta textos de navegación
-
-### ✅ Diagnóstico — selección de idioma del chatbot
-- Nueva pantalla `"lang"` antes del quiz con banderas 🇲🇽 / 🇺🇸
-- Estado `chatLang: "es" | "en"`
-- `buildSystemPrompt(scores, lang)` con versión completa en inglés
-- `buildFirstMessage(scores, lang)` en inglés cuando corresponde
+### Documentación
+- ✅ `CLAUDE.md` — Guía completa del proyecto para Claude
+- ✅ `PROJECT_STATUS.md` — Este archivo
 
 ---
 
-## ⚠️ Pendiente — DEBE hacerse antes del próximo deploy
+## ⚠️ Pendiente
 
-### 1. Commit + Push a GitHub
-```bash
-cd "C:\Users\jjtb_\OneDrive\Yhopping\Nuevo Yhopping Consultoria\Pagina Web\yhopping-web"
+### 1. QA Visual — NO se ha hecho ninguna revisión visual
+Verificar en producción (https://yhopping.com o URL de Vercel) una vez que el deploy termine:
 
-git add app/contacto/page.tsx app/diagnostico/page.tsx app/insights/[slug]/page.tsx app/insights/page.tsx app/layout.tsx app/page.tsx app/servicios/page.tsx components/layout/Footer.tsx components/layout/Header.tsx lib/posts.ts lib/i18n/
-
-git commit -m "feat: add ES/EN bilingual support with language toggle and bilingual blog posts"
-
-git push origin main
-```
-
-### 2. QA Visual (NO se ha hecho ninguna revisión visual)
-Verificar en el browser después del deploy:
-
-| Página | ES | EN | Mobile |
+| Página | ES ✓ | EN ✓ | Mobile ✓ |
 |---|---|---|---|
 | Home | ⬜ | ⬜ | ⬜ |
 | Servicios | ⬜ | ⬜ | ⬜ |
@@ -84,9 +72,10 @@ Verificar en el browser después del deploy:
 | Header toggle | ⬜ | ⬜ | ⬜ |
 | Footer | ⬜ | ⬜ | ⬜ |
 
-### 3. Verificar variables de entorno en Vercel
-Confirmar que `ANTHROPIC_API_KEY` está configurada en el dashboard de Vercel.  
-Sin esta variable, el chatbot del diagnóstico fallará en producción.
+### 2. Verificar ANTHROPIC_API_KEY en Vercel
+- Dashboard Vercel → Settings → Environment Variables
+- Sin esta variable el chatbot falla en producción
+- Variable aceptada: `ANTHROPIC_API_KEY` o `CLAUDE_API_KEY`
 
 ---
 
@@ -94,31 +83,22 @@ Sin esta variable, el chatbot del diagnóstico fallará en producción.
 
 | Tarea | Prioridad | Notas |
 |---|---|---|
-| Insights filter — `sticky top-[72px]` overlap en mobile | Baja | Funcional, solo estético |
-| Agregar más posts en EN | Media | Ya hay 6, se pueden agregar más en `lib/posts.ts` |
-| SEO metadata por idioma | Media | Actualmente los `<title>` son estáticos, no cambian con el idioma |
+| Formulario de contacto — envío real de email | Alta | Actualmente muestra success sin enviar nada |
+| Academia piloto — completar features | Media | Existe `app/academia/piloto/` y `app/api/academia/` (sin commitear) |
+| SEO metadata dinámica por idioma | Media | `<title>` y meta description no cambian con el idioma |
+| Agregar más posts en EN | Media | Agregar en `lib/posts.ts` siguiendo el patrón existente |
 | Open Graph tags para posts EN | Baja | Posts EN no tienen OG image configurada |
-| Formulario de contacto — integración real | Alta (pendiente desde antes) | Actualmente solo muestra success sin enviar email |
-| Academia piloto — completar features | Media | Existe `app/academia/piloto/` y `app/api/academia/` |
+| Insights filter overlap en mobile | Baja | `sticky top-[72px]` puede solapar el header; funcional pero estético |
 
 ---
 
-## Archivos con cambios pendientes de commit
+## Archivos fuera del commit (no commiteados intencionalmente)
 
 ```
-modified:   app/contacto/page.tsx
-modified:   app/diagnostico/page.tsx
-modified:   app/insights/[slug]/page.tsx
-modified:   app/insights/page.tsx
-modified:   app/layout.tsx
-modified:   app/page.tsx
-modified:   app/servicios/page.tsx
-modified:   components/layout/Footer.tsx
-modified:   components/layout/Header.tsx
-modified:   lib/posts.ts
-untracked:  lib/i18n/          (LanguageContext.tsx, types.ts, es.ts, en.ts, es-academia.ts, en-academia.ts)
-untracked:  app/academia/      (en desarrollo separado)
-untracked:  app/api/academia/  (en desarrollo separado)
+app/academia/       — En desarrollo, no está listo para producción
+app/api/academia/   — En desarrollo
+package.json        — Cambios menores sin impacto
+package-lock.json   — Cambios menores sin impacto
 ```
 
 ---
@@ -134,7 +114,8 @@ Pricing MXN: Diagnóstico $15K-$35K · Proyecto $50K-$200K · Retainer $20K-$45K
 
 ## Para retomar el trabajo
 
-1. Abre el proyecto en VS Code desde `C:\Users\jjtb_\OneDrive\Yhopping\Nuevo Yhopping Consultoria\Pagina Web\yhopping-web`
-2. Corre `npm run dev` para el servidor local
-3. El próximo paso inmediato es **hacer el commit y push** (ver sección arriba)
-4. Luego hacer QA visual abriendo `http://localhost:3000` en Chrome
+1. Abre el proyecto en VS Code: `C:\Users\jjtb_\OneDrive\Yhopping\Nuevo Yhopping Consultoria\Pagina Web\yhopping-web`
+2. Corre `npm run dev` → `http://localhost:3000`
+3. Antes de cualquier cambio, verificar con `npm run build` que no haya errores
+4. **Regla crítica Tailwind v4:** NO usar `grid`, `mx-auto`, `gap-*` como clases — usar `style={{}}` inline
+5. Agregar nuevas traducciones en `lib/i18n/es.ts` Y `lib/i18n/en.ts` (siempre en paralelo)
