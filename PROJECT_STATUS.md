@@ -14,10 +14,10 @@ Build local: 24 páginas estáticas, 0 errores TypeScript.
 
 | Hash | Descripción |
 |---|---|
-| `8465a4b` | feat: dark hero, Termómetro Mini, H1, /diagnostico-empresarial ← **ÚLTIMO** |
-| `5489cf5` | docs: PROJECT_STATUS update |
+| `3ea1e0c` | feat: update brand identity — logos, favicons, OG, manifest ← **ÚLTIMO** |
+| `8465a4b` | feat: dark hero, Termómetro Mini, H1, /diagnostico-empresarial |
+| `a76181c` | docs: PROJECT_STATUS + Claude Design guide |
 | `edd95e2` | feat: ES/EN bilingual support across all pages |
-| `12bb48f` | feat: diagnostic chat McKinsey methodology |
 
 ---
 
@@ -76,6 +76,26 @@ Build local: 24 páginas estáticas, 0 errores TypeScript.
 ### 5. System Prompt actualizado
 - Eliminado: "JJ Torres, Founder de Yhopping" (ES y EN)
 - Reemplazado por: "El Equipo de Yhopping" (ES) / "The Yhopping Team" (EN)
+
+---
+
+## Identidad de marca — archivos disponibles en el proyecto
+
+| Archivo en `public/images/` | Uso |
+|---|---|
+| `yh-logo-dark.png` (520×120) | Logo sobre fondos oscuros (Diagnóstico, hero) |
+| `yh-logo-light.png` (520×120) | Logo sobre fondos blancos (Header scrolled) |
+| `yh-logo-dark-2x.png` (1040×240) | Versión retina dark |
+| `yh-logo-light-2x.png` (1040×240) | Versión retina light |
+| `yh-logo-tagline-dark.png` (520×148) | Logo + "Potenciando Empresas" (Footer) |
+| `yh-logo-tagline-light.png` (520×148) | Logo + tagline sobre fondo claro |
+| `yh-favicon-16.png` / `32.png` / `48.png` | Tabs del navegador |
+| `yh-apple-180.png` | iOS home screen |
+| `yh-android-192.png` / `512.png` | Android / PWA |
+| `yh-og-image.png` (1200×630) | Open Graph — previsualización al compartir en redes |
+
+Archivos fuera del proyecto (en Identidad de Marca, solo para uso externo):
+- `email-signature-*.png`, `linkedin-banner-*.png`, `linkedin-logo-*.png`
 
 ---
 
