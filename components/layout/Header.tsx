@@ -73,23 +73,37 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
-        {/* Logo — dark variant sobre Hero oscuro, light cuando scrolled a fondo blanco */}
-        <Link href="/" className="flex items-center flex-shrink-0">
+        {/* Logo — ambas versiones siempre en DOM, toggle con opacity */}
+        <Link href="/" className="flex items-center flex-shrink-0" style={{ position: "relative" }}>
+          {/* Dark logo: visible sobre Hero oscuro (sin scroll) */}
           <Image
-            src={scrolled ? "/images/yh-logo-light.png" : "/images/yh-logo-dark.png"}
-            alt="Yhopping — Dirección Financiera y Operativa Fraccional"
-            width={520}
-            height={120}
-            className="hidden md:block h-10 w-auto transition-opacity duration-300"
-            priority
-          />
-          <Image
-            src={scrolled ? "/images/yh-logo-light.png" : "/images/yh-logo-dark.png"}
+            src="/images/yh-logo-dark.png"
             alt="Yhopping"
             width={520}
             height={120}
-            className="md:hidden h-8 w-auto transition-opacity duration-300"
             priority
+            style={{
+              height: 40, width: "auto",
+              opacity: scrolled ? 0 : 1,
+              position: scrolled ? "absolute" : "relative",
+              transition: "opacity 0.3s ease",
+              pointerEvents: "none",
+            }}
+          />
+          {/* Light logo: visible con fondo blanco (scrolled) */}
+          <Image
+            src="/images/yh-logo-light.png"
+            alt="Yhopping"
+            width={520}
+            height={120}
+            priority
+            style={{
+              height: 40, width: "auto",
+              opacity: scrolled ? 1 : 0,
+              position: scrolled ? "relative" : "absolute",
+              transition: "opacity 0.3s ease",
+              pointerEvents: scrolled ? "auto" : "none",
+            }}
           />
         </Link>
 
