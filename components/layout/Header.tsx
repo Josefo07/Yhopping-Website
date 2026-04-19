@@ -73,22 +73,22 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
-        {/* Logo */}
+        {/* Logo — dark variant sobre Hero oscuro, light cuando scrolled a fondo blanco */}
         <Link href="/" className="flex items-center flex-shrink-0">
           <Image
-            src="/images/yhopping_logo_trimmed.png"
-            alt="Yhopping"
-            width={489}
+            src={scrolled ? "/images/yh-logo-light.png" : "/images/yh-logo-dark.png"}
+            alt="Yhopping — Dirección Financiera y Operativa Fraccional"
+            width={520}
             height={120}
-            className="hidden md:block h-12 w-auto"
+            className="hidden md:block h-10 w-auto transition-opacity duration-300"
             priority
           />
           <Image
-            src="/images/yhopping_logo_trimmed.png"
+            src={scrolled ? "/images/yh-logo-light.png" : "/images/yh-logo-dark.png"}
             alt="Yhopping"
-            width={489}
+            width={520}
             height={120}
-            className="md:hidden h-9 w-auto"
+            className="md:hidden h-8 w-auto transition-opacity duration-300"
             priority
           />
         </Link>

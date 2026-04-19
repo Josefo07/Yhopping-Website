@@ -312,7 +312,7 @@ TONO: Directo como un CFO. Empático como un socio. Nunca como un vendedor.`;
           <Link href="/" style={{ color: "rgba(241,245,249,0.5)", display: "flex", alignItems: "center", gap: 6, fontSize: 14, textDecoration: "none" }}>
             <ArrowLeft size={16} /> Volver
           </Link>
-          <Image src="/images/yhopping_logo_trimmed.png" alt="Yhopping" width={489} height={120} style={{ height: 28, width: "auto" }} priority />
+          <Image src="/images/yh-logo-dark.png" alt="Yhopping" width={489} height={120} style={{ height: 28, width: "auto" }} priority />
           <span style={{ fontSize: 12, color: "rgba(241,245,249,0.4)" }}>{step + 1}/{allQuestions.length}</span>
         </div>
 
@@ -469,7 +469,7 @@ TONO: Directo como un CFO. Empático como un socio. Nunca como un vendedor.`;
         <Link href="/" style={{ color: "rgba(241,245,249,0.5)", display: "flex", alignItems: "center", gap: 6, fontSize: 14, textDecoration: "none" }}>
           <ArrowLeft size={16} /> Inicio
         </Link>
-        <Image src="/images/yhopping_logo_trimmed.png" alt="Yhopping" width={489} height={120} style={{ height: 28, width: "auto" }} />
+        <Image src="/images/yh-logo-dark.png" alt="Yhopping" width={489} height={120} style={{ height: 28, width: "auto" }} />
         <span />
       </div>
 

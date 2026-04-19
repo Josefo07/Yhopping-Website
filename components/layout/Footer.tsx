@@ -32,11 +32,11 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Image
-              src="/images/yhopping_logo_trimmed.png"
-              alt="Yhopping"
-              width={489}
-              height={120}
-              className="h-10 w-auto mb-4"
+              src="/images/yh-logo-tagline-dark.png"
+              alt="Yhopping — Potenciando Empresas"
+              width={520}
+              height={148}
+              className="h-14 w-auto mb-4"
             />
             <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
               {t.footer.tagline}

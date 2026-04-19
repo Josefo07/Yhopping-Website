@@ -674,9 +674,9 @@ TONO: Directo como un CFO. Empático como un socio. Nunca como un vendedor. Sin 
           {/* Logo */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <Image
-              src="/images/yhopping_logo_trimmed.png"
+              src="/images/yh-logo-dark.png"
               alt="Yhopping"
-              width={489}
+              width={520}
               height={120}
               style={{ height: 36, width: "auto" }}
               priority
@@ -1012,9 +1012,9 @@ TONO: Directo como un CFO. Empático como un socio. Nunca como un vendedor. Sin 
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 28 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <Image
-                src="/images/yhopping_logo_trimmed.png"
+                src="/images/yh-logo-dark.png"
                 alt="Yhopping"
-                width={489}
+                width={520}
                 height={120}
                 style={{ height: 24, width: "auto" }}
               />
