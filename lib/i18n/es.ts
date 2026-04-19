@@ -15,9 +15,9 @@ export const es: Translations = {
     copyright: "© 2026 Yhopping. Optimización Financiera para PyMEs.",
   },
   home: {
-    badge: "Consultoría C-Level · PyMEs México",
-    hero: "Optimización Financiera y Operativa para PyMEs Mexicanas",
-    heroSub: "Expertise CFO/COO 20+ años · Automatización · Enfoque práctico con ROI medible. Primer diagnóstico gratis, sin compromiso.",
+    badge: "Dirección Financiera y Operativa Fraccional · PyMEs México",
+    hero: "Estabilizamos tu operación y maximizamos tu rentabilidad: Dirección Financiera y Operativa Fraccional para PyMES en crecimiento.",
+    heroSub: "Rigor sin rigidez. Expertise C-Level + automatización + ROI medible. Primer diagnóstico gratuito, sin compromiso.",
     ctaPrimary: "Agenda tu Diagnóstico Gratuito",
     ctaSecondary: "Conoce Nuestros Servicios",
     problemsTitle: "¿Te identificas con alguno de estos desafíos?",

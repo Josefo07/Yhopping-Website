@@ -15,9 +15,9 @@ export const en: Translations = {
     copyright: "© 2026 Yhopping. Financial Optimization for SMBs.",
   },
   home: {
-    badge: "C-Level Consulting · Mexican SMBs",
-    hero: "Financial & Operational Optimization for Mexican SMBs",
-    heroSub: "CFO/COO expertise 20+ years · Automation · Practical approach with measurable ROI. First diagnostic free, no commitment.",
+    badge: "Fractional Financial & Operational Leadership · Mexican SMBs",
+    hero: "We stabilize your operations and maximize your profitability: Fractional Financial & Operational Management for growing SMBs.",
+    heroSub: "Rigor without rigidity. C-Level expertise + automation + measurable ROI. First diagnostic free, no commitment.",
     ctaPrimary: "Schedule Your Free Diagnostic",
     ctaSecondary: "Explore Our Services",
     problemsTitle: "Do any of these challenges sound familiar?",

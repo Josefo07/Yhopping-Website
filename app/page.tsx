@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { TrendingUp, Droplets, Zap, FileSearch, CheckCircle } from "lucide-react";
+import { TrendingUp, Droplets, Zap, FileSearch, CheckCircle, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const serviceIcons = [TrendingUp, Droplets, Zap, FileSearch];
@@ -32,51 +33,82 @@ function useFadeIn(threshold = 0.15) {
 function HeroSection() {
   const { t } = useLanguage();
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden" style={{ background: "#1A1D29" }}>
+      {/* Background image at very low opacity */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero_ia.png"
           alt="Yhopping hero"
           fill
-          className="object-cover object-center opacity-15"
+          className="object-cover object-center"
+          style={{ opacity: 0.06 }}
           priority
         />
+        {/* Subtle cyan glow top-right */}
+        <div
+          className="absolute"
+          style={{
+            top: "-20%", right: "-10%",
+            width: "60vw", height: "60vw",
+            background: "radial-gradient(circle, rgba(28,197,220,0.12) 0%, transparent 70%)",
+            pointerEvents: "none",
+          }}
+        />
+        {/* Subtle blue glow bottom-left */}
+        <div
+          className="absolute"
+          style={{
+            bottom: "-10%", left: "-5%",
+            width: "40vw", height: "40vw",
+            background: "radial-gradient(circle, rgba(0,70,255,0.10) 0%, transparent 70%)",
+            pointerEvents: "none",
+          }}
+        />
+        {/* Subtle grid lines */}
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(135deg, rgba(0,70,255,0.95) 0%, rgba(28,197,220,0.85) 100%)" }}
+          style={{
+            backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
         />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-24 w-full">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/25 rounded-full px-4 py-2 mb-8">
-            <span className="w-2 h-2 rounded-full bg-yhopping-cyan animate-pulse" />
-            <span className="text-white text-xs font-semibold tracking-widest uppercase">
+          <div
+            className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8"
+            style={{ background: "rgba(28,197,220,0.10)", border: "1px solid rgba(28,197,220,0.25)" }}
+          >
+            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#1CC5DC" }} />
+            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#1CC5DC" }}>
               {t.home.badge}
             </span>
           </div>
 
           <h1
-            className="text-white font-heading font-black leading-tight mb-6"
-            style={{ fontSize: "clamp(40px, 5vw, 56px)", letterSpacing: "-0.02em" }}
+            className="font-heading font-black leading-tight mb-6"
+            style={{ fontSize: "clamp(36px, 4.5vw, 54px)", letterSpacing: "-0.02em", color: "#F1F5F9" }}
           >
             {t.home.hero}
           </h1>
 
-          <p className="text-white/80 text-lg leading-relaxed mb-10 max-w-2xl">
+          <p className="text-lg leading-relaxed mb-10 max-w-2xl" style={{ color: "rgba(241,245,249,0.70)" }}>
             {t.home.heroSub}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
-              href="/diagnostico"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-yhopping-dark bg-white text-base shadow-2xl transition-all duration-200 hover:scale-105 hover:shadow-white/20"
+              href="/diagnostico-empresarial"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-base shadow-2xl transition-all duration-200 hover:scale-105"
+              style={{ background: "#1CC5DC", color: "#1A1D29" }}
             >
               {t.home.ctaPrimary}
             </Link>
             <Link
               href="/servicios"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-white border-2 border-white/60 text-base transition-all duration-200 hover:bg-white/10"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-base transition-all duration-200"
+              style={{ color: "#F1F5F9", border: "2px solid rgba(241,245,249,0.35)" }}
             >
               {t.home.ctaSecondary}
             </Link>
@@ -202,9 +234,9 @@ function PorQueSection() {
                 ))}
               </div>
               <Link
-                href="/diagnostico"
-                className="inline-flex items-center justify-center mt-10 px-7 py-3.5 rounded-full font-bold text-white text-sm shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl"
-                style={{ background: "linear-gradient(135deg, #0046FF, #1CC5DC)" }}
+                href="/diagnostico-empresarial"
+                className="inline-flex items-center justify-center mt-10 px-7 py-3.5 rounded-full font-bold text-sm shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl"
+                style={{ background: "#1CC5DC", color: "#1A1D29" }}
               >
                 {t.home.whyCta}
               </Link>
@@ -222,6 +254,183 @@ function PorQueSection() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── MINI QUESTIONS DATA ── */
+const miniQuestions = [
+  {
+    id: "q5_cashflow",
+    icon: "💸",
+    text: "¿Te ha pasado que tienes ventas pero no dinero disponible?",
+    textEN: "Has it happened that you have sales but no available cash?",
+    options: [
+      { label: "Constantemente", labelEN: "All the time", value: 0 },
+      { label: "Con frecuencia", labelEN: "Often", value: 1 },
+      { label: "A veces", labelEN: "Sometimes", value: 2 },
+      { label: "Casi nunca", labelEN: "Rarely", value: 4 },
+    ],
+  },
+  {
+    id: "q4_margin",
+    icon: "💹",
+    text: "¿Sabes exactamente cuál es tu margen de utilidad real?",
+    textEN: "Do you know exactly what your real profit margin is?",
+    options: [
+      { label: "Sí, lo calculo mensualmente", labelEN: "Yes, I calculate it monthly", value: 4 },
+      { label: "Tengo una idea aproximada", labelEN: "I have a rough idea", value: 2 },
+      { label: "No realmente", labelEN: "Not really", value: 1 },
+      { label: "No lo sé", labelEN: "I don't know", value: 0 },
+    ],
+  },
+  {
+    id: "q7_growth",
+    icon: "📈",
+    text: "¿Tu empresa crece pero tus utilidades no reflejan ese crecimiento?",
+    textEN: "Does your business grow but profits don't reflect that growth?",
+    options: [
+      { label: "Sí, exactamente así", labelEN: "Yes, exactly", value: 0 },
+      { label: "Un poco", labelEN: "A little", value: 1 },
+      { label: "A veces", labelEN: "Sometimes", value: 2 },
+      { label: "No, el crecimiento sí se refleja", labelEN: "No, growth is reflected", value: 3 },
+    ],
+  },
+];
+
+function TermometroMini() {
+  const { lang } = useLanguage();
+  const router = useRouter();
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, number>>({});
+  const [selected, setSelected] = useState<number | null>(null);
+  const isEN = lang === "en";
+  const q = miniQuestions[step];
+  const total = miniQuestions.length;
+
+  function pick(value: number, idx: number) {
+    setSelected(idx);
+    setAnswers((prev) => ({ ...prev, [q.id]: value }));
+  }
+
+  function next() {
+    if (selected === null) return;
+    if (step < total - 1) {
+      setStep((s) => s + 1);
+      setSelected(null);
+    } else {
+      // Save answers and redirect
+      const finalAnswers = { ...answers, [q.id]: miniQuestions[step].options[selected!].value };
+      localStorage.setItem("yh_mini_answers", JSON.stringify(finalAnswers));
+      router.push("/diagnostico-empresarial");
+    }
+  }
+
+  const pct = ((step + (selected !== null ? 1 : 0)) / total) * 100;
+
+  return (
+    <section style={{ background: "#1A1D29", padding: "80px 0" }}>
+      <div style={{ maxWidth: 680, margin: "0 auto", padding: "0 24px" }}>
+        {/* Header */}
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <div
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              background: "rgba(28,197,220,0.10)", border: "1px solid rgba(28,197,220,0.25)",
+              borderRadius: 99, padding: "6px 16px", marginBottom: 16,
+            }}
+          >
+            <span style={{ width: 7, height: 7, background: "#1CC5DC", borderRadius: "50%" }} />
+            <span style={{ color: "#1CC5DC", fontSize: 12, fontWeight: 600, letterSpacing: "0.06em" }}>
+              {isEN ? "FINANCIAL THERMOMETER" : "TERMÓMETRO FINANCIERO PYMÉ"}
+            </span>
+          </div>
+          <h2
+            style={{
+              color: "#F1F5F9", fontFamily: "var(--font-heading)", fontWeight: 800,
+              fontSize: "clamp(22px, 3vw, 30px)", letterSpacing: "-0.01em", margin: "0 0 8px",
+            }}
+          >
+            {isEN ? "3 questions to assess your financial health" : "3 preguntas para medir la salud financiera de tu negocio"}
+          </h2>
+          <p style={{ color: "rgba(241,245,249,0.55)", fontSize: 14 }}>
+            {isEN ? "30 seconds · Free · No registration required" : "30 segundos · Gratis · Sin registro"}
+          </p>
+        </div>
+
+        {/* Progress bar */}
+        <div style={{ background: "rgba(255,255,255,0.08)", borderRadius: 99, height: 4, marginBottom: 32 }}>
+          <div
+            style={{
+              height: "100%", borderRadius: 99,
+              background: "linear-gradient(90deg, #0046FF, #1CC5DC)",
+              width: `${pct}%`,
+              transition: "width 0.4s ease",
+            }}
+          />
+        </div>
+
+        {/* Question card */}
+        <div
+          style={{
+            background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: 20, padding: "32px 28px",
+          }}
+        >
+          <p style={{ color: "rgba(241,245,249,0.45)", fontSize: 12, fontWeight: 600, letterSpacing: "0.06em", marginBottom: 12 }}>
+            {isEN ? `QUESTION ${step + 1} OF ${total}` : `PREGUNTA ${step + 1} DE ${total}`}
+          </p>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
+            <span style={{ fontSize: 28 }}>{q.icon}</span>
+            <p style={{ color: "#F1F5F9", fontSize: "clamp(15px,2vw,17px)", fontWeight: 600, lineHeight: 1.4, margin: 0 }}>
+              {isEN ? q.textEN : q.text}
+            </p>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {q.options.map((opt, idx) => {
+              const isActive = selected === idx;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => pick(opt.value, idx)}
+                  style={{
+                    background: isActive ? "rgba(28,197,220,0.15)" : "rgba(255,255,255,0.04)",
+                    border: isActive ? "1.5px solid #1CC5DC" : "1.5px solid rgba(255,255,255,0.08)",
+                    borderRadius: 12, padding: "14px 18px",
+                    color: isActive ? "#1CC5DC" : "rgba(241,245,249,0.75)",
+                    fontSize: 14, fontWeight: isActive ? 600 : 400,
+                    textAlign: "left", cursor: "pointer",
+                    transition: "all 0.15s ease",
+                  }}
+                >
+                  {isEN ? opt.labelEN : opt.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Next button */}
+        <div style={{ marginTop: 20, display: "flex", justifyContent: "flex-end" }}>
+          <button
+            onClick={next}
+            disabled={selected === null}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              background: selected !== null ? "#1CC5DC" : "rgba(28,197,220,0.25)",
+              color: selected !== null ? "#1A1D29" : "rgba(28,197,220,0.4)",
+              border: "none", borderRadius: 99, padding: "12px 28px",
+              fontSize: 14, fontWeight: 700, cursor: selected !== null ? "pointer" : "not-allowed",
+              transition: "all 0.2s ease",
+            }}
+          >
+            {step < total - 1
+              ? (isEN ? "Next" : "Siguiente")
+              : (isEN ? "See my diagnosis" : "Ver mi diagnóstico")}
+            <ArrowRight size={16} />
+          </button>
         </div>
       </div>
     </section>
@@ -263,6 +472,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <ProblemasSection />
+      <TermometroMini />
       <ServiciosPreview />
       <PorQueSection />
       <CTAFinal />
