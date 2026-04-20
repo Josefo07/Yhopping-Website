@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -48,6 +49,10 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { t } = useLanguage();
+  const pathname = usePathname();
+
+  // Páginas con hero oscuro — header arranca transparente con logo blanco
+  const hasDarkHero = pathname === "/" || pathname.startsWith("/diagnostico");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -62,7 +67,8 @@ export default function Header() {
     { href: "/contacto", label: t.nav.contact },
   ];
 
-  const isDark = !scrolled; // sobre el Hero dark, antes de hacer scroll
+  // isDark: solo en páginas con hero oscuro Y antes de hacer scroll
+  const isDark = hasDarkHero && !scrolled;
 
   return (
     <header
@@ -71,10 +77,10 @@ export default function Header() {
         top: 0, left: 0, right: 0,
         zIndex: 50,
         transition: "background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease",
-        background: scrolled ? "rgba(255,255,255,0.92)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? "1px solid #E9ECEF" : "1px solid transparent",
-        boxShadow: scrolled ? "0 1px 12px rgba(0,0,0,0.06)" : "none",
+        background: isDark ? "transparent" : "rgba(255,255,255,0.92)",
+        backdropFilter: isDark ? "none" : "blur(12px)",
+        borderBottom: isDark ? "1px solid transparent" : "1px solid #E9ECEF",
+        boxShadow: isDark ? "none" : "0 1px 12px rgba(0,0,0,0.06)",
       }}
     >
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", height: 80, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
