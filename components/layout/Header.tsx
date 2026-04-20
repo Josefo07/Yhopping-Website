@@ -1,22 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import type { Lang } from "@/lib/i18n/types";
 
-function LangToggle({ mobile = false }: { mobile?: boolean }) {
+function LangToggle({ mobile = false, dark = false }: { mobile?: boolean; dark?: boolean }) {
   const { lang, setLang } = useLanguage();
-
   return (
     <div
       style={{
         display: "flex",
         alignItems: "center",
-        background: "rgba(0,70,255,0.08)",
-        border: "1px solid rgba(0,70,255,0.15)",
+        background: dark ? "rgba(255,255,255,0.08)" : "rgba(0,70,255,0.08)",
+        border: `1px solid ${dark ? "rgba(255,255,255,0.18)" : "rgba(0,70,255,0.15)"}`,
         borderRadius: 99,
         padding: "3px 4px",
         gap: 2,
@@ -28,7 +26,7 @@ function LangToggle({ mobile = false }: { mobile?: boolean }) {
           onClick={() => setLang(l)}
           style={{
             background: lang === l ? "linear-gradient(135deg,#0046FF,#1CC5DC)" : "transparent",
-            color: lang === l ? "#fff" : "#6B7280",
+            color: lang === l ? "#fff" : dark ? "rgba(255,255,255,0.6)" : "#6B7280",
             border: "none",
             borderRadius: 99,
             padding: mobile ? "5px 12px" : "4px 10px",
@@ -64,100 +62,144 @@ export default function Header() {
     { href: "/contacto", label: t.nav.contact },
   ];
 
+  const isDark = !scrolled; // sobre el Hero dark, antes de hacer scroll
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "backdrop-blur-lg bg-white/90 shadow-sm border-b border-yhopping-gray-200"
-          : "bg-transparent"
-      }`}
+      style={{
+        position: "fixed",
+        top: 0, left: 0, right: 0,
+        zIndex: 50,
+        transition: "background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease",
+        background: scrolled ? "rgba(255,255,255,0.92)" : "transparent",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+        borderBottom: scrolled ? "1px solid #E9ECEF" : "1px solid transparent",
+        boxShadow: scrolled ? "0 1px 12px rgba(0,0,0,0.06)" : "none",
+      }}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
-        {/* Logo — ambas versiones siempre en DOM, toggle con opacity */}
-        <Link href="/" className="flex items-center flex-shrink-0" style={{ position: "relative" }}>
-          {/* Dark logo: visible sobre Hero oscuro (sin scroll) */}
-          <Image
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", height: 80, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+
+        {/* ── LOGO ── contenedor de tamaño fijo, ambas imágenes superpuestas */}
+        <Link href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0, position: "relative", height: 40, width: 160 }}>
+          {/* Dark logo: sobre Hero oscuro */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/images/yh-logo-dark.png"
             alt="Yhopping"
-            width={520}
-            height={120}
-            priority
             style={{
+              position: "absolute", top: 0, left: 0,
               height: 40, width: "auto",
               opacity: scrolled ? 0 : 1,
-              position: scrolled ? "absolute" : "relative",
               transition: "opacity 0.3s ease",
-              pointerEvents: "none",
             }}
           />
-          {/* Light logo: visible con fondo blanco (scrolled) */}
-          <Image
+          {/* Light logo: cuando scrolled sobre fondo blanco */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/images/yh-logo-light.png"
             alt="Yhopping"
-            width={520}
-            height={120}
-            priority
             style={{
+              position: "absolute", top: 0, left: 0,
               height: 40, width: "auto",
               opacity: scrolled ? 1 : 0,
-              position: scrolled ? "relative" : "absolute",
               transition: "opacity 0.3s ease",
-              pointerEvents: scrolled ? "auto" : "none",
             }}
           />
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        {/* ── DESKTOP NAV ── */}
+        <nav style={{ display: "flex", alignItems: "center", gap: 24 }} className="hidden md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="link-underline text-yhopping-gray-700 hover:text-yhopping-gray-900 font-semibold text-sm tracking-wide transition-colors duration-200"
+              className="link-underline"
+              style={{
+                color: isDark ? "rgba(255,255,255,0.85)" : "#495057",
+                fontWeight: 600,
+                fontSize: 14,
+                letterSpacing: "0.02em",
+                transition: "color 0.2s",
+                textDecoration: "none",
+              }}
             >
               {link.label}
             </Link>
           ))}
-          <LangToggle />
+          <LangToggle dark={isDark} />
           <Link
-            href="/diagnostico"
-            className="px-5 py-2.5 rounded-full text-sm font-bold text-white transition-all duration-200 hover:scale-105 hover:shadow-lg"
-            style={{ background: "linear-gradient(135deg, #0046FF, #1CC5DC)" }}
+            href="/diagnostico-empresarial"
+            style={{
+              padding: "10px 20px",
+              borderRadius: 99,
+              fontSize: 13,
+              fontWeight: 700,
+              color: isDark ? "#1A1D29" : "#fff",
+              background: isDark ? "#1CC5DC" : "linear-gradient(135deg, #0046FF, #1CC5DC)",
+              transition: "all 0.2s",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+            }}
           >
             {t.nav.freeDiagnostic}
           </Link>
         </nav>
 
-        {/* Mobile: lang toggle + hamburger */}
-        <div className="md:hidden flex items-center gap-3">
-          <LangToggle />
+        {/* ── MOBILE: lang toggle + hamburger ── */}
+        <div className="md:hidden" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <LangToggle dark={isDark} />
           <button
-            className="p-2 text-yhopping-gray-700"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menú"
+            style={{
+              background: "transparent",
+              border: "none",
+              color: isDark ? "#F1F5F9" : "#495057",
+              cursor: "pointer",
+              padding: 8,
+              display: "flex",
+            }}
           >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* ── MOBILE MENU ── */}
       {menuOpen && (
-        <div className="md:hidden bg-white border-t border-yhopping-gray-200 px-6 py-6 flex flex-col gap-5">
+        <div
+          style={{
+            background: "#fff",
+            borderTop: "1px solid #E9ECEF",
+            padding: "20px 24px 28px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 20,
+          }}
+          className="md:hidden"
+        >
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-yhopping-gray-700 font-semibold text-base"
+              style={{ color: "#495057", fontWeight: 600, fontSize: 16, textDecoration: "none" }}
               onClick={() => setMenuOpen(false)}
             >
               {link.label}
             </Link>
           ))}
           <Link
-            href="/diagnostico"
-            className="text-center px-5 py-3 rounded-full text-sm font-bold text-white"
-            style={{ background: "linear-gradient(135deg, #0046FF, #1CC5DC)" }}
+            href="/diagnostico-empresarial"
+            style={{
+              textAlign: "center",
+              padding: "14px 20px",
+              borderRadius: 99,
+              fontSize: 14,
+              fontWeight: 700,
+              color: "#fff",
+              background: "linear-gradient(135deg, #0046FF, #1CC5DC)",
+              textDecoration: "none",
+            }}
             onClick={() => setMenuOpen(false)}
           >
             {t.nav.freeDiagnostic}
