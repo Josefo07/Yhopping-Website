@@ -108,7 +108,7 @@ export default function Header() {
         </Link>
 
         {/* ── DESKTOP NAV ── */}
-        <nav style={{ display: "flex", alignItems: "center", gap: 24 }} className="hidden md:flex">
+        <nav style={{ alignItems: "center", gap: 24 }} className="hidden md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -146,7 +146,7 @@ export default function Header() {
         </nav>
 
         {/* ── MOBILE: lang toggle + hamburger ── */}
-        <div className="md:hidden" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <div className="md:hidden flex items-center" style={{ gap: 12 }}>
           <LangToggle dark={isDark} />
           <button
             onClick={() => setMenuOpen(!menuOpen)}
