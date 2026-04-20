@@ -1,12 +1,11 @@
 # PROJECT STATUS — Yhopping Web
-_Última actualización: 2026-04-19_
+_Última actualización: 2026-04-20_
 
 ---
 
-## Estado general: 🟢 Deploy activo — QA visual pendiente
+## Estado general: 🟢 En producción — Header y branding estabilizados
 
-Último commit `8465a4b` pusheado a `main`. Vercel despliega automáticamente desde GitHub.  
-Build local: 24 páginas estáticas, 0 errores TypeScript.
+Último commit `88bda10` en `main`. Build: 24 páginas estáticas, 0 errores TypeScript.
 
 ---
 
@@ -14,14 +13,17 @@ Build local: 24 páginas estáticas, 0 errores TypeScript.
 
 | Hash | Descripción |
 |---|---|
-| `3ea1e0c` | feat: update brand identity — logos, favicons, OG, manifest ← **ÚLTIMO** |
+| `88bda10` | fix: header adapts to page context via usePathname ← **ÚLTIMO** |
+| `5e69547` | fix: remove duplicate language selector |
+| `c996a09` | fix: header logo + nav colors on dark hero |
+| `30eaaa6` | fix: logo — render both variants, toggle opacity |
+| `3ea1e0c` | feat: brand identity — logos, favicons, OG, manifest |
 | `8465a4b` | feat: dark hero, Termómetro Mini, H1, /diagnostico-empresarial |
-| `a76181c` | docs: PROJECT_STATUS + Claude Design guide |
 | `edd95e2` | feat: ES/EN bilingual support across all pages |
 
 ---
 
-## Arquitectura actual de rutas
+## Arquitectura de rutas
 
 ```
 /                          — Home: Hero dark + Problemas + Termómetro Mini + Servicios + Por Qué + CTA
@@ -30,175 +32,137 @@ Build local: 24 páginas estáticas, 0 errores TypeScript.
 /insights                  — Blog listing bilingüe
 /insights/[slug]           — Post individual
 /diagnostico               — Diagnóstico completo original (10 preguntas + chat)
-/diagnostico-empresarial   — Flujo premium: lee prefill del Termómetro Mini → quiz corto → chat → resultados
+/diagnostico-empresarial   — Flujo premium: prefill → quiz → análisis → chat → resultados
 /academia/piloto           — En desarrollo (no publicado)
-/api/chat                  — Proxy a Anthropic API para chatbot
+/api/chat                  — Proxy Anthropic API para chatbot
 /api/academia              — En desarrollo
 ```
 
 ---
 
-## Cambios completados en esta sesión ✅
+## Header — comportamiento por página
 
-### 1. Hero — Dark Navy "Serie Noir"
-- Fondo: `#1A1D29` (Dark Navy)
-- Eliminado: gradiente azul/cyan
-- Agregado: glow cyan top-right, glow azul bottom-left, grid lines 60×60px
-- Badge: fondo cyan 10% opacity, borde cyan 25%
-- CTAs: Primario en `#1CC5DC` (cyan sólido), Secundario en borde blanco 35%
-- Todos los CTAs del Home apuntan a `/diagnostico-empresarial`
+El Header detecta la ruta con `usePathname()` y adapta su estado automáticamente:
 
-### 2. Termómetro Financiero PyME (mini-quiz en Home)
-- 3 preguntas clave: flujo de caja, margen de utilidad, crecimiento vs utilidades
-- Diseño dark navy consistente con el Hero
-- Barra de progreso animada (gradient azul→cyan)
-- Bilingüe: usa el mismo `useLanguage()` context
-- Al completar: guarda respuestas en `localStorage["yh_mini_answers"]`
-- Redirige a `/diagnostico-empresarial`
+| Páginas | Comportamiento al top | Al hacer scroll |
+|---|---|---|
+| `/`, `/diagnostico*` | Transparente · logo blanco · links blancos | Blanco · logo azul · links grises |
+| `/servicios`, `/contacto`, `/insights*` | **Blanco desde el top** · logo azul | Blanco · logo azul |
 
-### 3. Nueva ruta `/diagnostico-empresarial`
-- Lee prefill del Termómetro Mini al cargar
-- Quiz completo (5 preguntas complementarias)
-- Pantalla "Analizando…" con barra de progreso
-- Chat con Consultor Virtual (misma API `/api/chat`)
-- Pantalla de resultados con:
-  - Score circular SVG animado
-  - 3 métricas con barras de color
-  - **CTA P1:** "Solicitar Diagnóstico de 90 min" → Calendly (cyan `#1CC5DC`)
-  - **CTA P2:** "Hablar con el Consultor Virtual" → chat
-  - **CTA P3:** "Contactar por WhatsApp" → wa.me
-
-### 4. H1 actualizado (bilingüe)
-- **ES:** "Estabilizamos tu operación y maximizamos tu rentabilidad: Dirección Financiera y Operativa Fraccional para PyMES en crecimiento."
-- **EN:** "We stabilize your operations and maximize your profitability: Fractional Financial & Operational Management for growing SMBs."
-- Badge ES: "Dirección Financiera y Operativa Fraccional · PyMEs México"
-
-### 5. System Prompt actualizado
-- Eliminado: "JJ Torres, Founder de Yhopping" (ES y EN)
-- Reemplazado por: "El Equipo de Yhopping" (ES) / "The Yhopping Team" (EN)
+**Regla clave del Header:**
+- `hasDarkHero = pathname === "/" || pathname.startsWith("/diagnostico")`
+- `isDark = hasDarkHero && !scrolled`
+- Logo: dos `<img>` nativos siempre en DOM, `position: absolute`, solo cambia `opacity` — NO cambiar `src` dinámicamente en Next.js `<Image>` (causa bug silencioso)
+- `display` responsive: manejado SOLO por Tailwind (`hidden md:flex` / `md:hidden flex`) — nunca poner `display:flex` en `style={{}}` inline (sobreescribe Tailwind)
 
 ---
 
-## Identidad de marca — archivos disponibles en el proyecto
+## Identidad de marca — archivos en `public/images/`
 
-| Archivo en `public/images/` | Uso |
-|---|---|
-| `yh-logo-dark.png` (520×120) | Logo sobre fondos oscuros (Diagnóstico, hero) |
-| `yh-logo-light.png` (520×120) | Logo sobre fondos blancos (Header scrolled) |
-| `yh-logo-dark-2x.png` (1040×240) | Versión retina dark |
-| `yh-logo-light-2x.png` (1040×240) | Versión retina light |
-| `yh-logo-tagline-dark.png` (520×148) | Logo + "Potenciando Empresas" (Footer) |
-| `yh-logo-tagline-light.png` (520×148) | Logo + tagline sobre fondo claro |
-| `yh-favicon-16.png` / `32.png` / `48.png` | Tabs del navegador |
-| `yh-apple-180.png` | iOS home screen |
-| `yh-android-192.png` / `512.png` | Android / PWA |
-| `yh-og-image.png` (1200×630) | Open Graph — previsualización al compartir en redes |
+| Archivo | Dimensiones | Uso en el sitio |
+|---|---|---|
+| `yh-logo-dark.png` | 520×120 | Header (sin scroll sobre hero) · Diagnóstico · Diag. Empresarial |
+| `yh-logo-light.png` | 520×120 | Header (con scroll / páginas blancas) |
+| `yh-logo-dark-2x.png` | 1040×240 | Retina dark (disponible, no implementado aún) |
+| `yh-logo-light-2x.png` | 1040×240 | Retina light (disponible, no implementado aún) |
+| `yh-logo-tagline-dark.png` | 520×148 | Footer ("Potenciando Empresas") |
+| `yh-logo-tagline-light.png` | 520×148 | Disponible para uso externo |
+| `yh-favicon-16/32/48.png` | — | Pestaña del navegador |
+| `yh-apple-180.png` | 180×180 | iOS home screen |
+| `yh-android-192/512.png` | — | Android / PWA |
+| `yh-og-image.png` | 1200×630 | Open Graph al compartir en redes |
 
-Archivos fuera del proyecto (en Identidad de Marca, solo para uso externo):
-- `email-signature-*.png`, `linkedin-banner-*.png`, `linkedin-logo-*.png`
+Archivos externos (Identidad de Marca, no en repo):
+`email-signature-*.png` · `linkedin-banner-*.png` · `linkedin-logo-*.png`
 
 ---
 
-## ⚠️ Pendiente — próxima sesión
+## ⚠️ Pendiente
 
-### PRIORIDAD ALTA
-
-| Tarea | Detalle |
-|---|---|
-| **SSL www.yhopping.com** | `ERR_SSL_PROTOCOL_ERROR` en el subdominio `www`. Fix: Vercel → Settings → Domains → agregar `www.yhopping.com` explícitamente. Vercel genera SSL automáticamente al agregarlo. |
-| **Verificar ANTHROPIC_API_KEY en Vercel** | Vercel → tu proyecto → Settings → Environment Variables. Sin esta variable el chatbot falla. |
-| **QA visual con Claude Design** | Ver instrucciones abajo |
-
-### PRIORIDAD MEDIA
+### 🔴 PRIORIDAD ALTA
 
 | Tarea | Detalle |
 |---|---|
-| Formulario de contacto — envío real | Actualmente muestra success sin enviar email |
-| SEO metadata dinámica por idioma | `<title>` y meta description no cambian con el idioma |
-| Calendly URL real en `/diagnostico-empresarial` | Actualmente apunta a `https://calendly.com/yhopping` (placeholder) |
+| **SSL `www.yhopping.com`** | `ERR_SSL_PROTOCOL_ERROR`. Fix: Vercel → Settings → Domains → agregar `www.yhopping.com`. Vercel provisiona SSL automáticamente (~5–15 min). |
+| **Calendly URL real** | `/diagnostico-empresarial` usa `https://calendly.com/yhopping` (placeholder). Reemplazar con URL real. |
+| **ANTHROPIC_API_KEY en Vercel** | Vercel → proyecto → Settings → Environment Variables. Sin esta clave el chatbot falla en producción. |
+
+### 🟡 PRIORIDAD MEDIA
+
+| Tarea | Detalle |
+|---|---|
+| Formulario de contacto — envío real de email | Actualmente muestra success sin enviar nada |
+| SEO metadata dinámica por idioma | `<title>` no cambia con el toggle ES/EN |
 | Academia piloto | `app/academia/` sin commitear, en desarrollo |
 
-### PRIORIDAD BAJA
+### 🟢 PRIORIDAD BAJA
 
 | Tarea | Detalle |
 |---|---|
-| Insights filter mobile overlap | `sticky top-[72px]` puede solapar el header — funcional |
-| OG tags para posts EN | Open Graph no configurado para posts en inglés |
+| Retina logos `@2x` | `yh-logo-dark-2x` y `light-2x` disponibles, no implementados con `srcSet` aún |
+| OG tags dinámicos por post EN | Posts en inglés sin Open Graph individual |
+| Insights filter mobile | `sticky top-[72px]` puede solapar header levemente |
 
 ---
 
-## SSL — Fix inmediato (sin código)
+## SSL — Fix sin código (2 minutos)
 
-**Problema:** `www.yhopping.com` → `ERR_SSL_PROTOCOL_ERROR`
-
-**Causa:** El subdominio `www` no está registrado en Vercel como dominio válido. Vercel solo genera SSL para los dominios que conoce explícitamente.
-
-**Fix (2 minutos en el dashboard de Vercel):**
-1. Entra a vercel.com → tu proyecto Yhopping
-2. Settings → Domains
-3. Agrega `www.yhopping.com` como dominio
-4. Vercel mostrará el registro DNS necesario (CNAME o A record)
-5. Agrégalo en tu panel de DNS (donde compraste el dominio)
-6. En 5-15 min el SSL se provisiona automáticamente
+1. vercel.com → tu proyecto → **Settings → Domains**
+2. Agregar `www.yhopping.com`
+3. Vercel muestra el DNS record necesario → agregarlo en tu proveedor de dominio
+4. SSL se provisiona automáticamente en 5–15 min
 
 ---
 
-## Claude Design — Cómo usarlo para QA visual
+## Claude Design — QA visual
 
-Claude Design permite ver screenshots del sitio, hacer clicks y validar layouts sin abrir Chrome manualmente.
+Con el servidor local corriendo (`npm run dev`), en la siguiente sesión escribe:
+- `"abre http://localhost:3000 y muéstrame el Hero"`
+- `"navega a /insights y verifica el header"`
+- `"redimensiona a 375px y prueba el Termómetro Mini"`
 
-**Para activarlo:**
-1. Corre el servidor local:
-   ```
-   cd "C:\Users\jjtb_\OneDrive\Yhopping\Nuevo Yhopping Consultoria\Pagina Web\yhopping-web"
-   npm run dev
-   ```
-2. En la siguiente sesión con Claude Code, escribe:
-   - `"abre http://localhost:3000 y muéstrame el Hero"`
-   - `"navega a /diagnostico-empresarial y haz click en la primera opción del quiz"`
-   - `"redimensiona a 375px y verifica el Termómetro en mobile"`
-3. Claude tomará screenshots en tiempo real y podrá hacer cambios inmediatos.
+**QA pendiente:**
 
-**QA checklist para hacer con Claude Design:**
-
-| Pantalla | Desktop | Mobile (375px) |
+| Pantalla | Desktop | Mobile |
 |---|---|---|
-| Home — Hero dark | ⬜ | ⬜ |
-| Home — Termómetro Mini ES | ⬜ | ⬜ |
-| Home — Termómetro Mini EN | ⬜ | ⬜ |
+| Home Hero dark + logo blanco | ⬜ | ⬜ |
+| Home Termómetro Mini | ⬜ | ⬜ |
+| Header scroll transition (Home) | ⬜ | ⬜ |
+| Header blanco en /insights | ⬜ | ⬜ |
+| Header blanco en /contacto | ⬜ | ⬜ |
 | /diagnostico-empresarial — quiz | ⬜ | ⬜ |
 | /diagnostico-empresarial — resultados | ⬜ | ⬜ |
-| /diagnostico-empresarial — chat | ⬜ | ⬜ |
-| Header toggle ES/EN | ⬜ | ⬜ |
-| /servicios sidebar | ⬜ | ⬜ |
-| /contacto sidebar | ⬜ | ⬜ |
+| Toggle ES/EN en todas las páginas | ⬜ | ⬜ |
+| Footer con logo tagline | ⬜ | ⬜ |
 
 ---
 
-## Reglas técnicas clave (siempre respetar)
+## Reglas técnicas (críticas — siempre respetar)
 
 | Regla | Detalle |
 |---|---|
-| **Tailwind v4 + Turbopack bug** | NO usar `grid`, `mx-auto`, `gap-*` como clases CSS → usar `style={{}}` inline |
-| **Todos los componentes interactivos** | Requieren `"use client"` al inicio del archivo |
-| **Nuevas traducciones** | Siempre en paralelo: `lib/i18n/es.ts` Y `lib/i18n/en.ts` |
-| **Sidebars** | Usar `lg:sticky lg:top-24` (nunca solo `sticky top-24`) |
-| **Colores Dark** | `#1A1D29` = Dark Navy · `#1CC5DC` = Cyan · `#F1F5F9` = texto claro |
+| **Tailwind v4 + Turbopack** | NO usar `grid`, `mx-auto`, `gap-*` como clases → `style={{}}` inline |
+| **`display` responsive** | SOLO Tailwind (`hidden md:flex`, `md:hidden flex`) — nunca en `style={{display:...}}` |
+| **Next.js `<Image>` src dinámico** | Nunca cambiar `src` con estado — usar `<img>` nativo + opacidad |
+| **Componentes interactivos** | Siempre `"use client"` al inicio |
+| **Traducciones** | Siempre en paralelo: `lib/i18n/es.ts` Y `lib/i18n/en.ts` |
+| **Sidebars** | `lg:sticky lg:top-24` (nunca solo `sticky`) |
+| **Colores** | `#1A1D29` Dark Navy · `#1CC5DC` Cyan · `#F1F5F9` texto claro |
 
 ---
 
-## Para retomar el trabajo
+## Para retomar
 
-1. Abre: `C:\Users\jjtb_\OneDrive\Yhopping\Nuevo Yhopping Consultoria\Pagina Web\yhopping-web`
-2. `npm run dev` → http://localhost:3000
-3. Antes de cualquier cambio: `npm run build` para verificar 0 errores
-4. Primer paso: **Fix SSL www** en el dashboard de Vercel
+```
+cd "C:\Users\jjtb_\OneDrive\Yhopping\Nuevo Yhopping Consultoria\Pagina Web\yhopping-web"
+npm run dev      → http://localhost:3000
+npm run build    → verificar 0 errores antes de cualquier commit
+```
 
 ---
 
 ## Contexto de negocio
 
-**Yhopping Consultoria** — Dirección Financiera y Operativa Fraccional para PyMEs mexicanas ($10M–$100M MXN).  
-Filosofía: "Rigor sin rigidez". Estilo: McKinsey.  
-Pricing: Diagnóstico $15K–$35K · Proyecto $50K–$200K · Retainer $20K–$45K/mes.  
-Chatbot: El Equipo de Yhopping (no nombre individual).
+**Yhopping** — Dirección Financiera y Operativa Fraccional para PyMEs mexicanas ($10M–$100M MXN).  
+Filosofía: "Rigor sin rigidez". Estilo McKinsey. Chatbot: "El Equipo de Yhopping".  
+Pricing: Diagnóstico $15K–$35K · Proyecto $50K–$200K · Retainer $20K–$45K/mes.
