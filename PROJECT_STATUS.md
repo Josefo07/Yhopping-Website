@@ -3,9 +3,9 @@ _Última actualización: 2026-04-20_
 
 ---
 
-## Estado general: 🟢 En producción — Header y branding estabilizados
+## Estado general: 🟢 En producción — Visual QA completo, branding unificado
 
-Último commit `88bda10` en `main`. Build: 24 páginas estáticas, 0 errores TypeScript.
+Último commit `25feab0` en `main`. Build: 24 páginas estáticas, 0 errores TypeScript.
 
 ---
 
@@ -13,7 +13,8 @@ _Última actualización: 2026-04-20_
 
 | Hash | Descripción |
 |---|---|
-| `88bda10` | fix: header adapts to page context via usePathname ← **ÚLTIMO** |
+| `25feab0` | fix: visual QA — dark navy heroes, CTAFinal redesign, H1 mobile, footer tagline ← **ÚLTIMO** |
+| `28474dd` | fix: header adapts to page context via usePathname |
 | `5e69547` | fix: remove duplicate language selector |
 | `c996a09` | fix: header logo + nav colors on dark hero |
 | `30eaaa6` | fix: logo — render both variants, toggle opacity |
@@ -37,6 +38,21 @@ _Última actualización: 2026-04-20_
 /api/chat                  — Proxy Anthropic API para chatbot
 /api/academia              — En desarrollo
 ```
+
+---
+
+## Estilo visual — reglas de diseño por sección
+
+| Sección | Background | Notas |
+|---|---|---|
+| Hero `/` | `#1A1D29` dark navy + glows + grid | Full-screen, logo blanco |
+| Hero `/diagnostico*` | `#1A1D29` dark navy | Igual al Home |
+| Hero `/servicios` | `#1A1D29` dark navy + glows | Reemplazó gradiente azul |
+| Hero `/insights` | `#1A1D29` dark navy + glows | Reemplazó gradiente azul |
+| Hero `/contacto` | `#1A1D29` dark navy + glows | Reemplazó gradiente azul |
+| Termómetro Mini | `#1A1D29` dark navy | Dentro del Home |
+| CTAFinal | `#1A1D29` dark navy + grid | Reemplazó fondo verde |
+| Secciones internas | `bg-white` / `bg-yhopping-gray-50` alternado | Normal |
 
 ---
 
@@ -121,19 +137,19 @@ Con el servidor local corriendo (`npm run dev`), en la siguiente sesión escribe
 - `"navega a /insights y verifica el header"`
 - `"redimensiona a 375px y prueba el Termómetro Mini"`
 
-**QA pendiente:**
+**QA completado (visual QA `25feab0`):**
 
 | Pantalla | Desktop | Mobile |
 |---|---|---|
-| Home Hero dark + logo blanco | ⬜ | ⬜ |
-| Home Termómetro Mini | ⬜ | ⬜ |
-| Header scroll transition (Home) | ⬜ | ⬜ |
-| Header blanco en /insights | ⬜ | ⬜ |
-| Header blanco en /contacto | ⬜ | ⬜ |
-| /diagnostico-empresarial — quiz | ⬜ | ⬜ |
-| /diagnostico-empresarial — resultados | ⬜ | ⬜ |
-| Toggle ES/EN en todas las páginas | ⬜ | ⬜ |
-| Footer con logo tagline | ⬜ | ⬜ |
+| Home Hero dark + logo blanco | ✅ | ✅ |
+| Home Termómetro Mini | ✅ | ✅ |
+| Header scroll transition (Home) | ✅ | ✅ |
+| Header blanco en /insights | ✅ | ✅ |
+| Header blanco en /contacto | ✅ | ✅ |
+| /diagnostico-empresarial — quiz | ✅ | ⬜ |
+| /diagnostico-empresarial — resultados | ✅ | ⬜ |
+| Toggle ES/EN en todas las páginas | ✅ | ⬜ |
+| Footer con logo tagline | ✅ | ⬜ |
 
 ---
 
