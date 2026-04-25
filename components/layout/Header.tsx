@@ -86,7 +86,7 @@ export default function Header() {
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", height: 80, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
 
         {/* ── LOGO ── contenedor de tamaño fijo, ambas imágenes superpuestas */}
-        <Link href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0, position: "relative", height: 40, width: 160 }}>
+        <Link href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0, position: "relative", height: 40, width: 185 }}>
           {/* Dark logo: sobre Hero oscuro */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

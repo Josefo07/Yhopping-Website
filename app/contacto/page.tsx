@@ -161,17 +161,35 @@ export default function ContactoPage() {
     <div className="min-h-screen bg-white">
       {/* Hero */}
       <section
-        className="pt-36 pb-20"
-        style={{ background: "linear-gradient(160deg, rgba(0,70,255,0.92) 0%, rgba(28,197,220,0.85) 100%)" }}
+        className="pt-36 pb-20 relative overflow-hidden"
+        style={{ background: "#1A1D29" }}
       >
-        <div className="max-w-3xl mx-auto px-6 lg:px-12 text-center">
+        {/* Cyan glow */}
+        <div
+          className="absolute"
+          style={{
+            top: "-40%", right: "-5%",
+            width: "50vw", height: "50vw",
+            background: "radial-gradient(circle, rgba(28,197,220,0.10) 0%, transparent 70%)",
+            pointerEvents: "none",
+          }}
+        />
+        {/* Subtle grid */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
+        <div className="relative z-10 max-w-3xl mx-auto px-6 lg:px-12 text-center">
           <h1
-            className="font-heading font-black text-white mb-4"
-            style={{ fontSize: "clamp(32px, 4vw, 42px)", letterSpacing: "-0.02em" }}
+            className="font-heading font-black mb-4"
+            style={{ fontSize: "clamp(28px, 4vw, 42px)", letterSpacing: "-0.02em", color: "#F1F5F9" }}
           >
             {t.contact.pageTitle}
           </h1>
-          <p className="text-white/80 text-lg">{t.contact.pageDesc}</p>
+          <p className="text-lg" style={{ color: "rgba(241,245,249,0.70)" }}>{t.contact.pageDesc}</p>
         </div>
       </section>
 

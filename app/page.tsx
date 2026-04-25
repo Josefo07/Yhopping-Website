@@ -88,7 +88,7 @@ function HeroSection() {
 
           <h1
             className="font-heading font-black leading-tight mb-6"
-            style={{ fontSize: "clamp(36px, 4.5vw, 54px)", letterSpacing: "-0.02em", color: "#F1F5F9" }}
+            style={{ fontSize: "clamp(28px, 4.5vw, 54px)", letterSpacing: "-0.02em", color: "#F1F5F9" }}
           >
             {t.home.hero}
           </h1>
@@ -440,25 +440,38 @@ function TermometroMini() {
 function CTAFinal() {
   const { t } = useLanguage();
   return (
-    <section className="py-24 bg-yhopping-green relative overflow-hidden">
+    <section className="py-24 relative overflow-hidden" style={{ background: "#1A1D29" }}>
+      {/* Cyan glow */}
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute"
         style={{
-          backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 50%, white 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
+          top: "-30%", right: "-5%",
+          width: "50vw", height: "50vw",
+          background: "radial-gradient(circle, rgba(28,197,220,0.10) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }}
+      />
+      {/* Subtle grid */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+          pointerEvents: "none",
         }}
       />
       <div className="relative z-10 max-w-3xl mx-auto px-6 lg:px-12 text-center">
         <h2
-          className="font-heading font-black text-white mb-4"
-          style={{ fontSize: "clamp(28px, 3vw, 40px)", letterSpacing: "-0.02em" }}
+          className="font-heading font-black mb-4"
+          style={{ fontSize: "clamp(28px, 3vw, 40px)", letterSpacing: "-0.02em", color: "#F1F5F9" }}
         >
           {t.home.ctaFinalTitle}
         </h2>
-        <p className="text-white/80 text-lg mb-10">{t.home.ctaFinalSub}</p>
+        <p className="text-lg mb-10" style={{ color: "rgba(241,245,249,0.65)" }}>{t.home.ctaFinalSub}</p>
         <Link
-          href="/diagnostico"
-          className="inline-flex items-center justify-center px-10 py-4 rounded-full font-bold text-yhopping-green bg-white text-base shadow-xl transition-all duration-200 hover:scale-105 hover:shadow-2xl"
+          href="/diagnostico-empresarial"
+          className="inline-flex items-center justify-center px-10 py-4 rounded-full font-bold text-base shadow-xl transition-all duration-200 hover:scale-105 hover:shadow-2xl"
+          style={{ background: "#1CC5DC", color: "#1A1D29" }}
         >
           {t.home.ctaFinalBtn}
         </Link>

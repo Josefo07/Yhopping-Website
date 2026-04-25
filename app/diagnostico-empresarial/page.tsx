@@ -290,7 +290,8 @@ TONO: Directo como un CFO. Empático como un socio. Nunca como un vendedor.`;
   }
 
   /* ── SHARED STYLES ── */
-  const darkBg = { background: "#1A1D29", minHeight: "100dvh", padding: "24px 20px 48px", display: "flex", flexDirection: "column" as const };
+  // paddingTop: 80px = altura del Header global fijo, evita que el contenido quede tapado
+  const darkBg = { background: "#1A1D29", minHeight: "100dvh", padding: "96px 20px 48px", display: "flex", flexDirection: "column" as const };
   const card = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: "28px 24px" };
 
   /* ── LOADING ── */
@@ -312,8 +313,9 @@ TONO: Directo como un CFO. Empático como un socio. Nunca como un vendedor.`;
           <Link href="/" style={{ color: "rgba(241,245,249,0.5)", display: "flex", alignItems: "center", gap: 6, fontSize: 14, textDecoration: "none" }}>
             <ArrowLeft size={16} /> Volver
           </Link>
-          <Image src="/images/yh-logo-dark.png" alt="Yhopping" width={489} height={120} style={{ height: 28, width: "auto" }} priority />
-          <span style={{ fontSize: 12, color: "rgba(241,245,249,0.4)" }}>{step + 1}/{allQuestions.length}</span>
+          <span style={{ fontSize: 12, color: "rgba(241,245,249,0.4)", fontWeight: 600, letterSpacing: "0.05em" }}>
+            PASO {step + 1} DE {allQuestions.length}
+          </span>
         </div>
 
         {/* Progress */}
@@ -388,8 +390,8 @@ TONO: Directo como un CFO. Empático como un socio. Nunca como un vendedor.`;
   if (screen === "chat") {
     const { label: sLabel, color: sColor } = scoreLabel(scores.total);
     return (
-      <div style={{ ...darkBg, padding: 0 }}>
-        {/* Header */}
+      <div style={{ ...darkBg, padding: 0, paddingTop: 80 }}>
+        {/* Header del chat — debajo del site header fijo */}
         <div style={{ padding: "16px 20px", borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", gap: 12 }}>
           <button onClick={() => setScreen("results")} style={{ background: "transparent", border: "none", color: "rgba(241,245,249,0.5)", cursor: "pointer", display: "flex", padding: 4 }}>
             <ArrowLeft size={18} />
@@ -465,12 +467,10 @@ TONO: Directo como un CFO. Empático como un socio. Nunca como un vendedor.`;
 
   return (
     <div style={darkBg}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 32 }}>
+      <div style={{ display: "flex", alignItems: "center", marginBottom: 32 }}>
         <Link href="/" style={{ color: "rgba(241,245,249,0.5)", display: "flex", alignItems: "center", gap: 6, fontSize: 14, textDecoration: "none" }}>
           <ArrowLeft size={16} /> Inicio
         </Link>
-        <Image src="/images/yh-logo-dark.png" alt="Yhopping" width={489} height={120} style={{ height: 28, width: "auto" }} />
-        <span />
       </div>
 
       {/* Score circle */}

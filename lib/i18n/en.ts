@@ -9,10 +9,10 @@ export const en: Translations = {
     freeDiagnostic: "Free Diagnostic",
   },
   footer: {
-    tagline: "Financial and operational optimization for Mexican SMBs. C-level expertise + technology + measurable ROI.",
+    tagline: "Fractional Financial & Operational Management for Mexican SMBs. Rigor without rigidity.",
     services: "Services",
     contact: "Contact",
-    copyright: "© 2026 Yhopping. Financial Optimization for SMBs.",
+    copyright: "© 2026 Yhopping. Fractional Financial Management for SMBs.",
   },
   home: {
     badge: "Fractional Financial & Operational Leadership · Mexican SMBs",

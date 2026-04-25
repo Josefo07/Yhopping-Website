@@ -9,10 +9,10 @@ export const es: Translations = {
     freeDiagnostic: "Diagnóstico Gratuito",
   },
   footer: {
-    tagline: "Optimización financiera y operativa para PyMEs mexicanas. Expertise C-level + tecnología + ROI medible.",
+    tagline: "Dirección Financiera y Operativa Fraccional para PyMEs mexicanas. Rigor sin rigidez.",
     services: "Servicios",
     contact: "Contacto",
-    copyright: "© 2026 Yhopping. Optimización Financiera para PyMEs.",
+    copyright: "© 2026 Yhopping. Dirección Financiera Fraccional para PyMEs.",
   },
   home: {
     badge: "Dirección Financiera y Operativa Fraccional · PyMEs México",

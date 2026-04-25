@@ -16,27 +16,52 @@ export default function ServiciosPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-32 pb-20 overflow-hidden" style={{ background: "#1A1D29" }}>
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/servicios_dashboard.png"
             alt="Servicios Yhopping"
             fill
-            className="object-cover object-center opacity-10"
+            className="object-cover object-center"
+            style={{ opacity: 0.05 }}
           />
+          {/* Cyan glow top-right */}
+          <div
+            className="absolute"
+            style={{
+              top: "-20%", right: "-10%",
+              width: "55vw", height: "55vw",
+              background: "radial-gradient(circle, rgba(28,197,220,0.12) 0%, transparent 70%)",
+              pointerEvents: "none",
+            }}
+          />
+          {/* Blue glow bottom-left */}
+          <div
+            className="absolute"
+            style={{
+              bottom: "-10%", left: "-5%",
+              width: "40vw", height: "40vw",
+              background: "radial-gradient(circle, rgba(0,70,255,0.10) 0%, transparent 70%)",
+              pointerEvents: "none",
+            }}
+          />
+          {/* Subtle grid */}
           <div
             className="absolute inset-0"
-            style={{ background: "linear-gradient(160deg, rgba(0,70,255,0.92) 0%, rgba(28,197,220,0.85) 100%)" }}
+            style={{
+              backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+              backgroundSize: "60px 60px",
+            }}
           />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-12 text-center">
           <h1
-            className="font-heading font-black text-white mb-5"
-            style={{ fontSize: "clamp(32px, 4vw, 42px)", letterSpacing: "-0.02em" }}
+            className="font-heading font-black mb-5"
+            style={{ fontSize: "clamp(28px, 4vw, 42px)", letterSpacing: "-0.02em", color: "#F1F5F9" }}
           >
             {t.services.pageTitle}
           </h1>
-          <p className="text-white/80 text-lg leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg leading-relaxed max-w-2xl mx-auto" style={{ color: "rgba(241,245,249,0.70)" }}>
             {t.services.pageDesc}
           </p>
         </div>
