@@ -1,6 +1,6 @@
 # Publicación de Yhopping — actualización integral
 
-Esta rama es candidata a revisión; no acredita publicación ni recepción real de consultas.
+Esta rama es candidata a revisión (PR #1). Vercel confirmó el despliegue de preview el 2026-11-15. Esto no acredita publicación en el dominio ni recepción real de consultas.
 
 ## Configuración en el hospedaje existente
 
@@ -29,7 +29,7 @@ Sin correo configurado, la API devuelve 503, el formulario conserva datos y ofre
 
 ## Límites conocidos
 
-El preview administrado de esta sesión agrega argumentos de Vite que Next.js no acepta. No se completó QA de navegador. La versión EN del diagnóstico empresarial era parcial antes de esta rama; no se presenta como traducción completa ni como una evaluación integral nueva. No se añadieron casos, testimonios ni cifras de clientes sin evidencia.
+El preview administrado de esta sesión agrega argumentos de Vite que Next.js no acepta. Vercel desplegó el preview remoto, pero exige autenticación y la revisión automática rechazó iniciar sesión sin autorización explícita para acceso a cuenta. No se completó QA de navegador. La versión EN del diagnóstico empresarial era parcial antes de esta rama; no se presenta como traducción completa ni como una evaluación integral nueva. No se añadieron casos, testimonios ni cifras de clientes sin evidencia.
 
 ## Recuperación
 

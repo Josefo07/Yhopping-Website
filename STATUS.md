@@ -1,5 +1,5 @@
 # STATUS — Actualización Web Yhopping
-Actualizado: 2026-11-15 | Plataforma: ChatGPT | Sesión: Consultoría empresarial integral
+Actualizado: 2026-11-15 16:22 | Plataforma: ChatGPT | Sesión: Consultoría empresarial integral
 
 ## Objetivo
 Actualizar yhopping.com esta semana para comunicar consultoría empresarial integral y convertir visitas en consultas reales.
@@ -12,7 +12,8 @@ Código actualizado en rama update/consultoria-integral sobre el repositorio exi
 Portada, soluciones, método, metadatos y pie actualizados en español e inglés.
 Formulario con API de envío, validación y manejo de errores; requiere configuración del proveedor.
 Compilación de producción y tres pruebas de contacto pasan.
-Publicación y revisión visual todavía pendientes; el entorno de preview no acepta Next.js.
+Vercel confirmó despliegue de la rama (PR #1); preview protegido por inicio de sesión.
+Publicación en dominio y revisión visual pendientes; el preview local no acepta Next.js.
 
 ## Hecho en esta sesión
 - Revisado código real y confirmado que el formulario anterior no enviaba mensajes.
@@ -35,6 +36,7 @@ Publicación y revisión visual todavía pendientes; el entorno de preview no ac
 - 2026-11-15: Mantener el termómetro como financiero y orientativo — no presentarlo como evaluación integral validada.
 
 ## Bloqueos / Riesgos
+- Vista previa Vercel desplegada correctamente, pero exige iniciar sesión. La revisión automática rechazó el inicio de sesión por falta de autorización explícita de acceso a cuenta.
 - Sin acceso verificado a configuración de Vercel; documentación del repo indica auto-deploy desde main.
 - Envío de contacto requiere RESEND_API_KEY y CONTACT_FROM_EMAIL con dominio verificado. No hay credenciales en el código.
 - API de chatbot y claves de producción no verificadas.
@@ -42,7 +44,7 @@ Publicación y revisión visual todavía pendientes; el entorno de preview no ac
 - Fechas de pendientes son propuesta de trabajo, no automatizaciones ni ejecución en segundo plano.
 
 ## Siguiente acción concreta
-Obtener preview de la rama y completar la conexión del correo en el hospedaje.
+Obtener autorización explícita de acceso a Vercel para revisar el preview y completar la conexión de correo.
 
 ## Archivos clave
 - app/page.tsx — portada y recorrido comercial.
@@ -52,4 +54,4 @@ Obtener preview de la rama y completar la conexión del correo en el hospedaje.
 - RELEASE_CHECKLIST.md — configuración y validación antes de producción.
 
 ## Historial de checkpoints
-- 2026-11-15 — ChatGPT — primera actualización implementada; build y pruebas pasan; pendiente preview, correo y publicación.
+- 2026-11-15 — ChatGPT — primera actualización guardada en GitHub PR #1; build y pruebas pasan; Vercel confirma preview desplegado; acceso protegido bloquea revisión visual.
