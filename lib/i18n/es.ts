@@ -6,136 +6,169 @@ export const es: Translations = {
     insights: "Insights",
     diagnostic: "Diagnóstico",
     contact: "Contacto",
-    freeDiagnostic: "Diagnóstico Gratuito",
+    freeDiagnostic: "Autoevaluación gratuita",
   },
   footer: {
-    tagline: "Dirección Financiera y Operativa Fraccional para PyMEs mexicanas. Rigor sin rigidez.",
-    services: "Servicios",
-    contact: "Contacto",
-    copyright: "© 2026 Yhopping. Dirección Financiera Fraccional para PyMEs.",
-  },
+  "tagline": "Consultoría empresarial integral. Conectamos dirección, finanzas, operación y equipo para crecer con control.",
+  "services": "Soluciones",
+  "contact": "Contacto",
+  "copyright": "© 2026 Yhopping. Potenciando Empresas."
+},
   home: {
-    badge: "Dirección Financiera y Operativa Fraccional · PyMEs México",
-    hero: "Estabilizamos tu operación y maximizamos tu rentabilidad: Dirección Financiera y Operativa Fraccional para PyMES en crecimiento.",
-    heroSub: "Rigor sin rigidez. Expertise C-Level + automatización + ROI medible. Primer diagnóstico gratuito, sin compromiso.",
-    ctaPrimary: "Agenda tu Diagnóstico Gratuito",
-    ctaSecondary: "Conoce Nuestros Servicios",
-    problemsTitle: "¿Te identificas con alguno de estos desafíos?",
-    problemsSub: "Son las tres fricciones más comunes en PyMEs con ventas sólidas pero sin claridad financiera.",
-    problems: [
-      { icon: "💸", title: "Flujo de caja irregular", desc: "Vendes bien pero el dinero nunca alcanza", context: "Ingresos sólidos, liquidez inconsistente" },
-      { icon: "📊", title: "Decisiones sin datos", desc: "Cierras mes sin saber si ganaste o perdiste", context: "Estados financieros desactualizados o inexistentes" },
-      { icon: "⚙️", title: "Procesos manuales", desc: "Tu equipo pierde 10+ horas/semana en Excel", context: "Conciliaciones, reportes y validaciones manuales" },
-    ],
-    servicesTitle: "Soluciones Prácticas con ROI Medible",
-    servicesSub: "Cada servicio está diseñado para generar resultados concretos en semanas, no meses.",
-    services: [
-      { title: "CFO Fraccional", desc: "Tu director financiero cuando lo necesitas", bullet: "Sin el costo de tiempo completo" },
-      { title: "Optimización Flujo de Caja", desc: "Claridad financiera en 10-16 horas", bullet: "Identifica dónde se queda el dinero" },
-      { title: "Automatización Office 365", desc: "Libera a tu equipo de tareas repetitivas", bullet: "Power Automate + Power BI + SharePoint" },
-      { title: "Diagnóstico Financiero", desc: "Radiografía completa en 8-14 horas", bullet: "Identifica fugas de efectivo" },
-    ],
-    whyLabel: "Por qué Yhopping",
-    whyTitle: "Expertise C-Level + Tecnología + ROI Real",
-    whyReasons: [
-      "Experiencia comprobada: +20 años CFO/COO en Televisa, banca, manufactura",
-      "Enfoque práctico: No vendemos estrategia sin ejecución",
-      "ROI objetivo 3:1: Proyectos con retorno mínimo medible",
-      "Tecnología aplicada: Automatización real con Office 365",
-    ],
-    whyCta: "Agenda diagnóstico gratuito →",
-    ctaFinalTitle: "¿Listo para tener claridad financiera real?",
-    ctaFinalSub: "Diagnóstico gratuito de 30 minutos. Sin compromiso.",
-    ctaFinalBtn: "Agenda tu Diagnóstico",
-    viewMore: "Ver más →",
-  },
-  services: {
-    pageTitle: "Servicios de Consultoría Financiera y Operativa",
-    pageDesc: "Soluciones prácticas para PyMEs que quieren crecer sin perder el control.",
-    includes: "Qué incluye",
-    requestInfo: "Solicitar información →",
-    ctaTitle: "¿No sabes por dónde empezar?",
-    ctaDesc: "Agenda un diagnóstico gratuito de 30 min. Te decimos exactamente qué necesita tu empresa.",
-    ctaBtn: "Iniciar Diagnóstico Gratuito →",
-    sidebarLabels: {
-      para: "Para quién",
-      modalidad: "Modalidad",
-      inversion: "Inversión",
-      resultados: "Resultados esperados",
+  "badge": "Consultoría Empresarial Integral · Monterrey y México",
+  "hero": "Tu empresa crece. Que no todo dependa de ti.",
+  "heroSub": "Conectamos estrategia, finanzas, operación y talento para ordenar tu negocio, ejecutar mejoras y dejar capacidad instalada en tu equipo.",
+  "ctaPrimary": "Hablemos de tu empresa",
+  "ctaSecondary": "Encuentra tu solución",
+  "problemsTitle": "¿Qué está frenando a tu empresa?",
+  "problemsSub": "Empezamos por lo que te preocupa. Después conectamos las áreas que necesitan resolverlo.",
+  "problems": [
+    {
+      "icon": "💸",
+      "title": "Vendes, pero falta efectivo",
+      "desc": "El dinero no alcanza aunque el negocio se mueve",
+      "context": "Conectamos cobranza, inventario, pagos y margen para entender dónde se queda el efectivo."
     },
-    items: [
-      {
-        title: "CFO Fraccional",
-        desc: "Tu director financiero estratégico, disponible cuando lo necesitas. Sin el costo de tiempo completo.",
-        incluye: [
-          "Análisis financiero mensual (P&L, Balance, Cash Flow)",
-          "Proyecciones y presupuestos",
-          "KPIs y dashboards ejecutivos",
-          "Asesoría en decisiones estratégicas",
-          "Presentaciones para inversionistas/socios",
-        ],
-        sidebar: {
-          para: "PyMEs $10M–$100M MXN anuales sin CFO dedicado",
-          modalidad: "Retainer mensual o proyectos específicos",
-          inversion: "Desde $25,000 MXN/mes",
-          resultados: "Visibilidad financiera completa en 30 días",
-        },
-      },
-      {
-        title: "Optimización Flujo de Caja",
-        desc: "Identifica dónde se queda el dinero y cómo liberarlo. Diagnóstico y plan implementable en 2–3 semanas.",
-        incluye: [
-          "Diagnóstico completo de cash flow",
-          "Proyección a 3 y 6 meses",
-          "Plan de mejora implementable",
-          "Acompañamiento en primeros pasos",
-        ],
-        sidebar: {
-          para: "Empresas con ventas sólidas y liquidez inconsistente",
-          modalidad: "10–16 horas en 2–3 semanas",
-          inversion: "$8,000–$12,000 MXN",
-          resultados: "+20–40% mejora días efectivo disponible",
-        },
-      },
-      {
-        title: "Automatización Office 365",
-        desc: "Libera a tu equipo de tareas repetitivas con Power Automate, Power BI y SharePoint. Implementación real, no demos.",
-        incluye: [
-          "Mapeo proceso actual (as-is)",
-          "Diseño proceso automatizado (to-be)",
-          "Implementación Power Automate",
-          "Dashboards Power BI",
-          "Capacitación equipo",
-        ],
-        sidebar: {
-          para: "Equipos que pierden 10+ horas/semana en procesos manuales",
-          modalidad: "12–20 horas en 3–4 semanas",
-          inversion: "$6,000–$10,000 MXN",
-          resultados: "50–70% reducción tiempo en procesos clave",
-        },
-      },
-      {
-        title: "Diagnóstico Financiero",
-        desc: "Radiografía completa de la salud financiera de tu empresa. Claridad total en 1–2 semanas.",
-        incluye: [
-          "Estados financieros en orden",
-          "Cálculo márgenes reales",
-          "Identificación fugas de dinero",
-          "KPIs configurados",
-          "Reporte ejecutivo con recomendaciones",
-        ],
-        sidebar: {
-          para: "Dueños sin claridad sobre rentabilidad real",
-          modalidad: "8–14 horas en 1–2 semanas",
-          inversion: "$4,000–$7,000 MXN",
-          resultados: "Claridad total sobre rentabilidad del negocio",
-        },
-      },
-    ],
+    {
+      "icon": "🧭",
+      "title": "Todo pasa por ti",
+      "desc": "Si tú no decides, la operación se detiene",
+      "context": "Definimos responsables, criterios y límites para que tu equipo pueda avanzar."
+    },
+    {
+      "icon": "⚙️",
+      "title": "Las áreas no se coordinan",
+      "desc": "Ventas promete, operación resuelve y el cliente espera",
+      "context": "Alineamos procesos, información y prioridades para ejecutar como un solo equipo."
+    }
+  ],
+  "servicesTitle": "Una ruta para cada problema",
+  "servicesSub": "Consultoría integral para PyMEs y proyectos específicos para empresas con necesidades definidas.",
+  "services": [
+    {
+      "title": "Dirección y equipo",
+      "desc": "Cuando el dueño concentra las decisiones y necesita delegar con claridad.",
+      "bullet": "Responsables, indicadores y seguimiento"
+    },
+    {
+      "title": "Efectivo y rentabilidad",
+      "desc": "Cuando las ventas no se traducen en liquidez o margen visible.",
+      "bullet": "Cobranza, inventario, pagos y costos conectados"
+    },
+    {
+      "title": "Procesos y coordinación",
+      "desc": "Cuando los errores, las urgencias y el retrabajo consumen la operación.",
+      "bullet": "Procesos claros y tecnología donde aporta valor"
+    },
+    {
+      "title": "Diagnóstico empresarial",
+      "desc": "Cuando hay varios síntomas y necesitas saber por dónde empezar.",
+      "bullet": "Prioridades, alcance y una ruta de trabajo"
+    }
+  ],
+  "whyLabel": "Cómo trabajamos",
+  "whyTitle": "El criterio debe existir fuera de la cabeza del dueño.",
+  "whyReasons": [
+    "Leemos el terreno: entendemos tu negocio y contrastamos los síntomas con información.",
+    "Trazamos la ruta: acordamos prioridades, responsables y cómo medir el avance.",
+    "Equipamos al equipo: definimos procesos, criterios y herramientas de trabajo.",
+    "Ejecutamos y ajustamos: acompañamos la implementación y revisamos lo que funciona.",
+    "Transferimos capacidad: documentamos y preparamos al equipo para sostener las mejoras."
+  ],
+  "whyCta": "Conversemos sobre tu reto →",
+  "ctaFinalTitle": "Empecemos por lo que hoy te quita tiempo y tranquilidad.",
+  "ctaFinalSub": "Una conversación inicial sin costo para entender tu situación y evaluar si podemos ayudarte.",
+  "ctaFinalBtn": "Solicitar conversación inicial",
+  "viewMore": "Explorar solución →"
+},
+  services: {
+  "pageTitle": "Soluciones para que tu empresa avance con control",
+  "pageDesc": "Consultoría empresarial integral: del problema a la implementación, con responsables y seguimiento.",
+  "includes": "Qué podemos trabajar",
+  "requestInfo": "Hablemos de este reto →",
+  "ctaTitle": "¿Hay varios problemas al mismo tiempo?",
+  "ctaDesc": "Empecemos por entender tu situación y definir qué conviene atender primero.",
+  "ctaBtn": "Solicitar conversación inicial →",
+  "sidebarLabels": {
+    "para": "Para quién",
+    "modalidad": "Cómo trabajamos",
+    "inversion": "Inversión",
+    "resultados": "Entregables según alcance"
   },
+  "items": [
+    {
+      "title": "Dirección y equipo",
+      "desc": "Ayudamos a convertir las decisiones que dependen del dueño en criterios, responsabilidades y rutinas que el equipo pueda aplicar.",
+      "incluye": [
+        "Claridad de funciones y responsabilidades",
+        "Límites de autorización y manejo de excepciones",
+        "Indicadores y reuniones de seguimiento",
+        "Coordinación entre dirección, ventas, operación y talento",
+        "Acompañamiento en la implementación"
+      ],
+      "sidebar": {
+        "para": "Empresas que necesitan delegar y profesionalizar su gestión",
+        "modalidad": "Proyecto definido o acompañamiento recurrente",
+        "inversion": "Propuesta según alcance",
+        "resultados": "Mapa de responsabilidades, criterios de decisión y seguimiento"
+      }
+    },
+    {
+      "title": "Efectivo y rentabilidad",
+      "desc": "Conectamos los números con las decisiones operativas para identificar presiones de efectivo y entender la rentabilidad real.",
+      "incluye": [
+        "Análisis de flujo de efectivo y capital de trabajo",
+        "Revisión de cobranza, inventario y pagos",
+        "Márgenes, costos y rentabilidad por línea",
+        "Presupuesto, proyecciones e indicadores",
+        "Dirección financiera fraccional cuando el alcance lo requiere"
+      ],
+      "sidebar": {
+        "para": "Empresas con presión de liquidez o poca visibilidad del margen",
+        "modalidad": "Diagnóstico, proyecto o acompañamiento",
+        "inversion": "Propuesta según alcance",
+        "resultados": "Hallazgos, proyección y plan de acciones priorizadas"
+      }
+    },
+    {
+      "title": "Procesos y coordinación",
+      "desc": "Ordenamos los puntos donde se pierde información, se duplica trabajo o se incumplen acuerdos entre áreas.",
+      "incluye": [
+        "Mapeo de procesos y puntos de fricción",
+        "Diseño de flujos y acuerdos entre áreas",
+        "Procedimientos, controles y manejo de excepciones",
+        "Automatización y tableros cuando sean adecuados",
+        "Documentación y capacitación del equipo"
+      ],
+      "sidebar": {
+        "para": "PyMEs en crecimiento y empresas que requieren un proyecto específico",
+        "modalidad": "Proyecto con alcance y responsables acordados",
+        "inversion": "Propuesta según alcance",
+        "resultados": "Procesos documentados, controles y plan de implementación"
+      }
+    },
+    {
+      "title": "Diagnóstico empresarial",
+      "desc": "Revisamos cómo se relacionan estrategia, finanzas, ventas, operación, procesos, talento y tecnología antes de proponer soluciones.",
+      "incluye": [
+        "Conversación de alcance y revisión de información disponible",
+        "Identificación de problemas y sus conexiones",
+        "Priorización por impacto, urgencia y viabilidad",
+        "Ruta de trabajo con responsables e indicadores",
+        "Propuesta de implementación acorde con la capacidad de la empresa"
+      ],
+      "sidebar": {
+        "para": "Empresarios que necesitan claridad sobre qué atender primero",
+        "modalidad": "Diagnóstico de alcance acordado",
+        "inversion": "Cotización después de definir el alcance",
+        "resultados": "Mapa de hallazgos y ruta priorizada de trabajo"
+      }
+    }
+  ]
+},
   contact: {
     pageTitle: "Hablemos",
-    pageDesc: "Primera consulta gratuita. Sin compromiso. Respondemos en menos de 24 horas.",
+    pageDesc: "Cuéntanos qué está frenando a tu empresa. La conversación inicial es sin costo.",
     formTitle: "Envíanos un mensaje",
     name: "Nombre",
     nameRequired: "El nombre es requerido",
@@ -156,11 +189,11 @@ export const es: Translations = {
     send: "Enviar Mensaje",
     sending: "Enviando…",
     successTitle: "¡Gracias por escribirnos!",
-    successDesc: "Te contactaremos en menos de 24 horas hábiles.",
+    successDesc: "Tu mensaje fue aceptado para envío. Revisaremos tu solicitud para dar seguimiento.",
     sendAnother: "Enviar otro mensaje",
     infoTitle: "Información de contacto",
     location: "Monterrey, Nuevo León",
-    responseNote: "Respondemos todos los mensajes en menos de 24 horas hábiles.",
+    responseNote: "Cuéntanos tu reto para orientar la conversación.",
     freeConsult: "La primera consulta es completamente gratuita",
   },
   insights: {
@@ -192,7 +225,7 @@ export const es: Translations = {
       { text: '"Crezco pero no veo utilidades"', bg: "rgba(6,182,212,.08)", border: "rgba(6,182,212,.2)", color: "#67e8f9" },
     ],
     startBtn: "Iniciar diagnóstico gratis →",
-    socialProof: "Más de 50 empresas ya conocen su salud financiera real",
+    socialProof: "Autoevaluación orientativa. No sustituye una revisión de información.",
     question: "Pregunta",
     of: "de",
     next: "Siguiente →",
@@ -241,8 +274,8 @@ export const es: Translations = {
       nameCashflow: "Análisis de Flujo de Efectivo",
       hoursCashflowUrgent: "16–24 horas",
       hoursCashflowNormal: "10–16 horas",
-      priceCashflowUrgent: "$8,000–$12,000 MXN",
-      priceCashflowNormal: "$5,000–$8,000 MXN",
+      priceCashflowUrgent: "Seg\u00fan alcance",
+      priceCashflowNormal: "Seg\u00fan alcance",
       itemsCashflow: [
         "Diagnóstico completo de cash flow",
         "Proyección a 3 y 6 meses",
@@ -252,7 +285,7 @@ export const es: Translations = {
       tagHighPriority: "📊 Alta prioridad",
       nameDiagnostic: "Diagnóstico Financiero",
       hoursDiagnostic: "8–14 horas",
-      priceDiagnostic: "$4,000–$7,000 MXN",
+      priceDiagnostic: "Seg\u00fan alcance",
       itemsDiagnostic: [
         "Estados financieros en orden",
         "Cálculo de márgenes reales",
@@ -262,7 +295,7 @@ export const es: Translations = {
       tagScale: "⚙️ Para escalar",
       nameProcess: "Diseño de Procesos",
       hoursProcess: "12–20 horas",
-      priceProcess: "$6,000–$10,000 MXN",
+      priceProcess: "Seg\u00fan alcance",
       itemsProcess: [
         "Mapeo de procesos actuales",
         "Diseño del proceso optimizado",

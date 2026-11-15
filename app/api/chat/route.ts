@@ -7,7 +7,6 @@ export async function POST(req: NextRequest) {
     // Accept any of these env var names, then fall back to client-provided key
     const apiKey =
       process.env.ANTHROPIC_API_KEY ||
-      process.env.NEXT_PUBLIC_CLAUDE_API_KEY ||
       process.env.CLAUDE_API_KEY ||
       (body._apiKey as string | undefined);
 
@@ -18,7 +17,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing API key" }, { status: 400 });
     }
 
-    console.log("[chat/route] Calling Anthropic, model:", body.model, "key prefix:", apiKey.slice(0, 12));
 
     const res = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",

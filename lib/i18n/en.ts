@@ -6,136 +6,169 @@ export const en: Translations = {
     insights: "Insights",
     diagnostic: "Diagnostic",
     contact: "Contact",
-    freeDiagnostic: "Free Diagnostic",
+    freeDiagnostic: "Free self-assessment",
   },
   footer: {
-    tagline: "Fractional Financial & Operational Management for Mexican SMBs. Rigor without rigidity.",
-    services: "Services",
-    contact: "Contact",
-    copyright: "© 2026 Yhopping. Fractional Financial Management for SMBs.",
-  },
+  "tagline": "Integrated business consulting. Connecting leadership, finance, operations and people to grow with control.",
+  "services": "Solutions",
+  "contact": "Contact",
+  "copyright": "© 2026 Yhopping. Empowering Businesses."
+},
   home: {
-    badge: "Fractional Financial & Operational Leadership · Mexican SMBs",
-    hero: "We stabilize your operations and maximize your profitability: Fractional Financial & Operational Management for growing SMBs.",
-    heroSub: "Rigor without rigidity. C-Level expertise + automation + measurable ROI. First diagnostic free, no commitment.",
-    ctaPrimary: "Schedule Your Free Diagnostic",
-    ctaSecondary: "Explore Our Services",
-    problemsTitle: "Do any of these challenges sound familiar?",
-    problemsSub: "These are the three most common frictions in SMBs with solid sales but no financial clarity.",
-    problems: [
-      { icon: "💸", title: "Irregular cash flow", desc: "Sales are good but money is always tight", context: "Solid revenue, inconsistent liquidity" },
-      { icon: "📊", title: "Decisions without data", desc: "You close the month not knowing if you made or lost money", context: "Outdated or nonexistent financial statements" },
-      { icon: "⚙️", title: "Manual processes", desc: "Your team wastes 10+ hours/week in Excel", context: "Manual reconciliations, reports and validations" },
-    ],
-    servicesTitle: "Practical Solutions with Measurable ROI",
-    servicesSub: "Each service is designed to deliver concrete results in weeks, not months.",
-    services: [
-      { title: "Fractional CFO", desc: "Your financial director when you need it", bullet: "Without the full-time cost" },
-      { title: "Cash Flow Optimization", desc: "Financial clarity in 10–16 hours", bullet: "Find where the money is getting stuck" },
-      { title: "Office 365 Automation", desc: "Free your team from repetitive tasks", bullet: "Power Automate + Power BI + SharePoint" },
-      { title: "Financial Diagnostic", desc: "Complete X-ray in 8–14 hours", bullet: "Identify cash leaks" },
-    ],
-    whyLabel: "Why Yhopping",
-    whyTitle: "C-Level Expertise + Technology + Real ROI",
-    whyReasons: [
-      "Proven experience: 20+ years CFO/COO at Televisa, banking, manufacturing",
-      "Practical approach: We don't sell strategy without execution",
-      "Target ROI 3:1: Projects with minimum measurable return",
-      "Applied technology: Real automation with Office 365",
-    ],
-    whyCta: "Schedule free diagnostic →",
-    ctaFinalTitle: "Ready to have real financial clarity?",
-    ctaFinalSub: "Free 30-minute diagnostic. No commitment.",
-    ctaFinalBtn: "Schedule Your Diagnostic",
-    viewMore: "Learn more →",
-  },
-  services: {
-    pageTitle: "Financial & Operational Consulting Services",
-    pageDesc: "Practical solutions for SMBs that want to grow without losing control.",
-    includes: "What's included",
-    requestInfo: "Request information →",
-    ctaTitle: "Not sure where to start?",
-    ctaDesc: "Schedule a free 30-min diagnostic. We'll tell you exactly what your business needs.",
-    ctaBtn: "Start Free Diagnostic →",
-    sidebarLabels: {
-      para: "Who it's for",
-      modalidad: "Format",
-      inversion: "Investment",
-      resultados: "Expected results",
+  "badge": "Integrated Business Consulting · Monterrey & Mexico",
+  "hero": "Your business is growing. It should not all depend on you.",
+  "heroSub": "We connect strategy, finance, operations and people to bring structure to your business, implement improvements and build your team’s capabilities.",
+  "ctaPrimary": "Let’s talk about your business",
+  "ctaSecondary": "Find your solution",
+  "problemsTitle": "What is holding your business back?",
+  "problemsSub": "We start with your concern, then connect the areas that need to solve it.",
+  "problems": [
+    {
+      "icon": "💸",
+      "title": "Sales without available cash",
+      "desc": "Business is moving, but cash is always tight",
+      "context": "We connect collections, inventory, payments and margins to understand where cash is tied up."
     },
-    items: [
-      {
-        title: "Fractional CFO",
-        desc: "Your strategic financial director, available when you need it. Without the full-time cost.",
-        incluye: [
-          "Monthly financial analysis (P&L, Balance Sheet, Cash Flow)",
-          "Projections and budgets",
-          "KPIs and executive dashboards",
-          "Advisory on strategic decisions",
-          "Presentations for investors/partners",
-        ],
-        sidebar: {
-          para: "SMBs with $10M–$100M MXN annual revenue without a dedicated CFO",
-          modalidad: "Monthly retainer or specific projects",
-          inversion: "From $25,000 MXN/month",
-          resultados: "Complete financial visibility in 30 days",
-        },
-      },
-      {
-        title: "Cash Flow Optimization",
-        desc: "Identify where the money is getting stuck and how to free it. Diagnostic and actionable plan in 2–3 weeks.",
-        incluye: [
-          "Complete cash flow diagnostic",
-          "3 and 6-month projection",
-          "Implementable improvement plan",
-          "Support in first steps",
-        ],
-        sidebar: {
-          para: "Companies with solid sales and inconsistent liquidity",
-          modalidad: "10–16 hours over 2–3 weeks",
-          inversion: "$8,000–$12,000 MXN",
-          resultados: "+20–40% improvement in available cash days",
-        },
-      },
-      {
-        title: "Office 365 Automation",
-        desc: "Free your team from repetitive tasks with Power Automate, Power BI and SharePoint. Real implementation, not demos.",
-        incluye: [
-          "Current process mapping (as-is)",
-          "Automated process design (to-be)",
-          "Power Automate implementation",
-          "Power BI dashboards",
-          "Team training",
-        ],
-        sidebar: {
-          para: "Teams losing 10+ hours/week on manual processes",
-          modalidad: "12–20 hours over 3–4 weeks",
-          inversion: "$6,000–$10,000 MXN",
-          resultados: "50–70% time reduction in key processes",
-        },
-      },
-      {
-        title: "Financial Diagnostic",
-        desc: "Complete X-ray of your company's financial health. Full clarity in 1–2 weeks.",
-        incluye: [
-          "Financial statements in order",
-          "Real margin calculation",
-          "Cash leak identification",
-          "KPIs configured",
-          "Executive report with recommendations",
-        ],
-        sidebar: {
-          para: "Owners without clarity on real profitability",
-          modalidad: "8–14 hours over 1–2 weeks",
-          inversion: "$4,000–$7,000 MXN",
-          resultados: "Full clarity on business profitability",
-        },
-      },
-    ],
+    {
+      "icon": "🧭",
+      "title": "Every decision comes to you",
+      "desc": "When you stop deciding, the business stops moving",
+      "context": "We define ownership, decision criteria and boundaries so your team can move forward."
+    },
+    {
+      "icon": "⚙️",
+      "title": "Departments work in silos",
+      "desc": "Sales promises, operations scrambles and customers wait",
+      "context": "We align processes, information and priorities so people work as one team."
+    }
+  ],
+  "servicesTitle": "A path for each business challenge",
+  "servicesSub": "Integrated consulting for SMBs and focused projects for companies with defined needs.",
+  "services": [
+    {
+      "title": "Leadership and people",
+      "desc": "When the owner makes every decision and needs to delegate with clarity.",
+      "bullet": "Ownership, indicators and follow-through"
+    },
+    {
+      "title": "Cash and profitability",
+      "desc": "When sales do not translate into cash or visible margins.",
+      "bullet": "Connecting collections, inventory, payments and costs"
+    },
+    {
+      "title": "Processes and coordination",
+      "desc": "When errors, emergencies and rework consume your operations.",
+      "bullet": "Clear processes and technology where it adds value"
+    },
+    {
+      "title": "Business diagnostic",
+      "desc": "When there are multiple symptoms and you need a starting point.",
+      "bullet": "Priorities, scope and a practical roadmap"
+    }
+  ],
+  "whyLabel": "How we work",
+  "whyTitle": "Sound judgment should live beyond the owner’s head.",
+  "whyReasons": [
+    "Read the terrain: understand the business and test symptoms against information.",
+    "Map the route: agree on priorities, ownership and how to measure progress.",
+    "Equip the team: define processes, decision criteria and tools.",
+    "Execute and adjust: support implementation and review what works.",
+    "Transfer capabilities: document and prepare the team to sustain improvements."
+  ],
+  "whyCta": "Let’s discuss your challenge →",
+  "ctaFinalTitle": "Start with what is taking your time and peace of mind.",
+  "ctaFinalSub": "A free initial conversation to understand your situation and assess whether we can help.",
+  "ctaFinalBtn": "Request an initial conversation",
+  "viewMore": "Explore solution →"
+},
+  services: {
+  "pageTitle": "Solutions to grow your business with control",
+  "pageDesc": "Integrated business consulting: from understanding the problem to implementation, ownership and follow-through.",
+  "includes": "What we can work on",
+  "requestInfo": "Let’s discuss this challenge →",
+  "ctaTitle": "Facing several problems at once?",
+  "ctaDesc": "Let’s understand your situation and decide what to address first.",
+  "ctaBtn": "Request an initial conversation →",
+  "sidebarLabels": {
+    "para": "Who it is for",
+    "modalidad": "How we work",
+    "inversion": "Investment",
+    "resultados": "Deliverables depend on scope"
   },
+  "items": [
+    {
+      "title": "Leadership and people",
+      "desc": "We help turn owner-dependent decisions into criteria, responsibilities and routines the team can apply.",
+      "incluye": [
+        "Clear roles and responsibilities",
+        "Approval limits and exception handling",
+        "Indicators and follow-up meetings",
+        "Coordination across leadership, sales, operations and people",
+        "Implementation support"
+      ],
+      "sidebar": {
+        "para": "Companies that need to delegate and professionalize management",
+        "modalidad": "Defined project or recurring support",
+        "inversion": "Proposal based on scope",
+        "resultados": "Responsibility map, decision criteria and follow-up routines"
+      }
+    },
+    {
+      "title": "Cash and profitability",
+      "desc": "We connect financial information with operating decisions to identify cash pressures and understand actual profitability.",
+      "incluye": [
+        "Cash flow and working capital analysis",
+        "Collections, inventory and payments review",
+        "Margins, costs and profitability by business line",
+        "Budgets, forecasts and indicators",
+        "Fractional financial leadership when appropriate to scope"
+      ],
+      "sidebar": {
+        "para": "Companies facing cash pressures or limited margin visibility",
+        "modalidad": "Diagnostic, project or ongoing support",
+        "inversion": "Proposal based on scope",
+        "resultados": "Findings, forecast and prioritized action plan"
+      }
+    },
+    {
+      "title": "Processes and coordination",
+      "desc": "We address the handoffs where information gets lost, work is duplicated or departments miss their commitments.",
+      "incluye": [
+        "Process and friction mapping",
+        "Workflow and cross-functional agreements",
+        "Procedures, controls and exception handling",
+        "Automation and dashboards where appropriate",
+        "Documentation and team training"
+      ],
+      "sidebar": {
+        "para": "Growing SMBs and companies needing a specific project",
+        "modalidad": "Project with agreed scope and ownership",
+        "inversion": "Proposal based on scope",
+        "resultados": "Documented processes, controls and implementation plan"
+      }
+    },
+    {
+      "title": "Business diagnostic",
+      "desc": "We review how strategy, finance, sales, operations, processes, people and technology connect before proposing solutions.",
+      "incluye": [
+        "Scoping conversation and review of available information",
+        "Identification of problems and their connections",
+        "Prioritization by impact, urgency and feasibility",
+        "Roadmap with ownership and indicators",
+        "Implementation proposal aligned with company capacity"
+      ],
+      "sidebar": {
+        "para": "Owners who need clarity on what to address first",
+        "modalidad": "Diagnostic with agreed scope",
+        "inversion": "Quoted after defining scope",
+        "resultados": "Findings map and prioritized roadmap"
+      }
+    }
+  ]
+},
   contact: {
     pageTitle: "Let's Talk",
-    pageDesc: "First consultation free. No commitment. We respond within 24 hours.",
+    pageDesc: "Tell us what is holding your business back. The initial conversation is free.",
     formTitle: "Send us a message",
     name: "Name",
     nameRequired: "Name is required",
@@ -156,11 +189,11 @@ export const en: Translations = {
     send: "Send Message",
     sending: "Sending…",
     successTitle: "Thanks for reaching out!",
-    successDesc: "We'll contact you within 24 business hours.",
+    successDesc: "Your message was accepted for sending. We will review your request and follow up.",
     sendAnother: "Send another message",
     infoTitle: "Contact information",
     location: "Monterrey, Nuevo León",
-    responseNote: "We respond to all messages within 24 business hours.",
+    responseNote: "Tell us about your challenge to help guide our conversation.",
     freeConsult: "The first consultation is completely free",
   },
   insights: {
@@ -192,7 +225,7 @@ export const en: Translations = {
       { text: '"I\'m growing but don\'t see profits"', bg: "rgba(6,182,212,.08)", border: "rgba(6,182,212,.2)", color: "#67e8f9" },
     ],
     startBtn: "Start free diagnostic →",
-    socialProof: "Over 50 companies already know their real financial health",
+    socialProof: "Indicative self-assessment. It does not replace a review of business information.",
     question: "Question",
     of: "of",
     next: "Next →",
@@ -241,8 +274,8 @@ export const en: Translations = {
       nameCashflow: "Cash Flow Analysis",
       hoursCashflowUrgent: "16–24 hours",
       hoursCashflowNormal: "10–16 hours",
-      priceCashflowUrgent: "$8,000–$12,000 MXN",
-      priceCashflowNormal: "$5,000–$8,000 MXN",
+      priceCashflowUrgent: "Based on scope",
+      priceCashflowNormal: "Based on scope",
       itemsCashflow: [
         "Complete cash flow diagnostic",
         "3 and 6-month projection",
@@ -252,7 +285,7 @@ export const en: Translations = {
       tagHighPriority: "📊 High priority",
       nameDiagnostic: "Financial Diagnostic",
       hoursDiagnostic: "8–14 hours",
-      priceDiagnostic: "$4,000–$7,000 MXN",
+      priceDiagnostic: "Based on scope",
       itemsDiagnostic: [
         "Financial statements in order",
         "Real margin calculation",
@@ -262,7 +295,7 @@ export const en: Translations = {
       tagScale: "⚙️ To scale",
       nameProcess: "Process Design",
       hoursProcess: "12–20 hours",
-      priceProcess: "$6,000–$10,000 MXN",
+      priceProcess: "Based on scope",
       itemsProcess: [
         "Current process mapping",
         "Optimized process design",

@@ -65,3 +65,38 @@ body {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #F1F3F5; }
 ::-webkit-scrollbar-thumb { background: #1CC5DC; border-radius: 99px; }
+
+/* Explicit layouts preserve the site's responsive behavior across Tailwind builds. */
+.max-w-7xl, .max-w-4xl, .max-w-3xl, .max-w-2xl, .max-w-xl { margin-inline: auto; }
+.yh-hero { min-height: min(900px, 100svh); }
+.yh-hero-layout { width: min(1280px, 100%); margin: 0 auto; padding: 160px 48px 100px; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 64px; align-items: center; }
+.yh-route-card { padding: 36px; border: 1px solid #ffffff24; border-radius: 24px; background: linear-gradient(140deg, #ffffff09, #1cc5dc08); box-shadow: 0 24px 80px #00000024; color: #f1f5f9; }
+.yh-eyebrow { color: #1cc5dc; font-size: 11px; letter-spacing: .13em; font-weight: 700; margin-bottom: 20px; }
+.yh-route-card h2 { font-family: var(--font-heading); font-size: 27px; line-height: 1.3; font-weight: 700; margin-bottom: 28px; }
+.yh-route-step { display: flex; gap: 18px; padding: 19px 0; border-top: 1px solid #ffffff18; }
+.yh-route-step > span { color: #1cc5dc; font-size: 13px; padding-top: 3px; }
+.yh-route-step h3 { font-size: 16px; font-weight: 700; margin-bottom: 5px; }
+.yh-route-step p { font-size: 13px; line-height: 1.7; color: #c5ccd6; }
+.yh-route-note { border-top: 1px solid #ffffff18; padding-top: 20px; margin-top: 6px; font-size: 11px; line-height: 1.8; color: #a7b7c7; }
+.yh-problem-grid, .yh-solution-grid, .yh-footer-grid, .yh-method-grid, .yh-service-detail, .yh-contact-grid { display: grid; gap: 32px; }
+.yh-problem-grid, .yh-footer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.yh-solution-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.yh-method-grid, .yh-contact-grid { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 48px; align-items: center; }
+.yh-service-detail { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+.yh-method-grid > *, .yh-contact-grid > *, .yh-service-detail > * { grid-column: auto; min-width: 0; }
+section[id] { scroll-margin-top: 100px; }
+a:focus-visible, button:focus-visible { outline: 3px solid #1cc5dc; outline-offset: 4px; }
+@media (max-width: 1023px) {
+  .yh-hero { min-height: auto; }
+  .yh-hero-layout { padding: 140px 24px 72px; grid-template-columns: 1fr; gap: 40px; }
+  .yh-route-card { max-width: 680px; }
+  .yh-method-grid, .yh-contact-grid, .yh-service-detail { grid-template-columns: 1fr; }
+}
+@media (max-width: 767px) {
+  .yh-problem-grid, .yh-footer-grid, .yh-solution-grid { grid-template-columns: 1fr; }
+  .yh-route-card { padding: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

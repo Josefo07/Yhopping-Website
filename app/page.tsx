@@ -31,9 +31,9 @@ function useFadeIn(threshold = 0.15) {
 }
 
 function HeroSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden" style={{ background: "#1A1D29" }}>
+    <section className="yh-hero relative flex items-center overflow-hidden" style={{ background: "#1A1D29" }}>
       {/* Background image at very low opacity */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -74,7 +74,7 @@ function HeroSection() {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-24 w-full">
+      <div className="yh-hero-layout relative z-10">
         <div className="max-w-3xl">
           <div
             className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8"
@@ -88,7 +88,7 @@ function HeroSection() {
 
           <h1
             className="font-heading font-black leading-tight mb-6"
-            style={{ fontSize: "clamp(28px, 4.5vw, 54px)", letterSpacing: "-0.02em", color: "#F1F5F9" }}
+            style={{ fontSize: "clamp(36px, 4.5vw, 64px)", letterSpacing: "-0.02em", color: "#F1F5F9" }}
           >
             {t.home.hero}
           </h1>
@@ -99,7 +99,7 @@ function HeroSection() {
 
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
-              href="/diagnostico-empresarial"
+              href="/contacto"
               className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-base shadow-2xl transition-all duration-200 hover:scale-105"
               style={{ background: "#1CC5DC", color: "#1A1D29" }}
             >
@@ -114,6 +114,20 @@ function HeroSection() {
             </Link>
           </div>
         </div>
+        <aside className="yh-route-card" aria-label={lang === "es" ? "La ruta de trabajo" : "Our working approach"}>
+          <p className="yh-eyebrow">{lang === "es" ? "EL SIGUIENTE PASO, CON CLARIDAD" : "A CLEAR NEXT STEP"}</p>
+          <h2>{lang === "es" ? "De apagar fuegos a dirigir el negocio." : "From firefighting to leading your business."}</h2>
+          {(lang === "es" ? [
+            ["01", "Entender", "Qué pasa, dónde se conecta y qué información falta."],
+            ["02", "Priorizar", "Una ruta viable, con responsables e indicadores."],
+            ["03", "Implementar", "Acompañamiento y capacidad que se queda en tu equipo."],
+          ] : [
+            ["01", "Understand", "What is happening, how it connects and what information is missing."],
+            ["02", "Prioritize", "A workable route, with ownership and indicators."],
+            ["03", "Implement", "Support and capabilities that stay with your team."],
+          ]).map(([number, title, description]) => <div className="yh-route-step" key={number}><span>{number}</span><div><h3>{title}</h3><p>{description}</p></div></div>)}
+          <p className="yh-route-note">{lang === "es" ? "Finanzas · Operación · Procesos · Talento · Tecnología" : "Finance · Operations · Processes · People · Technology"}</p>
+        </aside>
       </div>
     </section>
   );
@@ -136,7 +150,7 @@ function ProblemasSection() {
             {t.home.problemsSub}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="yh-problem-grid">
             {t.home.problems.map((p, i) => (
               <div
                 key={i}
@@ -173,7 +187,7 @@ function ServiciosPreview() {
             {t.home.servicesSub}
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          <div className="yh-solution-grid">
             {t.home.services.map((s, i) => {
               const Icon = serviceIcons[i];
               return (
@@ -214,7 +228,7 @@ function PorQueSection() {
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div ref={ref} className="opacity-0 translate-y-8 transition-all duration-700">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+          <div className="yh-method-grid">
             <div className="lg:col-span-3">
               <p className="text-yhopping-cyan font-semibold text-sm tracking-widest uppercase mb-3">
                 {t.home.whyLabel}
@@ -234,7 +248,7 @@ function PorQueSection() {
                 ))}
               </div>
               <Link
-                href="/diagnostico-empresarial"
+                href="/contacto"
                 className="inline-flex items-center justify-center mt-10 px-7 py-3.5 rounded-full font-bold text-sm shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl"
                 style={{ background: "#1CC5DC", color: "#1A1D29" }}
               >
@@ -246,7 +260,7 @@ function PorQueSection() {
               <div className="relative rounded-2xl overflow-hidden shadow-xl">
                 <Image
                   src="/images/transformacion.png"
-                  alt="Transformación financiera Yhopping"
+                  alt="Yhopping — coordinación y transformación empresarial"
                   width={500}
                   height={400}
                   className="w-full h-auto object-cover"
@@ -344,7 +358,7 @@ function TermometroMini() {
           >
             <span style={{ width: 7, height: 7, background: "#1CC5DC", borderRadius: "50%" }} />
             <span style={{ color: "#1CC5DC", fontSize: 12, fontWeight: 600, letterSpacing: "0.06em" }}>
-              {isEN ? "FINANCIAL THERMOMETER" : "TERMÓMETRO FINANCIERO PYMÉ"}
+              {isEN ? "FINANCIAL THERMOMETER" : "TERMÓMETRO FINANCIERO PYME"}
             </span>
           </div>
           <h2
@@ -353,10 +367,10 @@ function TermometroMini() {
               fontSize: "clamp(22px, 3vw, 30px)", letterSpacing: "-0.01em", margin: "0 0 8px",
             }}
           >
-            {isEN ? "3 questions to assess your financial health" : "3 preguntas para medir la salud financiera de tu negocio"}
+            {isEN ? "3 questions to explore your finances" : "3 preguntas para explorar tus finanzas"}
           </h2>
           <p style={{ color: "rgba(241,245,249,0.55)", fontSize: 14 }}>
-            {isEN ? "30 seconds · Free · No registration required" : "30 segundos · Gratis · Sin registro"}
+            {isEN ? "Free self-assessment · Indicative results" : "Autoevaluación gratuita · Resultado orientativo"}
           </p>
         </div>
 
@@ -469,7 +483,7 @@ function CTAFinal() {
         </h2>
         <p className="text-lg mb-10" style={{ color: "rgba(241,245,249,0.65)" }}>{t.home.ctaFinalSub}</p>
         <Link
-          href="/diagnostico-empresarial"
+          href="/contacto"
           className="inline-flex items-center justify-center px-10 py-4 rounded-full font-bold text-base shadow-xl transition-all duration-200 hover:scale-105 hover:shadow-2xl"
           style={{ background: "#1CC5DC", color: "#1A1D29" }}
         >

@@ -21,11 +21,13 @@ interface FormData {
   telefono: string;
   empresa?: string;
   mensaje: string;
+  website?: string;
 }
 
 function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const [sendError, setSendError] = useState(false);
   const {
     register,
     handleSubmit,
@@ -33,10 +35,21 @@ function ContactForm() {
     reset,
   } = useForm<FormData>();
 
-  function onSubmit(data: FormData) {
-    console.log("Contacto form data:", data);
-    setSubmitted(true);
-    reset();
+  async function onSubmit(data: FormData) {
+    setSendError(false);
+    try {
+      const response = await fetch("/api/contacto", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      if (!response.ok || result.ok !== true) throw new Error("Not accepted");
+      setSubmitted(true);
+      reset();
+    } catch {
+      setSendError(true);
+    }
   }
 
   if (submitted)
@@ -58,12 +71,20 @@ function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+      <div hidden aria-hidden="true"><label htmlFor="website">Website</label><input id="website" {...register("website")} tabIndex={-1} autoComplete="off" /></div>
+      <p className="text-sm text-yhopping-gray-700">{lang === "es" ? "Usaremos tus datos para atender esta consulta. No incluyas información confidencial." : "We use your details to respond to this inquiry. Please do not include confidential information."}</p>
+      {sendError && <div role="alert" className="rounded-xl border border-red-300 bg-red-50 p-4 text-sm">
+        <p>{lang === "es" ? "No pudimos confirmar el envío. Tus datos siguen aquí; puedes intentar de nuevo o escribirnos directamente." : "We could not confirm sending. Your details are still here; retry or email us directly."}</p>
+        <a className="underline font-semibold" href="mailto:atencionaclientes@yhopping.com">atencionaclientes@yhopping.com</a>
+      </div>}
       {/* Nombre */}
       <div>
-        <label className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
+        <label htmlFor="contact-nombre" className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
           {t.contact.name} <span className="text-red-500">*</span>
         </label>
         <input
+          id="contact-nombre"
+          autoComplete="name"
           {...register("nombre", { required: t.contact.nameRequired })}
           placeholder={t.contact.namePlaceholder}
           className={`w-full border rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-yhopping-cyan/30 ${
@@ -75,10 +96,12 @@ function ContactForm() {
 
       {/* Email */}
       <div>
-        <label className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
+        <label htmlFor="contact-email" className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
           {t.contact.email} <span className="text-red-500">*</span>
         </label>
         <input
+          id="contact-email"
+          autoComplete="email"
           {...register("email", {
             required: t.contact.emailRequired,
             pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: t.contact.emailInvalid },
@@ -94,10 +117,12 @@ function ContactForm() {
 
       {/* Teléfono */}
       <div>
-        <label className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
+        <label htmlFor="contact-telefono" className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
           {t.contact.phone} <span className="text-red-500">*</span>
         </label>
         <input
+          id="contact-telefono"
+          autoComplete="tel"
           {...register("telefono", {
             required: t.contact.phoneRequired,
             pattern: { value: /^[\+]?[\d\s\-\(\)]{10,15}$/, message: t.contact.phoneInvalid },
@@ -113,10 +138,12 @@ function ContactForm() {
 
       {/* Empresa */}
       <div>
-        <label className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
+        <label htmlFor="contact-empresa" className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
           {t.contact.company} <span className="text-yhopping-gray-700 font-normal">{t.contact.companyOptional}</span>
         </label>
         <input
+          id="contact-empresa"
+          autoComplete="organization"
           {...register("empresa")}
           placeholder={t.contact.companyPlaceholder}
           className="w-full border border-yhopping-gray-300 rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200 focus:border-yhopping-cyan focus:ring-2 focus:ring-yhopping-cyan/30"
@@ -125,10 +152,12 @@ function ContactForm() {
 
       {/* Mensaje */}
       <div>
-        <label className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
+        <label htmlFor="contact-mensaje" className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
           {t.contact.message} <span className="text-red-500">*</span>
         </label>
         <textarea
+          id="contact-mensaje"
+          autoComplete="off"
           {...register("mensaje", {
             required: t.contact.messageRequired,
             minLength: { value: 20, message: t.contact.messageMin },
@@ -196,7 +225,7 @@ export default function ContactoPage() {
       {/* Content */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+          <div className="yh-contact-grid">
             {/* Form (65%) */}
             <div className="lg:col-span-3">
               <div className="rounded-2xl border border-yhopping-gray-200 bg-white p-8 shadow-sm">

@@ -78,7 +78,7 @@ export default function ServiciosPage() {
         return (
           <section key={id} id={id} className={`py-20 ${bg}`}>
             <div className="max-w-7xl mx-auto px-6 lg:px-12">
-              <div className={`grid grid-cols-1 lg:grid-cols-3 gap-12 items-start ${reversed ? "lg:grid-flow-dense" : ""}`}>
+              <div className="yh-service-detail">
                 {/* Main content */}
                 <div className={`lg:col-span-2 ${reversed ? "lg:col-start-1" : ""}`}>
                   <div
@@ -129,7 +129,7 @@ export default function ServiciosPage() {
                       ))}
                     </div>
                     <Link
-                      href="/diagnostico"
+                      href="/contacto"
                       className="mt-8 w-full inline-flex items-center justify-center px-5 py-3 rounded-full font-bold text-white text-sm transition-all duration-200 hover:scale-105 hover:shadow-lg"
                       style={{ background: "linear-gradient(135deg, #0046FF, #1CC5DC)" }}
                     >
@@ -154,7 +154,7 @@ export default function ServiciosPage() {
           </h2>
           <p className="text-gray-400 mb-8">{t.services.ctaDesc}</p>
           <Link
-            href="/diagnostico"
+            href="/contacto"
             className="inline-flex items-center justify-center px-10 py-4 rounded-full font-bold text-white text-base shadow-xl transition-all duration-200 hover:scale-105"
             style={{ background: "linear-gradient(135deg, #0046FF, #1CC5DC)" }}
           >

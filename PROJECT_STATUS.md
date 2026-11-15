@@ -1,3 +1,5 @@
+> Estado de actualización comercial al 2026-11-15: ver [STATUS.md](STATUS.md) y [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md). El contenido siguiente es histórico y no confirma el estado actual de producción.
+
 # PROJECT STATUS — Yhopping Web
 _Última actualización: 2026-04-20_
 
