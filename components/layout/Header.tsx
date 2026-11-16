@@ -52,7 +52,7 @@ export default function Header() {
   const pathname = usePathname();
 
   // Páginas con hero oscuro — header arranca transparente con logo blanco
-  const hasDarkHero = pathname === "/" || pathname.startsWith("/diagnostico");
+  const hasDarkHero = false; // Light editorial header on the visual proposal.
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -137,7 +137,7 @@ export default function Header() {
             href="/diagnostico-empresarial"
             style={{
               padding: "10px 20px",
-              borderRadius: 99,
+              borderRadius: 8,
               fontSize: 13,
               fontWeight: 700,
               color: isDark ? "#1A1D29" : "#fff",

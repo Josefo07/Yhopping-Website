@@ -35,3 +35,13 @@ El preview administrado de esta sesión agrega argumentos de Vite que Next.js no
 ## Recuperación
 
 Si falla la publicación, restaurar el deployment anterior en el hospedaje. La rama conserva el diff y puede revertirse sin perder el historial previo. No eliminar claves ni cambiar DNS para revertir código.
+
+## Nueva propuesta visual y autoevaluación — 2026-11-16
+
+Portada editorial y cuestionario único de 18 preguntas. Metodología y límites en ASSESSMENT_METHOD.md. Los diagnósticos financieros antiguos fueron sustituidos en ambas rutas; no se conserva el chatbot como mecanismo de análisis. El nuevo reporte es determinista, sin transmisión de respuestas a IA o base de datos.
+
+- [x] 13 pruebas automatizadas de cálculo y contacto.
+- [x] Build de producción con Webpack.
+- [ ] Validación de diseño y cuestionario por José.
+- [ ] QA visual y recorrido completo de esta versión en preview, escritorio y móvil.
+- [ ] Conectar el correo antes de publicar.
