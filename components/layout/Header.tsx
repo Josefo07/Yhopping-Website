@@ -48,7 +48,7 @@ function LangToggle({ mobile = false, dark = false }: { mobile?: boolean; dark?:
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const pathname = usePathname();
 
   // Páginas con hero oscuro — header arranca transparente con logo blanco
@@ -62,6 +62,7 @@ export default function Header() {
 
   const navLinks = [
     { href: "/servicios", label: t.nav.services },
+    { href: "/orientacion", label: lang === "es" ? "Orientación" : "Guidance" },
     { href: "/insights", label: t.nav.insights },
     { href: "/diagnostico", label: t.nav.diagnostic },
     { href: "/contacto", label: t.nav.contact },
@@ -116,7 +117,7 @@ export default function Header() {
         </Link>
 
         {/* ── DESKTOP NAV ── */}
-        <nav style={{ alignItems: "center", gap: 24 }} className="hidden md:flex">
+        <nav style={{ alignItems: "center", gap: 24 }} className="hidden md:flex yh-desktop-nav">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -154,11 +155,13 @@ export default function Header() {
         </nav>
 
         {/* ── MOBILE: lang toggle + hamburger ── */}
-        <div className="md:hidden flex items-center" style={{ gap: 12 }}>
+        <div className="md:hidden flex items-center yh-mobile-controls" style={{ gap: 12 }}>
           <LangToggle dark={isDark} />
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menú"
+            aria-label={lang === "es" ? "Menú" : "Menu"}
+            aria-expanded={menuOpen}
+            aria-controls="yh-mobile-menu"
             style={{
               background: "transparent",
               border: "none",
@@ -184,7 +187,8 @@ export default function Header() {
             flexDirection: "column",
             gap: 20,
           }}
-          className="md:hidden"
+          className="md:hidden yh-mobile-menu"
+          id="yh-mobile-menu"
         >
           {navLinks.map((link) => (
             <Link
