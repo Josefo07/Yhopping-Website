@@ -23,7 +23,7 @@ Contacto sigue pendiente de configuración de correo; producción no modificada.
 - Documentada metodología y límites de validación del piloto.
 
 ## Pendiente (por prioridad)
-1. Corregir variante del logo en cabecera y volver a verificar preview — ChatGPT — 2026-11-16
+1. Validar propuesta visual y cuestionario — José — 2026-11-18
 2. Revisar diseño móvil y accesibilidad de flujos completos — ChatGPT — 2026-11-17
 3. Validar preguntas, lenguaje y metodología piloto — José + ChatGPT — 2026-11-18
 4. Conectar correo y verificar recepción real — José + ChatGPT — 2026-11-19
@@ -59,3 +59,5 @@ Verificar ajuste del logo y revisar la propuesta con José.
 - 2026-11-16 — ChatGPT — propuesta visual y autoevaluación integral implementadas; 13 pruebas pasan; QA de preview pendiente.
 
 - 2026-11-16 — ChatGPT — comprobado recorrido de 18 preguntas y reporte ES/EN con escenario sintético; 69/100 y cobertura 17/18 correctos; corregida variante del logo en cabecera clara.
+
+- 2026-11-16 — ChatGPT — reporte revisado con zoom a 334 px de viewport, sin desbordamiento de contenido; se ajusta ancho del logo para conservar menú accesible. Emulación de dispositivo real sigue pendiente.
