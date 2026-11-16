@@ -1,5 +1,5 @@
 # STATUS — Actualización Web Yhopping
-Actualizado: 2026-11-15 16:22 | Plataforma: ChatGPT | Sesión: Consultoría empresarial integral
+Actualizado: 2026-11-15 18:35 | Plataforma: ChatGPT | Sesión: Consultoría empresarial integral
 
 ## Objetivo
 Actualizar yhopping.com esta semana para comunicar consultoría empresarial integral y convertir visitas en consultas reales.
@@ -12,8 +12,8 @@ Código actualizado en rama update/consultoria-integral sobre el repositorio exi
 Portada, soluciones, método, metadatos y pie actualizados en español e inglés.
 Formulario con API de envío, validación y manejo de errores; requiere configuración del proveedor.
 Compilación de producción y tres pruebas de contacto pasan.
-Vercel confirmó despliegue de la rama (PR #1); preview protegido por inicio de sesión.
-Publicación en dominio y revisión visual pendientes; el preview local no acepta Next.js.
+Acceso autorizado a Vercel completado; portada ES/EN y navegación a contacto comprobadas en navegador.
+El último despliegue falló por next/font + Turbopack; compilación local con Webpack aprobada. Publicación en dominio pendiente.
 
 ## Hecho en esta sesión
 - Revisado código real y confirmado que el formulario anterior no enviaba mensajes.
@@ -36,15 +36,15 @@ Publicación en dominio y revisión visual pendientes; el preview local no acept
 - 2026-11-15: Mantener el termómetro como financiero y orientativo — no presentarlo como evaluación integral validada.
 
 ## Bloqueos / Riesgos
-- Vista previa Vercel desplegada correctamente, pero exige iniciar sesión. La revisión automática rechazó el inicio de sesión por falta de autorización explícita de acceso a cuenta.
-- Sin acceso verificado a configuración de Vercel; documentación del repo indica auto-deploy desde main.
+- Acceso a Vercel resuelto con autorización de José; revisión de escritorio inicial completada.
+- Panel Vercel confirma producción en main; no se ha publicado la rama.
 - Envío de contacto requiere RESEND_API_KEY y CONTACT_FROM_EMAIL con dominio verificado. No hay credenciales en el código.
-- API de chatbot y claves de producción no verificadas.
+- Vercel tiene ANTHROPIC_API_KEY configurada (valor no revelado); no se probó respuesta de IA.
 - Preview local administrado falla porque inyecta --host/--strictPort, incompatibles con next dev. QA visual no completado.
 - Fechas de pendientes son propuesta de trabajo, no automatizaciones ni ejecución en segundo plano.
 
 ## Siguiente acción concreta
-Obtener autorización explícita de acceso a Vercel para revisar el preview y completar la conexión de correo.
+Verificar despliegue con Webpack y conectar el servicio de correo para probar recepción real.
 
 ## Archivos clave
 - app/page.tsx — portada y recorrido comercial.
@@ -55,3 +55,5 @@ Obtener autorización explícita de acceso a Vercel para revisar el preview y co
 
 ## Historial de checkpoints
 - 2026-11-15 — ChatGPT — primera actualización guardada en GitHub PR #1; build y pruebas pasan; Vercel confirma preview desplegado; acceso protegido bloquea revisión visual.
+
+- 2026-11-15 — ChatGPT — inicio de sesión autorizado completado; portada ES/EN y enlace a contacto comprobados. Variables de correo ausentes. Detectado fallo Turbopack/font en el último despliegue.

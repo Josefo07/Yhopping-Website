@@ -4,7 +4,7 @@ Esta rama es candidata a revisión (PR #1). Vercel confirmó el despliegue de pr
 
 ## Configuración en el hospedaje existente
 
-El repo documenta Vercel y auto-deploy desde main; confirmar la integración actual antes de integrar la rama.
+Confirmado en panel Vercel: producción desde main; rama update/consultoria-integral genera preview.
 
 - `RESEND_API_KEY`: clave privada del proveedor de correo, solo en variables del servidor.
 - `CONTACT_FROM_EMAIL`: remitente del dominio verificado en Resend, por ejemplo `Yhopping <web@yhopping.com>` si se verifica y autoriza ese remitente.
@@ -20,7 +20,8 @@ Sin correo configurado, la API devuelve 503, el formulario conserva datos y ofre
 - [x] `node --test tests/contact-route.test.cjs` — datos inválidos, origen, proveedor ausente, fallo y aceptación simulada.
 - [x] `git diff --check`.
 - [ ] Preview de la rama: móvil 375 px y escritorio, sin desbordamientos, menú, contraste y foco.
-- [ ] Idiomas español e inglés en inicio, servicios, contacto y navegación.
+- [x] Portada español/inglés y enlace principal a contacto en navegador.
+- [ ] Idiomas español e inglés en servicios, contacto y navegación completa.
 - [ ] Completar ambos diagnósticos; comprobar respuestas y ruta a contacto, incluidos los casos sin clave IA.
 - [ ] Confirmar chatbot activo en producción (o comunicar claramente el modo sin IA).
 - [ ] Enviar consulta autorizada y confirmar recepción en buzón, no solo respuesta 200 de la API.
@@ -29,7 +30,7 @@ Sin correo configurado, la API devuelve 503, el formulario conserva datos y ofre
 
 ## Límites conocidos
 
-El preview administrado de esta sesión agrega argumentos de Vite que Next.js no acepta. Vercel desplegó el preview remoto, pero exige autenticación y la revisión automática rechazó iniciar sesión sin autorización explícita para acceso a cuenta. No se completó QA de navegador. La versión EN del diagnóstico empresarial era parcial antes de esta rama; no se presenta como traducción completa ni como una evaluación integral nueva. No se añadieron casos, testimonios ni cifras de clientes sin evidencia.
+El preview administrado de esta sesión agrega argumentos de Vite que Next.js no acepta. Acceso a Vercel completado después de autorización explícita. Portada de escritorio ES/EN y enlace principal a contacto comprobados. Revisión móvil y flujos completos pendientes. El último despliegue documental falló con next/font/Turbopack; se cambia el build a Webpack para evitar ese procesamiento. La versión EN del diagnóstico empresarial era parcial antes de esta rama; no se presenta como traducción completa ni como una evaluación integral nueva. No se añadieron casos, testimonios ni cifras de clientes sin evidencia.
 
 ## Recuperación
 
