@@ -1,60 +1,58 @@
 # STATUS — Actualización Web Yhopping
-Actualizado: 2026-11-16 14:25 | Plataforma: ChatGPT | Sesión: Auditoría contra Biblia 4.1 y publicación autorizada
+Actualizado: 2026-11-16 | Plataforma: ChatGPT | Sesión: Integración de Orientación Ejecutiva Empresarial
 
 ## Objetivo
-Publicar una web profesional de consultoría empresarial integral con una autoevaluación y resultados trazables.
+Mantener una web de consultoría integral con autoevaluación trazable y orientación ejecutiva práctica.
 
 ## Definition of Done
-Diseño aprobado por José; cuestionario y metodología revisados; resultados y navegación comprobados en escritorio/móvil; contacto con recepción real verificada y publicación validada.
+Diseño y contenido aprobados por José; integración publicada con build correcto; demo recorrida en navegador y móvil; correo con recepción real verificada; límites del cuestionario y orientación visibles.
 
 ## Estado actual
-Segunda dirección visual en rama de revisión: portada oscura con tipografía editorial y escultura conceptual dibujada en canvas.
-Cuestionario unificado de 18 preguntas en seis áreas; contexto de tamaño/etapa sin puntuación.
-Resultados deterministas con cobertura, prioridades, evidencia declarada, hipótesis y reglas visibles.
-13 pruebas automatizadas pasan; build de producción aprobado. Recorrido completo de 18 preguntas probado en Vercel, con 17 conocidas y una desconocida; cálculo 69/100, prioridades y tres hipótesis comprobados.
-Diseño aprobado por José; publicación autorizada. Auditoría editorial en CONTENT_AUDIT.md. Contacto directo por correo; formulario e inscripción Academia deshabilitados.
+Web y autoevaluación de 18 preguntas publicadas en yhopping.com en la sesión anterior.
+Integración de Orientación preparada: menú, portada, ruta propia y redirección de Academia.
+Demo de delegación con tres rutas, ficha editable de cinco campos y descarga local, sin IA ni transmisión.
+Programa de autogestión presentado como propuesta en desarrollo, sin inscripciones ni acreditaciones.
+En esta sesión no hay executor ni navegador; compilación se comprobará con Vercel y la revisión interactiva queda pendiente.
 
 ## Hecho en esta sesión
-- Preparada una segunda dirección visual con canvas interactivo, tres enfoques seleccionables y parallax sutil al apuntar.
-- Mantenidos textos accesibles fuera del canvas, dibujo adaptable y respeto de movimiento reducido.
-- Revalidada compilación y 13 pruebas del cuestionario/contacto; pendientes revisión visual y despliegue de este ajuste.
-- Rediseñada portada con blanco cálido, azul marino, acentos cian e iconos uniformes.
-- Sustituidos el mini termómetro y ambos cuestionarios anteriores por una entrada integral única.
-- Eliminados valores predeterminados para faltantes y puntuación por tamaño/etapa/cargo financiero.
-- Añadidos umbrales explícitos, cobertura mínima, alerta de efectivo independiente del promedio y trazabilidad de prioridades.
-- Añadidas hipótesis condicionadas a pares de respuestas, impresión y detalle de las 18 respuestas.
-- Documentada metodología y límites de validación del piloto.
+- Aplicado el nombre aprobado por José: Orientación Ejecutiva Empresarial.
+- Añadidos accesos de menú ES/EN y portada; conservados enlaces antiguos mediante redirección.
+- Implementada demo con selección de contexto, respuestas preparadas, ficha, edición, ejemplo, reinicio y descarga.
+- Separadas orientación personal y autoevaluación empresarial.
+- Aclarado el error anterior: el proyecto educativo era legítimo; la incidencia estaba en confirmar reservas sin registro verificable.
+- Documentados metodología, datos y límites en ORIENTATION_METHOD.md.
 
 ## Pendiente (por prioridad)
-1. Validar propuesta visual y cuestionario — José — 2026-11-18
-2. Revisar diseño móvil y accesibilidad de flujos completos — ChatGPT — 2026-11-17
-3. Validar preguntas, lenguaje y metodología piloto — José + ChatGPT — 2026-11-18
-4. Conectar correo y verificar recepción real — José + ChatGPT — 2026-11-19
-5. Publicar versión aprobada y comprobar dominio — José + ChatGPT — 2026-11-20
+1. Confirmar despliegue de esta integración — ChatGPT — 2026-11-16
+2. Recorrer las tres rutas, descarga, reinicio, ES/EN y móvil en navegador — ChatGPT + José — 2026-11-17
+3. Definir programa completo y validar contenido con revisión independiente — José + equipo editorial — fecha por definir
+4. Configurar correo y verificar recepción real antes de habilitar formularios — José + ChatGPT — 2026-11-19
+5. Validar contenido y metodología del cuestionario piloto — José + ChatGPT — 2026-11-18
 
 ## Decisiones tomadas
-- 2026-11-16: Seis áreas con igual peso — evitar sesgo de solo finanzas y transparentar el cálculo.
-- 2026-11-16: «No lo sé» queda como información faltante — no fabricar ni penalizar como cero.
-- 2026-11-16: Análisis determinista por respuestas — resultados trazables y sin depender de una clave de IA.
-- 2026-11-16: Propuesta visual en preview — José valida antes de producción.
+- 2026-11-16: José cambió Universidad Yhopping a Orientación Ejecutiva Empresarial — enfoque práctico de dirección.
+- 2026-11-16: José solicitó implementar la integración propuesta — publicación autorizada.
+- 2026-11-16: Demo con respuestas preparadas identificadas — evitar aparentar IA conversacional o análisis libre.
+- 2026-11-16: Ficha solo local y sin puntuación personal — separar práctica de medición empresarial.
+- 2026-11-16: Programa completo en desarrollo — no inventar fechas, inscripciones ni acreditaciones.
 
 ## Bloqueos / Riesgos
-- Emulación móvil no disponible: el navegador administrado bloquea DevTools; no se alteró la política.
-- Instrumento piloto sin validación estadística; etiquetas y prioridades son reglas de diseño.
-- No se verifican estados financieros ni documentos; el reporte refleja autodeclaraciones.
-- Correo sin configurar; no se acredita recepción real de consultas.
-- Las respuestas viven en memoria de la página; recargar las borra. No se almacenan ni envían a IA.
+- Sin executor ni navegador en esta sesión: no se acredita prueba interactiva o visual de esta integración.
+- Correo sin prueba real de recepción; contacto directo, sin formulario habilitado.
+- Cuestionario sin validación estadística; orientación sin evidencia de eficacia medida.
+- Revisión independiente de Claude no realizada ni simulada.
+- La ficha se pierde al salir o recargar salvo descarga local.
 
 ## Siguiente acción concreta
-Publicar la versión auditada y comprobar despliegue de producción.
+Confirmar que Vercel despliega correctamente la integración autorizada.
 
 ## Archivos clave
-- app/page.tsx — propuesta visual y entrada a autoevaluación.
-- components/assessment/Assessment.tsx — interfaz bilingüe y reporte.
-- lib/assessment/model.ts — preguntas, cálculo y reglas.
-- ASSESSMENT_METHOD.md — metodología, límites y fuentes generales.
-- tests/assessment.test.cjs — verificaciones del motor.
-- RELEASE_CHECKLIST.md — requisitos de publicación.
+- app/orientacion/page.tsx — ruta y metadatos.
+- components/orientation/Orientation.tsx — sección y demo bilingüe.
+- ORIENTATION_METHOD.md — alcance, datos y límites.
+- components/layout/Header.tsx — acceso desktop/móvil.
+- app/page.tsx — entrada desde portada.
+- ASSESSMENT_METHOD.md — metodología de autoevaluación.
 
 ## Historial de checkpoints
 - 2026-11-15 — ChatGPT — actualización comercial y contacto en PR #1; preview desplegado; pendiente correo.
@@ -68,3 +66,5 @@ Publicar la versión auditada y comprobar despliegue de producción.
 - 2026-11-16 — ChatGPT — segunda propuesta visual con canvas implementada; build y 13 pruebas pasan; pendiente inspección del preview actualizado.
 
 - 2026-11-16 — ChatGPT — José autorizó aplicar diseño; auditoría contra Biblia 4.1 encontró y corrigió contenido heredado no acreditado, reserva simulada de Academia y paleta menta. Detalle en CONTENT_AUDIT.md. Contacto cambia a correo directo hasta prueba real; revisión independiente y validación del instrumento pendientes.
+
+- 2026-11-16 — ChatGPT — publicación anterior confirmada en www.yhopping.com; integración de orientación preparada bajo autorización directa, con QA interactivo pendiente.
