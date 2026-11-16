@@ -1,5 +1,5 @@
 # STATUS — Actualización Web Yhopping
-Actualizado: 2026-11-16 12:33 | Plataforma: ChatGPT | Sesión: Propuesta visual con canvas
+Actualizado: 2026-11-16 14:25 | Plataforma: ChatGPT | Sesión: Auditoría contra Biblia 4.1 y publicación autorizada
 
 ## Objetivo
 Publicar una web profesional de consultoría empresarial integral con una autoevaluación y resultados trazables.
@@ -12,7 +12,7 @@ Segunda dirección visual en rama de revisión: portada oscura con tipografía e
 Cuestionario unificado de 18 preguntas en seis áreas; contexto de tamaño/etapa sin puntuación.
 Resultados deterministas con cobertura, prioridades, evidencia declarada, hipótesis y reglas visibles.
 13 pruebas automatizadas pasan; build de producción aprobado. Recorrido completo de 18 preguntas probado en Vercel, con 17 conocidas y una desconocida; cálculo 69/100, prioridades y tres hipótesis comprobados.
-Contacto sigue pendiente de configuración de correo; producción no modificada.
+Diseño aprobado por José; publicación autorizada. Auditoría editorial en CONTENT_AUDIT.md. Contacto directo por correo; formulario e inscripción Academia deshabilitados.
 
 ## Hecho en esta sesión
 - Preparada una segunda dirección visual con canvas interactivo, tres enfoques seleccionables y parallax sutil al apuntar.
@@ -46,7 +46,7 @@ Contacto sigue pendiente de configuración de correo; producción no modificada.
 - Las respuestas viven en memoria de la página; recargar las borra. No se almacenan ni envían a IA.
 
 ## Siguiente acción concreta
-Verificar ajuste del logo y revisar la propuesta con José.
+Publicar la versión auditada y comprobar despliegue de producción.
 
 ## Archivos clave
 - app/page.tsx — propuesta visual y entrada a autoevaluación.
@@ -66,3 +66,5 @@ Verificar ajuste del logo y revisar la propuesta con José.
 - 2026-11-16 — ChatGPT — reporte revisado con zoom a 334 px de viewport, sin desbordamiento de contenido; se ajusta ancho del logo para conservar menú accesible. Emulación de dispositivo real sigue pendiente.
 
 - 2026-11-16 — ChatGPT — segunda propuesta visual con canvas implementada; build y 13 pruebas pasan; pendiente inspección del preview actualizado.
+
+- 2026-11-16 — ChatGPT — José autorizó aplicar diseño; auditoría contra Biblia 4.1 encontró y corrigió contenido heredado no acreditado, reserva simulada de Academia y paleta menta. Detalle en CONTENT_AUDIT.md. Contacto cambia a correo directo hasta prueba real; revisión independiente y validación del instrumento pendientes.

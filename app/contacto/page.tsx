@@ -1,7 +1,5 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { Mail, Phone, MapPin, CheckCircle } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
@@ -15,176 +13,8 @@ function LinkedinIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-interface FormData {
-  nombre: string;
-  email: string;
-  telefono: string;
-  empresa?: string;
-  mensaje: string;
-  website?: string;
-}
-
-function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
-  const { t, lang } = useLanguage();
-  const [sendError, setSendError] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset,
-  } = useForm<FormData>();
-
-  async function onSubmit(data: FormData) {
-    setSendError(false);
-    try {
-      const response = await fetch("/api/contacto", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const result = await response.json();
-      if (!response.ok || result.ok !== true) throw new Error("Not accepted");
-      setSubmitted(true);
-      reset();
-    } catch {
-      setSendError(true);
-    }
-  }
-
-  if (submitted)
-    return (
-      <div className="flex flex-col items-center justify-center text-center py-16 gap-5">
-        <CheckCircle size={56} className="text-yhopping-green" />
-        <h3 className="font-heading font-bold text-2xl text-yhopping-gray-900">
-          {t.contact.successTitle}
-        </h3>
-        <p className="text-yhopping-gray-700 max-w-sm">{t.contact.successDesc}</p>
-        <button
-          onClick={() => setSubmitted(false)}
-          className="mt-4 text-sm font-semibold text-yhopping-cyan underline"
-        >
-          {t.contact.sendAnother}
-        </button>
-      </div>
-    );
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-      <div hidden aria-hidden="true"><label htmlFor="website">Website</label><input id="website" {...register("website")} tabIndex={-1} autoComplete="off" /></div>
-      <p className="text-sm text-yhopping-gray-700">{lang === "es" ? "Usaremos tus datos para atender esta consulta. No incluyas información confidencial." : "We use your details to respond to this inquiry. Please do not include confidential information."}</p>
-      {sendError && <div role="alert" className="rounded-xl border border-red-300 bg-red-50 p-4 text-sm">
-        <p>{lang === "es" ? "No pudimos confirmar el envío. Tus datos siguen aquí; puedes intentar de nuevo o escribirnos directamente." : "We could not confirm sending. Your details are still here; retry or email us directly."}</p>
-        <a className="underline font-semibold" href="mailto:atencionaclientes@yhopping.com">atencionaclientes@yhopping.com</a>
-      </div>}
-      {/* Nombre */}
-      <div>
-        <label htmlFor="contact-nombre" className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
-          {t.contact.name} <span className="text-red-500">*</span>
-        </label>
-        <input
-          id="contact-nombre"
-          autoComplete="name"
-          {...register("nombre", { required: t.contact.nameRequired })}
-          placeholder={t.contact.namePlaceholder}
-          className={`w-full border rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-yhopping-cyan/30 ${
-            errors.nombre ? "border-red-400 bg-red-50" : "border-yhopping-gray-300 focus:border-yhopping-cyan"
-          }`}
-        />
-        {errors.nombre && <p className="mt-1 text-xs text-red-500">{errors.nombre.message}</p>}
-      </div>
-
-      {/* Email */}
-      <div>
-        <label htmlFor="contact-email" className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
-          {t.contact.email} <span className="text-red-500">*</span>
-        </label>
-        <input
-          id="contact-email"
-          autoComplete="email"
-          {...register("email", {
-            required: t.contact.emailRequired,
-            pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: t.contact.emailInvalid },
-          })}
-          type="email"
-          placeholder="tu@empresa.com"
-          className={`w-full border rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-yhopping-cyan/30 ${
-            errors.email ? "border-red-400 bg-red-50" : "border-yhopping-gray-300 focus:border-yhopping-cyan"
-          }`}
-        />
-        {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>}
-      </div>
-
-      {/* Teléfono */}
-      <div>
-        <label htmlFor="contact-telefono" className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
-          {t.contact.phone} <span className="text-red-500">*</span>
-        </label>
-        <input
-          id="contact-telefono"
-          autoComplete="tel"
-          {...register("telefono", {
-            required: t.contact.phoneRequired,
-            pattern: { value: /^[\+]?[\d\s\-\(\)]{10,15}$/, message: t.contact.phoneInvalid },
-          })}
-          type="tel"
-          placeholder="+52 55 1234 5678"
-          className={`w-full border rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-yhopping-cyan/30 ${
-            errors.telefono ? "border-red-400 bg-red-50" : "border-yhopping-gray-300 focus:border-yhopping-cyan"
-          }`}
-        />
-        {errors.telefono && <p className="mt-1 text-xs text-red-500">{errors.telefono.message}</p>}
-      </div>
-
-      {/* Empresa */}
-      <div>
-        <label htmlFor="contact-empresa" className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
-          {t.contact.company} <span className="text-yhopping-gray-700 font-normal">{t.contact.companyOptional}</span>
-        </label>
-        <input
-          id="contact-empresa"
-          autoComplete="organization"
-          {...register("empresa")}
-          placeholder={t.contact.companyPlaceholder}
-          className="w-full border border-yhopping-gray-300 rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200 focus:border-yhopping-cyan focus:ring-2 focus:ring-yhopping-cyan/30"
-        />
-      </div>
-
-      {/* Mensaje */}
-      <div>
-        <label htmlFor="contact-mensaje" className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
-          {t.contact.message} <span className="text-red-500">*</span>
-        </label>
-        <textarea
-          id="contact-mensaje"
-          autoComplete="off"
-          {...register("mensaje", {
-            required: t.contact.messageRequired,
-            minLength: { value: 20, message: t.contact.messageMin },
-          })}
-          rows={4}
-          placeholder={t.contact.messagePlaceholder}
-          className={`w-full border rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-yhopping-cyan/30 resize-none ${
-            errors.mensaje ? "border-red-400 bg-red-50" : "border-yhopping-gray-300 focus:border-yhopping-cyan"
-          }`}
-        />
-        {errors.mensaje && <p className="mt-1 text-xs text-red-500">{errors.mensaje.message}</p>}
-      </div>
-
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full py-4 rounded-full font-bold text-white text-base shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed"
-        style={{ background: "linear-gradient(135deg, #0046FF, #1CC5DC)" }}
-      >
-        {isSubmitting ? t.contact.sending : t.contact.send}
-      </button>
-    </form>
-  );
-}
-
 export default function ContactoPage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <div className="min-h-screen bg-white">
@@ -232,7 +62,7 @@ export default function ContactoPage() {
                 <h2 className="font-heading font-bold text-2xl text-yhopping-gray-900 mb-7">
                   {t.contact.formTitle}
                 </h2>
-                <ContactForm />
+                <p className="mb-6 text-yhopping-gray-700">{lang === "es" ? "El formulario de envío está temporalmente deshabilitado. Escríbenos desde tu correo; abrir el enlace no envía el mensaje automáticamente." : "The submission form is temporarily disabled. Write from your email app; opening the link does not send a message automatically."}</p><a className="inline-flex rounded-lg bg-yhopping-blue text-white px-6 py-4 font-semibold" href="mailto:atencionaclientes@yhopping.com">{lang === "es" ? "Abrir mi correo" : "Open my email app"}</a>
               </div>
             </div>
 

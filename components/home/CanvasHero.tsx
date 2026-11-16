@@ -31,7 +31,7 @@ function Sculpture({active}:{active:number}){
     const shift=i===active?-12:0;const pts=points.map(([x,y])=>[x,y+shift]);
     polygon(pts.map(([x,y])=>[x,y+29]),"rgba(0,5,13,.3)");
     const g=ctx.createLinearGradient(100,100,420,310);g.addColorStop(0,i===active?"#34d9dc":"#153c51");g.addColorStop(1,i===active?"#087c94":"#0b2234");
-    polygon(pts,g,i===active?"rgba(167,255,245,.95)":"rgba(113,184,203,.45)");
+    polygon(pts,g,i===active?"rgba(140,232,243,.95)":"rgba(113,184,203,.45)");
     polygon([pts[2],pts[3],[pts[3][0],pts[3][1]+28],[pts[2][0],pts[2][1]+28]],i===active?"#065668":"#091b2b","rgba(110,190,204,.22)");
     for(let j=1;j<=5;j++){ctx.beginPath();const a=pts[0],b=pts[1],c=pts[3],d=pts[2],t=j/6;ctx.moveTo(a[0]+(c[0]-a[0])*t,a[1]+(c[1]-a[1])*t);ctx.lineTo(b[0]+(d[0]-b[0])*t,b[1]+(d[1]-b[1])*t);ctx.strokeStyle="rgba(180,235,239,.16)";ctx.stroke();}
    });
@@ -40,7 +40,7 @@ function Sculpture({active}:{active:number}){
    polygon([[302,306],[361,273],[361,398],[302,433]],"rgba(3,16,28,.38)");
    // Quiet orbital rings make the whole visible without simulating metrics.
    ctx.save();ctx.translate(300,335);ctx.scale(1,.35);[195,235].forEach((r,i)=>{ctx.beginPath();ctx.arc(0,0,r,Math.PI*.12,Math.PI*1.88);ctx.strokeStyle=i?"rgba(115,181,201,.17)":"rgba(128,226,221,.4)";ctx.lineWidth=1;ctx.stroke();});ctx.restore();
-   [[165,410],[470,345],[300,460]].forEach(([x,y],i)=>{ctx.beginPath();ctx.arc(x,y,i===active?4:2,0,Math.PI*2);ctx.fillStyle=i===active?"#9df6de":"#467d8b";ctx.fill();});
+   [[165,410],[470,345],[300,460]].forEach(([x,y],i)=>{ctx.beginPath();ctx.arc(x,y,i===active?4:2,0,Math.PI*2);ctx.fillStyle=i===active?"#8ce8f3":"#467d8b";ctx.fill();});
    ctx.restore();
   }
   const schedule=()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(draw);};

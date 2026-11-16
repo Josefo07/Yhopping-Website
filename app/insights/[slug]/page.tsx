@@ -140,7 +140,7 @@ export default async function PostPage({ params }: Props) {
             className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-white text-sm shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl"
             style={{ background: "linear-gradient(135deg, #0046FF, #1CC5DC)" }}
           >
-            {isEN ? "Schedule Your Free Diagnostic →" : "Agenda tu Diagnóstico Gratuito →"}
+            {isEN ? "Start your self-assessment →" : "Iniciar mi autoevaluación →"}
           </Link>
         </div>
 

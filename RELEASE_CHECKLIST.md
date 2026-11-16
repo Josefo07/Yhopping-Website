@@ -49,3 +49,9 @@ Portada editorial y cuestionario único de 18 preguntas. Metodología y límites
 - [x] Escenario sintético en navegador: 18 respuestas, una desconocida; resultado 69/100, cobertura 94%, alerta de efectivo y tres hipótesis condicionadas. Cambio ES/EN conserva el resultado.
 
 - Límite de QA: el navegador administrado bloquea DevTools; emulación móvil no comprobada en esta sesión.
+
+## Auditoría editorial 16-nov-2026
+- Fuente vigente: Biblia 4.1, leída completa. Trazabilidad, hallazgos y límites en CONTENT_AUDIT.md.
+- José aprobó aplicar diseño. Se corrigen artículos heredados no acreditados, inscripciones simuladas y acento fuera de paleta.
+- Contacto directo por correo; formulario retirado de la interfaz hasta configurar y verificar recepción real.
+- Revisión independiente por Claude y validación del instrumento continúan pendientes; no se afirman realizadas.
