@@ -52,7 +52,7 @@ export default function Header() {
   const pathname = usePathname();
 
   // Páginas con hero oscuro — header arranca transparente con logo blanco
-  const hasDarkHero = false; // Light editorial header on the visual proposal.
+  const hasDarkHero = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
