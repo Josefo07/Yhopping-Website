@@ -21,9 +21,9 @@ const openSans = Open_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yhopping.com"),
-  title: "Yhopping — Dirección Financiera y Operativa Fraccional para PyMEs",
+  title: "Yhopping — Consultoría Empresarial Integral",
   description:
-    "Estabilizamos tu operación y maximizamos tu rentabilidad. CFO & COO Fraccional para PyMEs mexicanas ($10M–$100M MXN). Flujo de caja, diagnóstico financiero, automatización Office 365. Monterrey NL.",
+    "Consultoría empresarial integral en Monterrey y México. Conectamos estrategia, finanzas, operación, procesos y talento para crecer con control.",
   keywords: [
     "CFO fraccional México",
     "COO fraccional",
@@ -53,9 +53,9 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Yhopping — Dirección Financiera y Operativa Fraccional para PyMEs",
+    title: "Yhopping — Consultoría Empresarial Integral",
     description:
-      "Estabilizamos tu operación y maximizamos tu rentabilidad. CFO & COO Fraccional · PyMES Mexicanas · Monterrey NL.",
+      "Conectamos dirección, finanzas, operación y equipo. Consultoría empresarial integral en Monterrey y México.",
     type: "website",
     locale: "es_MX",
     images: [
@@ -69,8 +69,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yhopping — Dirección Financiera y Operativa Fraccional",
-    description: "CFO & COO Fraccional para PyMEs mexicanas. Rigor sin rigidez.",
+    title: "Yhopping — Consultoría Empresarial Integral",
+    description: "Consultoría empresarial integral. Potenciando Empresas.",
     images: ["/images/yh-og-image.png"],
   },
 };

@@ -52,7 +52,7 @@ export default function Header() {
   const pathname = usePathname();
 
   // Páginas con hero oscuro — header arranca transparente con logo blanco
-  const hasDarkHero = pathname === "/" || pathname.startsWith("/diagnostico");
+  const hasDarkHero = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -86,16 +86,17 @@ export default function Header() {
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", height: 80, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
 
         {/* ── LOGO ── contenedor de tamaño fijo, ambas imágenes superpuestas */}
-        <Link href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0, position: "relative", height: 40, width: 185 }}>
+        <Link href="/" aria-label="Yhopping" style={{ display: "flex", alignItems: "center", flexShrink: 0, position: "relative", height: 40, width: "clamp(120px, 32vw, 185px)" }}>
           {/* Dark logo: sobre Hero oscuro */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/yh-logo-dark.png"
-            alt="Yhopping"
+            alt=""
+            aria-hidden="true"
             style={{
-              position: "absolute", top: 0, left: 0,
-              height: 40, width: "auto",
-              opacity: scrolled ? 0 : 1,
+              position: "absolute", top: "50%", left: 0, transform: "translateY(-50%)",
+              height: "auto", width: "100%", maxHeight: 40, objectFit: "contain", objectPosition: "left",
+              opacity: isDark ? 1 : 0,
               transition: "opacity 0.3s ease",
             }}
           />
@@ -103,11 +104,12 @@ export default function Header() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/yh-logo-light.png"
-            alt="Yhopping"
+            alt=""
+            aria-hidden="true"
             style={{
-              position: "absolute", top: 0, left: 0,
-              height: 40, width: "auto",
-              opacity: scrolled ? 1 : 0,
+              position: "absolute", top: "50%", left: 0, transform: "translateY(-50%)",
+              height: "auto", width: "100%", maxHeight: 40, objectFit: "contain", objectPosition: "left",
+              opacity: isDark ? 0 : 1,
               transition: "opacity 0.3s ease",
             }}
           />
@@ -137,7 +139,7 @@ export default function Header() {
             href="/diagnostico-empresarial"
             style={{
               padding: "10px 20px",
-              borderRadius: 99,
+              borderRadius: 8,
               fontSize: 13,
               fontWeight: 700,
               color: isDark ? "#1A1D29" : "#fff",

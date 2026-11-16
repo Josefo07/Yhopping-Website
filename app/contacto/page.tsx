@@ -1,7 +1,5 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { Mail, Phone, MapPin, CheckCircle } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
@@ -15,147 +13,8 @@ function LinkedinIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-interface FormData {
-  nombre: string;
-  email: string;
-  telefono: string;
-  empresa?: string;
-  mensaje: string;
-}
-
-function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
-  const { t } = useLanguage();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset,
-  } = useForm<FormData>();
-
-  function onSubmit(data: FormData) {
-    console.log("Contacto form data:", data);
-    setSubmitted(true);
-    reset();
-  }
-
-  if (submitted)
-    return (
-      <div className="flex flex-col items-center justify-center text-center py-16 gap-5">
-        <CheckCircle size={56} className="text-yhopping-green" />
-        <h3 className="font-heading font-bold text-2xl text-yhopping-gray-900">
-          {t.contact.successTitle}
-        </h3>
-        <p className="text-yhopping-gray-700 max-w-sm">{t.contact.successDesc}</p>
-        <button
-          onClick={() => setSubmitted(false)}
-          className="mt-4 text-sm font-semibold text-yhopping-cyan underline"
-        >
-          {t.contact.sendAnother}
-        </button>
-      </div>
-    );
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-      {/* Nombre */}
-      <div>
-        <label className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
-          {t.contact.name} <span className="text-red-500">*</span>
-        </label>
-        <input
-          {...register("nombre", { required: t.contact.nameRequired })}
-          placeholder={t.contact.namePlaceholder}
-          className={`w-full border rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-yhopping-cyan/30 ${
-            errors.nombre ? "border-red-400 bg-red-50" : "border-yhopping-gray-300 focus:border-yhopping-cyan"
-          }`}
-        />
-        {errors.nombre && <p className="mt-1 text-xs text-red-500">{errors.nombre.message}</p>}
-      </div>
-
-      {/* Email */}
-      <div>
-        <label className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
-          {t.contact.email} <span className="text-red-500">*</span>
-        </label>
-        <input
-          {...register("email", {
-            required: t.contact.emailRequired,
-            pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: t.contact.emailInvalid },
-          })}
-          type="email"
-          placeholder="tu@empresa.com"
-          className={`w-full border rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-yhopping-cyan/30 ${
-            errors.email ? "border-red-400 bg-red-50" : "border-yhopping-gray-300 focus:border-yhopping-cyan"
-          }`}
-        />
-        {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>}
-      </div>
-
-      {/* Teléfono */}
-      <div>
-        <label className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
-          {t.contact.phone} <span className="text-red-500">*</span>
-        </label>
-        <input
-          {...register("telefono", {
-            required: t.contact.phoneRequired,
-            pattern: { value: /^[\+]?[\d\s\-\(\)]{10,15}$/, message: t.contact.phoneInvalid },
-          })}
-          type="tel"
-          placeholder="+52 55 1234 5678"
-          className={`w-full border rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-yhopping-cyan/30 ${
-            errors.telefono ? "border-red-400 bg-red-50" : "border-yhopping-gray-300 focus:border-yhopping-cyan"
-          }`}
-        />
-        {errors.telefono && <p className="mt-1 text-xs text-red-500">{errors.telefono.message}</p>}
-      </div>
-
-      {/* Empresa */}
-      <div>
-        <label className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
-          {t.contact.company} <span className="text-yhopping-gray-700 font-normal">{t.contact.companyOptional}</span>
-        </label>
-        <input
-          {...register("empresa")}
-          placeholder={t.contact.companyPlaceholder}
-          className="w-full border border-yhopping-gray-300 rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200 focus:border-yhopping-cyan focus:ring-2 focus:ring-yhopping-cyan/30"
-        />
-      </div>
-
-      {/* Mensaje */}
-      <div>
-        <label className="block text-sm font-semibold text-yhopping-gray-700 mb-1.5">
-          {t.contact.message} <span className="text-red-500">*</span>
-        </label>
-        <textarea
-          {...register("mensaje", {
-            required: t.contact.messageRequired,
-            minLength: { value: 20, message: t.contact.messageMin },
-          })}
-          rows={4}
-          placeholder={t.contact.messagePlaceholder}
-          className={`w-full border rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-yhopping-cyan/30 resize-none ${
-            errors.mensaje ? "border-red-400 bg-red-50" : "border-yhopping-gray-300 focus:border-yhopping-cyan"
-          }`}
-        />
-        {errors.mensaje && <p className="mt-1 text-xs text-red-500">{errors.mensaje.message}</p>}
-      </div>
-
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full py-4 rounded-full font-bold text-white text-base shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed"
-        style={{ background: "linear-gradient(135deg, #0046FF, #1CC5DC)" }}
-      >
-        {isSubmitting ? t.contact.sending : t.contact.send}
-      </button>
-    </form>
-  );
-}
-
 export default function ContactoPage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <div className="min-h-screen bg-white">
@@ -196,14 +55,14 @@ export default function ContactoPage() {
       {/* Content */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+          <div className="yh-contact-grid">
             {/* Form (65%) */}
             <div className="lg:col-span-3">
               <div className="rounded-2xl border border-yhopping-gray-200 bg-white p-8 shadow-sm">
                 <h2 className="font-heading font-bold text-2xl text-yhopping-gray-900 mb-7">
                   {t.contact.formTitle}
                 </h2>
-                <ContactForm />
+                <p className="mb-6 text-yhopping-gray-700">{lang === "es" ? "El formulario de envío está temporalmente deshabilitado. Escríbenos desde tu correo; abrir el enlace no envía el mensaje automáticamente." : "The submission form is temporarily disabled. Write from your email app; opening the link does not send a message automatically."}</p><a className="inline-flex rounded-lg bg-yhopping-blue text-white px-6 py-4 font-semibold" href="mailto:atencionaclientes@yhopping.com">{lang === "es" ? "Abrir mi correo" : "Open my email app"}</a>
               </div>
             </div>
 

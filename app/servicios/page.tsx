@@ -11,7 +11,7 @@ const serviceIds = ["cfo", "flujo", "automatizacion", "diagnostico-fin"];
 const serviceBgs = ["bg-white", "bg-yhopping-gray-50", "bg-white", "bg-yhopping-gray-50"];
 
 export default function ServiciosPage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <>
@@ -67,6 +67,11 @@ export default function ServiciosPage() {
         </div>
       </section>
 
+      <section className="py-16 bg-white"><div className="max-w-7xl mx-auto px-6 lg:px-12"><h2 className="text-3xl font-bold mb-5">{lang === "es" ? "Tres formas de acompañarte" : "Three ways to work together"}</h2><div className="grid md:grid-cols-3 gap-6">{[
+        ["YHOPPING INSIGHT", lang === "es" ? "Diagnóstico y dirección de oportunidades: revisión integral, prioridades y plan de acción." : "Diagnosis and opportunity direction: integrated review, priorities and action plan."],
+        ["YHOPPING PERFORMANCE", lang === "es" ? "Implementación de mejoras: procesos, responsabilidades e indicadores en áreas prioritarias." : "Improvement implementation: processes, ownership and indicators in priority areas."],
+        ["YHOPPING GROWTH PARTNER", lang === "es" ? "Dirección y acompañamiento integral, sujeto a disponibilidad y capacidad real de ejecución." : "Integrated direction and support, subject to availability and actual delivery capacity."]
+      ].map(([name, description])=><div key={name} className="border border-slate-200 rounded-xl p-6"><h3 className="font-bold mb-3">{name}</h3><p>{description}</p></div>)}</div><p className="mt-6 text-sm text-slate-600">{lang === "es" ? "Alcance, entregables, plazos y honorarios se acuerdan por propuesta. No se garantizan porcentajes de mejora. Los especialistas externos se incorporan por proyecto cuando el alcance lo requiere." : "Scope, deliverables, timing and fees are agreed in a proposal. Improvement percentages are not guaranteed. External specialists join per project when required by the agreed scope."}</p></div></section>
       {/* Servicios */}
       {t.services.items.map((item, idx) => {
         const Icon = serviceIcons[idx];
@@ -78,7 +83,7 @@ export default function ServiciosPage() {
         return (
           <section key={id} id={id} className={`py-20 ${bg}`}>
             <div className="max-w-7xl mx-auto px-6 lg:px-12">
-              <div className={`grid grid-cols-1 lg:grid-cols-3 gap-12 items-start ${reversed ? "lg:grid-flow-dense" : ""}`}>
+              <div className="yh-service-detail">
                 {/* Main content */}
                 <div className={`lg:col-span-2 ${reversed ? "lg:col-start-1" : ""}`}>
                   <div
@@ -129,7 +134,7 @@ export default function ServiciosPage() {
                       ))}
                     </div>
                     <Link
-                      href="/diagnostico"
+                      href="/contacto"
                       className="mt-8 w-full inline-flex items-center justify-center px-5 py-3 rounded-full font-bold text-white text-sm transition-all duration-200 hover:scale-105 hover:shadow-lg"
                       style={{ background: "linear-gradient(135deg, #0046FF, #1CC5DC)" }}
                     >
@@ -154,7 +159,7 @@ export default function ServiciosPage() {
           </h2>
           <p className="text-gray-400 mb-8">{t.services.ctaDesc}</p>
           <Link
-            href="/diagnostico"
+            href="/contacto"
             className="inline-flex items-center justify-center px-10 py-4 rounded-full font-bold text-white text-base shadow-xl transition-all duration-200 hover:scale-105"
             style={{ background: "linear-gradient(135deg, #0046FF, #1CC5DC)" }}
           >

@@ -22,13 +22,13 @@ export default function Footer() {
     [t.services.items[0].title, "/servicios#cfo"],
     [t.services.items[1].title, "/servicios#flujo"],
     [t.services.items[2].title, "/servicios#automatizacion"],
-    [t.services.items[3].title, "/servicios#diagnostico"],
+    [t.services.items[3].title, "/servicios#diagnostico-fin"],
   ] as [string, string][];
 
   return (
     <footer className="bg-yhopping-dark text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <div className="yh-footer-grid mb-12">
           {/* Brand */}
           <div>
             <Image
