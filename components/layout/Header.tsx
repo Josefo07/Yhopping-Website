@@ -95,7 +95,7 @@ export default function Header() {
             style={{
               position: "absolute", top: 0, left: 0,
               height: 40, width: "auto",
-              opacity: scrolled ? 0 : 1,
+              opacity: isDark ? 1 : 0,
               transition: "opacity 0.3s ease",
             }}
           />
@@ -107,7 +107,7 @@ export default function Header() {
             style={{
               position: "absolute", top: 0, left: 0,
               height: 40, width: "auto",
-              opacity: scrolled ? 1 : 0,
+              opacity: isDark ? 0 : 1,
               transition: "opacity 0.3s ease",
             }}
           />

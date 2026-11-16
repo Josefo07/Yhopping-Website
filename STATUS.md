@@ -11,7 +11,7 @@ Diseño aprobado por José; cuestionario y metodología revisados; resultados y 
 Propuesta visual implementada sobre la rama de revisión, con portada editorial y representación conceptual del enfoque.
 Cuestionario unificado de 18 preguntas en seis áreas; contexto de tamaño/etapa sin puntuación.
 Resultados deterministas con cobertura, prioridades, evidencia declarada, hipótesis y reglas visibles.
-13 pruebas automatizadas pasan; build de producción aprobado. Pendiente QA de esta versión en Vercel.
+13 pruebas automatizadas pasan; build de producción aprobado. Recorrido completo de 18 preguntas probado en Vercel, con 17 conocidas y una desconocida; cálculo 69/100, prioridades y tres hipótesis comprobados.
 Contacto sigue pendiente de configuración de correo; producción no modificada.
 
 ## Hecho en esta sesión
@@ -23,7 +23,7 @@ Contacto sigue pendiente de configuración de correo; producción no modificada.
 - Documentada metodología y límites de validación del piloto.
 
 ## Pendiente (por prioridad)
-1. Verificar nueva propuesta y recorrido de cuestionario en Vercel — ChatGPT — 2026-11-16
+1. Corregir variante del logo en cabecera y volver a verificar preview — ChatGPT — 2026-11-16
 2. Revisar diseño móvil y accesibilidad de flujos completos — ChatGPT — 2026-11-17
 3. Validar preguntas, lenguaje y metodología piloto — José + ChatGPT — 2026-11-18
 4. Conectar correo y verificar recepción real — José + ChatGPT — 2026-11-19
@@ -36,13 +36,14 @@ Contacto sigue pendiente de configuración de correo; producción no modificada.
 - 2026-11-16: Propuesta visual en preview — José valida antes de producción.
 
 ## Bloqueos / Riesgos
+- Emulación móvil no disponible: el navegador administrado bloquea DevTools; no se alteró la política.
 - Instrumento piloto sin validación estadística; etiquetas y prioridades son reglas de diseño.
 - No se verifican estados financieros ni documentos; el reporte refleja autodeclaraciones.
 - Correo sin configurar; no se acredita recepción real de consultas.
-- El idioma y los datos viven en la sesión; recargar borra respuestas. No se almacenan ni envían a IA.
+- Las respuestas viven en memoria de la página; recargar las borra. No se almacenan ni envían a IA.
 
 ## Siguiente acción concreta
-Revisar el preview de esta versión y completar un escenario de prueba de resultados.
+Verificar ajuste del logo y revisar la propuesta con José.
 
 ## Archivos clave
 - app/page.tsx — propuesta visual y entrada a autoevaluación.
@@ -56,3 +57,5 @@ Revisar el preview de esta versión y completar un escenario de prueba de result
 - 2026-11-15 — ChatGPT — actualización comercial y contacto en PR #1; preview desplegado; pendiente correo.
 - 2026-11-15 — ChatGPT — acceso Vercel completado; build cambiado a Webpack y despliegue confirmado.
 - 2026-11-16 — ChatGPT — propuesta visual y autoevaluación integral implementadas; 13 pruebas pasan; QA de preview pendiente.
+
+- 2026-11-16 — ChatGPT — comprobado recorrido de 18 preguntas y reporte ES/EN con escenario sintético; 69/100 y cobertura 17/18 correctos; corregida variante del logo en cabecera clara.

@@ -45,3 +45,7 @@ Portada editorial y cuestionario único de 18 preguntas. Metodología y límites
 - [ ] Validación de diseño y cuestionario por José.
 - [ ] QA visual y recorrido completo de esta versión en preview, escritorio y móvil.
 - [ ] Conectar el correo antes de publicar.
+
+- [x] Escenario sintético en navegador: 18 respuestas, una desconocida; resultado 69/100, cobertura 94%, alerta de efectivo y tres hipótesis condicionadas. Cambio ES/EN conserva el resultado.
+
+- Límite de QA: el navegador administrado bloquea DevTools; emulación móvil no comprobada en esta sesión.
